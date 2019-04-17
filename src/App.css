@@ -1,33 +1,87 @@
-.App {
+.header-color{background: #0F2027;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.landing-grid{background: #bdc3c7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  
+.landing-banner{
+  padding-top: 1em;
+  height: 250px;
+  width: 100%;
+}
+
+.banner-text {
+  height: 70px;
+  width: 100%
+}
+
+.banner-text h1{
+  font-size: 50px;
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.mdl-badge {
+  width: 24px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.clp-landing-banner{
+  height: 250px;
+  width: 100%;
 }
+
+.clp-landing-grid{background: #bdc3c7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.clp-background {
+  padding-top: 1em;
+  display: flex;
+  width: 100%;
+}
+
+.clp-card-image {
+ width: 200px;
+ height: 200px;
+}
+
+.promo-icon-block{
+  height: 30px;
+  width: 100%;
+  background: white;
+  font-weight: bold;
+  text-align: center;
+ }
+
+ .logo{
+  width: 50px;
+  height: 50px;
+ }
+
+ .breadcrumb{
+   background: black;
+   height: 30px;
+}
+
+ .breadcrumb h1{
+  font-size: 20px;
+  text-align: left;
+  color: white;
+  padding-left: 1em;
+ }
+ 
+ .mdl-layout__drawer-button{
+   color: gray;
+ }
+
+ .pdp-image{
+   padding-left: 2em;
+   height: 500px;
+   width:500px;
+   border: 2px;
+ }
