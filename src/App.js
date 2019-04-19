@@ -4,7 +4,6 @@ import {Layout, Header, Navigation, Drawer, Content, Footer,FooterSection, Foote
 import MainRoute from './routes/mainroute';
 import {Link} from 'react-router-dom';
 import {Badge, Icon} from 'react-mdl';
-import Logo from '../src/assets/smartCommLogo.jpg';
 
 class App extends Component {
 
@@ -16,7 +15,7 @@ class App extends Component {
             <Navigation>
                 <Link to ="/">Home</Link>
                 <Link to ="/signin">Sign In</Link>
-                <Link to ="/myaccount">My Account</Link>
+                <Link to ="/createaccount">My Account</Link>
                 <Link to ="/favorite">
                     <Badge text="1" overlap>
                         <Icon name="favorite" />

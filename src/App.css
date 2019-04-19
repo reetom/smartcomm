@@ -10,7 +10,7 @@
   
 .landing-banner{
   padding-top: 1em;
-  height: 250px;
+  height: 500px;
   width: 100%;
 }
 
@@ -85,3 +85,103 @@
    width:500px;
    border: 2px;
  }
+
+.pdp-button-div{
+  padding-top: 2em;
+  padding-left: 2em;
+}
+
+.pdp-button{
+  margin: 2em;
+  color: black;
+  background: orange;
+  width: 150px;
+  height: 30px;
+}
+
+.pdp-button-round{
+  margin: 1em;
+  color: black;
+  background: orange;
+}
+
+.plp-landing-banner{
+  height: 400px;
+  width: 100%;
+}
+
+.plp-landing-grid{background: #bdc3c7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.email-sign-up-text{
+  height: 50px;
+  background: #2193b0;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+text-align: center;
+color: white;
+}
+
+.email-sign-up{
+  height: 75px;
+  background: #2193b0;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+text-align: center;
+}
+
+.new-arrivals-text{
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  padding-top: 1em;
+}
+
+.currently-trending-text{
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  padding-top: 1em;
+}
+
+.plp-refine{
+  width: 300px;
+  height: 600px;
+  background: #bdc3c7;
+  padding-top: 2em;
+}
+
+.price{
+  color: red;
+}
+
+.login-div-primary{
+  background: #bdc3c7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  width: 100%;
+  height: 725px;
+  text-align: center;
+  color: white;
+}
+
+.new-arrivals-section{
+  height:500px;
+  background: #2193b0;
+}
+
+.currently-trending-section{
+  height:500px;
+  background: #2193b0;
+}
+
+.know-your-gucci-text{
+  text-align: center;
+  color: white;
+}
+
+.video-iframe{
+  text-align: center;
+}

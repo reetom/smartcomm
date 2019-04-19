@@ -4,11 +4,12 @@ import Landing from './../components/landingpage';
 import Contact from './../components/contact';
 import About from './../components/about';
 import Login from './../components/loginpage';
-import MyAccount from './../components/myaccountlanding';
+import CreateAccount from './../components/createaccount';
 import Clp from './../components/clp';
 import Cart from './../components/cart';
 import Favorite from './../components/favorite';
 import PDP from './../components/pdp';
+import PLP from './../components/plp';
 
 const MainRoute = () => (
     <Switch>
@@ -16,11 +17,12 @@ const MainRoute = () => (
         <Route exact path="/contact" component= {Contact} />
         <Route exact path="/about" component= {About} />
         <Route exact path="/signin" component= {Login} />
-        <Route exact path="/myaccount" component= {MyAccount} />
+        <Route exact path="/createaccount" component= {CreateAccount} />
         <Route exact path="/clp" component= {Clp} />
         <Route exact path="/cart" component= {Cart} />
         <Route exact path="/favorite" component= {Favorite} />
         <Route exact path="/pdp" component= {PDP} />
+        <Route exact path="/plp" component= {PLP} />
     </Switch>
 )
 

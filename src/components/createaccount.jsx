@@ -1,14 +1,28 @@
 import React, {Component} from 'react';
 import {Grid, Cell, Button, FABButton,Icon, Textfield} from 'react-mdl';
 import {Link} from 'react-router-dom';
-class Login extends Component {
+class CreateAccount extends Component {
     render() {
         return(
             <div className="login-div-primary">
                 <div>
                     <Textfield
                     onChange={() => {}}
-                    label="User ID"
+                    label="First Name"
+                    style={{width: '200px'}}
+                    />
+                </div>
+                <div>
+                    <Textfield
+                    onChange={() => {}}
+                    label="Last Name"
+                    style={{width: '200px'}}
+                    />
+                </div>
+                <div>
+                    <Textfield
+                    onChange={() => {}}
+                    label="Email Address"
                     style={{width: '200px'}}
                     />
                 </div>
@@ -20,18 +34,10 @@ class Login extends Component {
                     />
                 </div>
                 <div>
-                    <Button class="pdp-button" raised colored>Sign In</Button>
-                </div>
-                <div>
-                    <Link to="/passwordreset">
-                        <h6>Forgot Password?</h6>
-                    </Link>
-                    <Link to="/createaccount">
-                        <h6>Create Account</h6>
-                    </Link>
+                    <Button class="pdp-button" raised colored>Create Account</Button>
                 </div>
             </div>
         )
     }
 }
-export default Login;
+export default CreateAccount;

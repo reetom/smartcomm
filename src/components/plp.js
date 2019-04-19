@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
-import landingbanner from '../../src/assets/banners/landingbanner3.jpg';
 import {Link} from 'react-router-dom';
+import landingbanner from '../../src/assets/banners/landingbanner5.jpg';
 import bag1 from '../../src/assets/products/bag1.jpeg';
 import bag2 from '../../src/assets/products/bag2.jpeg';
 import bag3 from '../../src/assets/products/bag3.jpeg';
@@ -16,22 +16,31 @@ import bag11 from '../../src/assets/products/bag11.jpeg';
 import bag12 from '../../src/assets/products/bag12.jpg';
 
 
-class CLP extends Component {
+class PLP extends Component {
     render() {
         return(
             <div style={{width: '100%', margin: 'auto'}}>
-                <Grid className = "clp-landing-grid">
-                    <Cell col={12}>
+                <Grid className = "plp-landing-grid">
+                    
+                        <Cell col={12}>
                         <div>
                                 <img
                                     src={landingbanner}
                                     alt="landingbanner1"
-                                    className="clp-landing-banner"
+                                    className="plp-landing-banner"
                                 />
                         </div>
                         <div className="breadcrumb">
                             <h1>Departments > Women</h1>
                         </div>
+                        </Cell>
+                            
+                        <Cell col={3}>
+                        <div className="plp-refine">
+
+                            </div>
+                        </Cell>
+                        <Cell col={9}>
                         <div className="clp-background"> 
                             <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
                                 <CardTitle style={{color: '#fff', height: '250px'}}>
@@ -45,7 +54,6 @@ class CLP extends Component {
                                 </CardTitle>
                                 <CardText>
                                     Small Sylvie Leather Shoulder Bag
-                                    $3550
                                 </CardText>
                                 <CardMenu style={{color: 'RED'}}>
                                     <IconButton name="share" style={{color: 'Blue'}}/>
@@ -63,7 +71,6 @@ class CLP extends Component {
                                 </CardTitle>
                                 <CardText>
                                 Black Sylvie leather shoulder bag
-                                $3550
                                 </CardText>
                                 <CardMenu style={{color: 'RED'}}>
                                     <IconButton name="share" style={{color: 'Blue'}}/>
@@ -88,23 +95,7 @@ class CLP extends Component {
                                     <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
                                 </CardMenu>
                               </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag4}
-                                alt="bag4"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                Zumi Small leather tote
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
+ 
                         </div>
                         <div className="clp-background"> 
                             <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
@@ -158,23 +149,7 @@ class CLP extends Component {
                                     <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
                                 </CardMenu>
                               </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag8}
-                                alt="bag8"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Mini Marmont Chevron Shoulder Bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
+
                         </div>
                         <div className="clp-background"> 
                             <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
@@ -228,23 +203,7 @@ class CLP extends Component {
                                     <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
                                 </CardMenu>
                               </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag12}
-                                alt="bag12"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci's Mini Ophidia GG Backpack 
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
+                        
                         </div>
                     </Cell>
 
@@ -253,4 +212,4 @@ class CLP extends Component {
         )
     }
 }
-export default CLP;
+export default PLP;
