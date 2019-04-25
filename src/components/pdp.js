@@ -2,7 +2,26 @@ import React, {Component} from 'react';
 import {Grid, Cell, Button, FABButton,Icon, Textfield} from 'react-mdl';
 import bag1 from '../../src/assets/products/bag1.jpeg';
 class PDP extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            products:[],
+       }
+    }
+
+    fetchData(){
+        fetch("https://jsonplaceholder.typicode.com/users")
+        .then(res => res.json())
+        .then (json => {
+            this.setState({
+                products: json
+            })
+        });
+        console.log(this.products);
+    }
+
     render() {
+        console.log("Hello");
         return(
             <Grid className = "pdp-grid">
             <Cell col={6}>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton, Textfield} from 'react-mdl';
 import {Link} from 'react-router-dom';
+import Modal from './modal';
 import landingbanner from '../../src/assets/banners/landingbanner6.jpg';
 import bag9 from '../../src/assets/products/bag9.jpg';
 import bag10 from '../../src/assets/products/bag10.jpg';
@@ -12,6 +13,7 @@ import bag6 from '../../src/assets/products/bag6.jpeg';
 import bag7 from '../../src/assets/products/bag7.jpeg';
 
 class Landing extends Component {
+
     render() {
         return(
             <div style={{width: '100%', margin: 'auto'}}>
@@ -54,7 +56,9 @@ class Landing extends Component {
                                     Gucci 2016 Brown Leather Marmont Shoulder Bag w/ Green & Red Stripe
                                 </CardText>
                                 <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
+                                    <IconButton name="share" style={{color: 'Blue'}}>
+                                    <Modal/>
+                                    </IconButton>
                                     <IconButton name="favorite" />
                                     <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
                                 </CardMenu>
