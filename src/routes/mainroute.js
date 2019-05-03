@@ -11,8 +11,6 @@ import Favorite from './../components/favorite';
 import PDP from './../components/pdp';
 import PLP from './../components/plp';
 import Data from './../components/data';
-import Data1 from './../components/data1';
-import Data2 from './../components/data2';
 
 const MainRoute = () => (
     <Switch>
@@ -27,8 +25,6 @@ const MainRoute = () => (
         <Route exact path="/pdp" component= {PDP} />
         <Route exact path="/plp" component= {PLP} />
         <Route exact path="/data" component= {Data} />
-        <Route exact path="/data1" component= {Data1} />
-        <Route exact path="/data2" component= {Data2} />
 
     </Switch>
 )

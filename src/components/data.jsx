@@ -21,7 +21,7 @@ class Data extends Component {
     }
     render(){
         var {isLoaded, products} = this.state;
-        
+        console.log(products);
         if (isLoaded) {
             return(
                 <div>
@@ -33,6 +33,8 @@ class Data extends Component {
 
                         )
                     }
+                    
+                    {this.state.products[0].name}
                 </div>
             );
  

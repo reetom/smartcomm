@@ -5,6 +5,7 @@ import MainRoute from './routes/mainroute';
 import {Link} from 'react-router-dom';
 import {Badge, Icon} from 'react-mdl';
 
+var fs = require('fs');
 class App extends Component {
 
   render() {
