@@ -44,6 +44,29 @@ class CLP extends Component {
         var products = CLPData;//Fixture data, delete when connected to APIs and uncomment the next line
         //var {products} = this.state;
         console.log(CLPData);
+        //loop through every product in the array and build the card.
+        const cardUnit = products.map(product => 
+                            <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
+                                <CardTitle style={{color: '#fff', height: '250px'}}>
+                                <Link to="/pdp">
+                                <img
+                                src={bag1}
+                                alt="bag1"
+                                className="clp-card-image"
+                                />
+                                </Link>
+                                </CardTitle>
+                                <CardText>
+                                    {product.name}
+                                    ${product.price}
+                                </CardText>
+                                <CardMenu style={{color: 'RED'}}>
+                                    <IconButton name="share" style={{color: 'Blue'}}/>
+                                    <IconButton name="favorite" />
+                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
+                                </CardMenu>
+                              </Card>
+            )
 
         return(
             <div style={{width: '100%', margin: 'auto'}}>
@@ -60,223 +83,9 @@ class CLP extends Component {
                             <h1>Departments > Women</h1>
                         </div>
                         <div className="clp-background"> 
-                                <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <Link to="/pdp">
-                                <img
-                                src={bag1}
-                                alt="bag1"
-                                className="clp-card-image"
-                                />
-                                </Link>
-                                </CardTitle>
-                                <CardText>
-                                    Small Sylvie Leather Shoulder Bag
-                                    $3550
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                    src={bag2}
-                                    alt="bag2"
-                                    className="clp-card-image"
-                                />
-                                </CardTitle>
-                                <CardText>
-                                Black Sylvie leather shoulder bag
-                                $3550
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag3}
-                                alt="bag3"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                Boston Webby Speedy 6401 Brown Canvas Cross Body Bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag4}
-                                alt="bag4"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                Zumi Small leather tote
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                        </div>
-
-
-                        <div className="clp-background"> 
-                            <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag5}
-                                alt="bag5"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Sylvie Small Top-Handle Satchel Bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag6}
-                                alt="bag6"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    GIRLS UNICORN TOTE BAG
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag7}
-                                alt="bag7"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    GG Marmont Tall Chevron Leather Crossbody Bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag8}
-                                alt="bag8"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Mini Marmont Chevron Shoulder Bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                        </div>
-                        <div className="clp-background"> 
-                            <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag9}
-                                alt="bag1"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci 2016 Brown Leather Marmont Shoulder Bag w/ Green & Red Stripe
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag10}
-                                alt="bag10"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci Multicolor Striped Horsebit Bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag11}
-                                alt="bag11"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci's Mini Round Ophidia and GG Marmont Bags 
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag12}
-                                alt="bag12"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci's Mini Ophidia GG Backpack 
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
+                                {cardUnit}
                         </div>
                     </Cell>
-
                 </Grid>
             </div>
         )
