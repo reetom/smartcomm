@@ -33,8 +33,6 @@ class Data extends Component {
 
                         )
                     }
-                    
-                    {this.state.products[0].name}
                 </div>
             );
  

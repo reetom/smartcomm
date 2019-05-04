@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
 import landingbanner from '../../src/assets/banners/landingbanner3.jpg';
 import {Link} from 'react-router-dom';
+import CLPData from './../data/clp.json';
 import bag1 from '../../src/assets/products/bag1.jpeg';
 import bag2 from '../../src/assets/products/bag2.jpeg';
 import bag3 from '../../src/assets/products/bag3.jpeg';
@@ -17,7 +18,33 @@ import bag12 from '../../src/assets/products/bag12.jpg';
 
 
 class CLP extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            products:[],
+            isLoaded: false,
+       }
+    }
+    
+    componentDidMount(){
+        //Todo - replace with the clp url
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(res => res.json())
+        .then (json => {
+            this.setState({
+                products: json,
+                isLoaded: true,               
+            })
+        });
+    
+    }
+
     render() {
+
+        var products = CLPData;//Fixture data, delete when connected to APIs and uncomment the next line
+        //var {products} = this.state;
+        console.log(CLPData);
+
         return(
             <div style={{width: '100%', margin: 'auto'}}>
                 <Grid className = "clp-landing-grid">
@@ -33,7 +60,7 @@ class CLP extends Component {
                             <h1>Departments > Women</h1>
                         </div>
                         <div className="clp-background"> 
-                            <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
+                                <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
                                 <CardTitle style={{color: '#fff', height: '250px'}}>
                                 <Link to="/pdp">
                                 <img
@@ -106,6 +133,8 @@ class CLP extends Component {
                                 </CardMenu>
                               </Card>
                         </div>
+
+
                         <div className="clp-background"> 
                             <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
                                 <CardTitle style={{color: '#fff', height: '250px'}}>
