@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton, Textfield} from 'react-mdl';
+import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton, Textfield, Snackbar} from 'react-mdl';
 import {Link} from 'react-router-dom';
 import landingbanner from '../../src/assets/banners/landingbanner6.jpg';
 import bag9 from '../../src/assets/products/bag9.jpg';
@@ -12,8 +12,35 @@ import bag6 from '../../src/assets/products/bag6.jpeg';
 import bag7 from '../../src/assets/products/bag7.jpeg';
 
 class Landing extends Component {
+    constructor(props) {
+        super(props);
+        this.handleShowSnackbar = this.handleShowSnackbar.bind(this);
+        this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);
+        this.handleClickActionSnackbar = this.handleClickActionSnackbar.bind(this);
+        this.state = { isSnackbarActive: false };
+      }
+
+      handleShowSnackbar() {
+        this.setState({
+          isSnackbarActive: true,
+          btnBgColor: '#' +
+            Math.floor(Math.random() * 0xFFFFFF).toString(16)
+        });
+      }
+
+      handleTimeoutSnackbar() {
+        this.setState({ isSnackbarActive: false });
+      }
+
+      handleClickActionSnackbar() {
+        this.setState({
+          btnBgColor: ''
+        });
+      }
 
     render() {
+        const { btnBgColor, isSnackbarActive } = this.state;
+
         return(
             <div style={{width: '100%', margin: 'auto'}}>
                 <Grid className = "landing-grid">
@@ -203,7 +230,13 @@ class Landing extends Component {
                                 label="Please Enter Your Email Address"
                                 style={{width: '235px'}}
                             />
-                            <Button class="pdp-button" raised colored>Sign Up</Button>
+                            <Button class="pdp-button" raised colored onClick={this.handleShowSnackbar}>Sign Up</Button>
+                            <Snackbar
+                                active={isSnackbarActive}
+                                onClick={this.handleClickActionSnackbar}
+                                onTimeout={this.handleTimeoutSnackbar}
+                                action="Cancel">Thank you for subscribing to SmartComm.
+                            </Snackbar>
                         </div>
                         <div className="know-your-gucci-text">
                             <h2>KNOW YOUR GUCCI</h2>
