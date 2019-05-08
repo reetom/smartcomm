@@ -1,23 +1,63 @@
 import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
 import {Link} from 'react-router-dom';
+import PLPData from './../data/clp.json';
 import landingbanner from '../../src/assets/banners/landingbanner5.jpg';
-import bag1 from '../../src/assets/products/bag1.jpeg';
 import bag2 from '../../src/assets/products/bag2.jpeg';
-import bag3 from '../../src/assets/products/bag3.jpeg';
-import bag4 from '../../src/assets/products/bag4.jpeg';
-import bag5 from '../../src/assets/products/bag5.jpeg';
-import bag6 from '../../src/assets/products/bag6.jpeg';
-import bag7 from '../../src/assets/products/bag7.jpeg';
-import bag8 from '../../src/assets/products/bag8.jpeg';
-import bag9 from '../../src/assets/products/bag9.jpg';
-import bag10 from '../../src/assets/products/bag10.jpg';
-import bag11 from '../../src/assets/products/bag11.jpeg';
-import bag12 from '../../src/assets/products/bag12.jpg';
 
 
 class PLP extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            products:[],
+            isLoaded: false,
+       }
+    }
+    
+    componentDidMount(){
+        //Todo - replace with the clp url
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(res => res.json())
+        .then (json => {
+            this.setState({
+                products: json,
+                isLoaded: true,               
+            })
+        });
+    
+    }
     render() {
+        
+        var products = PLPData;//Fixture data, delete when connected to APIs and uncomment the next line
+        //var {products} = this.state;
+        console.log(PLPData);
+        //loop through every product in the array and build the card.
+        const cardUnit = products.map(product => 
+            <div>
+                <Card shadow={5} style={{minwidth: '200'}}>
+                <CardTitle style={{color: '#fff', height: '250px'}}>
+                <Link to="/pdp">
+                <img
+                src={bag2}
+                alt="bag2"
+                className="card-image"
+                />
+                </Link>
+                </CardTitle>
+                <CardText>
+                    {product.productName} 
+                    ${product.price}
+                </CardText>
+                <CardMenu style={{color: 'RED'}}>
+                    <IconButton name="share" style={{color: 'Blue'}}/>
+                    <IconButton name="favorite" />
+                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
+                </CardMenu>
+              </Card>
+            </div>
+        )
+
         return(
             <div style={{width: '100%', margin: 'auto'}}>
                 <Grid className = "plp-landing-grid">
@@ -36,174 +76,13 @@ class PLP extends Component {
                         </Cell>
                             
                         <Cell col={3}>
-                        <div className="plp-refine">
-
+                            <div className="plp-refine">
+                               
                             </div>
                         </Cell>
                         <Cell col={9}>
-                        <div className="clp-background"> 
-                            <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <Link to="/pdp">
-                                <img
-                                src={bag1}
-                                alt="bag1"
-                                className="clp-card-image"
-                                />
-                                </Link>
-                                </CardTitle>
-                                <CardText>
-                                    Small Sylvie Leather Shoulder Bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                    src={bag2}
-                                    alt="bag2"
-                                    className="clp-card-image"
-                                />
-                                </CardTitle>
-                                <CardText>
-                                Black Sylvie leather shoulder bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag3}
-                                alt="bag3"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                Boston Webby Speedy 6401 Brown Canvas Cross Body Bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
- 
-                        </div>
-                        <div className="clp-background"> 
-                            <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag5}
-                                alt="bag5"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Sylvie Small Top-Handle Satchel Bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag6}
-                                alt="bag6"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    GIRLS UNICORN TOTE BAG
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag7}
-                                alt="bag7"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    GG Marmont Tall Chevron Leather Crossbody Bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-
-                        </div>
-                        <div className="clp-background"> 
-                            <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag9}
-                                alt="bag1"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci 2016 Brown Leather Marmont Shoulder Bag w/ Green & Red Stripe
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag10}
-                                alt="bag10"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci Multicolor Striped Horsebit Bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag11}
-                                alt="bag11"
-                                className="clp-card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci's Mini Round Ophidia and GG Marmont Bags 
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                        
+                        <div  className="plp-grid">
+                            {cardUnit}
                         </div>
                     </Cell>
 

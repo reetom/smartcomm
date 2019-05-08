@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton, Textfield} from 'react-mdl';
 import {Link} from 'react-router-dom';
-import Modal from './modal';
 import landingbanner from '../../src/assets/banners/landingbanner6.jpg';
 import bag9 from '../../src/assets/products/bag9.jpg';
 import bag10 from '../../src/assets/products/bag10.jpg';
@@ -47,7 +46,7 @@ class Landing extends Component {
                                     <img
                                     src={bag9}
                                     alt="bag1"
-                                    className="clp-card-image"
+                                    className="card-image"
                                     />
                                 </Link>
 
@@ -57,7 +56,7 @@ class Landing extends Component {
                                 </CardText>
                                 <CardMenu style={{color: 'RED'}}>
                                     <IconButton name="share" style={{color: 'Blue'}}>
-                                    <Modal/>
+
                                     </IconButton>
                                     <IconButton name="favorite" />
                                     <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
@@ -68,7 +67,7 @@ class Landing extends Component {
                                 <img
                                 src={bag10}
                                 alt="bag10"
-                                className="clp-card-image"
+                                className="card-image"
                             />
                                 </CardTitle>
                                 <CardText>
@@ -85,7 +84,7 @@ class Landing extends Component {
                                 <img
                                 src={bag11}
                                 alt="bag11"
-                                className="clp-card-image"
+                                className="card-image"
                             />
                                 </CardTitle>
                                 <CardText>
@@ -102,7 +101,7 @@ class Landing extends Component {
                                 <img
                                 src={bag12}
                                 alt="bag12"
-                                className="clp-card-image"
+                                className="card-image"
                             />
                                 </CardTitle>
                                 <CardText>
@@ -127,7 +126,7 @@ class Landing extends Component {
                                     <img
                                     src={bag5}
                                     alt="bag5"
-                                    className="clp-card-image"
+                                    className="card-image"
                                     />
                                 </Link>
 
@@ -146,7 +145,7 @@ class Landing extends Component {
                                 <img
                                 src={bag6}
                                 alt="bag6"
-                                className="clp-card-image"
+                                className="card-image"
                             />
                                 </CardTitle>
                                 <CardText>
@@ -163,7 +162,7 @@ class Landing extends Component {
                                 <img
                                 src={bag11}
                                 alt="bag11"
-                                className="clp-card-image"
+                                className="card-image"
                             />
                                 </CardTitle>
                                 <CardText>
@@ -180,7 +179,7 @@ class Landing extends Component {
                                 <img
                                 src={bag7}
                                 alt="bag7"
-                                className="clp-card-image"
+                                className="card-image"
                             />
                                 </CardTitle>
                                 <CardText>

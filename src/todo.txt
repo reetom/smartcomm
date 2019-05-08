@@ -1,0 +1,21 @@
+This week ----
+
+1. Implement a toast message upon successfufl email sign up in home page.
+2. PLP - Implemnet the sliders in the refine section.
+3. pass the product id from plp/clp to pdp so that the pdp can dispaly the relevant product.
+4. how to put the image url in the json data.
+5. Change the breadcrumb implementation to a component.
+6. Finish the product card component and use it in clp.
+7. Publish your finished components in the comp library page thru the navigation on the main menu.
+8. Implement empty accordians for PDP - Specifications and Review section.
+
+NEXT Week ------
+
+9. Show a sale tag on plp cards.
+10. on the product cards, put the product name and price on different lines and change the color for price to red.
+11. Implemnet the grid for the cart and fill up the bg color just to define the layout.
+12. Implemnet the checkout  and return to shopping button in the cart.
+13. Build a component for displaying products in the cart. This same component will be used to display the products in the 
+favorites list.
+14. 
+

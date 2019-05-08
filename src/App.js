@@ -31,10 +31,11 @@ class App extends Component {
         </Header>
         <Drawer title="Departments" c>
             <Navigation>
-                <Link to ="/clp">Men</Link>
+                <Link to ="/plp">Men</Link>
                 <Link to ="/clp">Women</Link>
                 <Link to ="/clp">Boys</Link>
                 <Link to ="/clp">Girls</Link>
+                <Link to ="/complib">Component Library</Link>
             </Navigation>
         </Drawer>
       <Content>

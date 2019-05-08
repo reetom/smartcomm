@@ -11,6 +11,7 @@ import Favorite from './../components/favorite';
 import PDP from './../components/pdp';
 import PLP from './../components/plp';
 import Data from './../components/data';
+import CompLib from './../components/complibrary/viewlibrary';
 
 const MainRoute = () => (
     <Switch>
@@ -25,6 +26,7 @@ const MainRoute = () => (
         <Route exact path="/pdp" component= {PDP} />
         <Route exact path="/plp" component= {PLP} />
         <Route exact path="/data" component= {Data} />
+        <Route exact path="/complib" component= {CompLib} />
 
     </Switch>
 )
