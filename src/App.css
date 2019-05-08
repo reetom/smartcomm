@@ -150,7 +150,7 @@
 
 .plp-refine{
   width: 300px;
-  height: 600px;
+  height: 900px;
   background: #bdc3c7;
   padding-top: 2em;
 }
@@ -200,3 +200,28 @@
   grid-gap: 1em;
 }
 
+.plp-refine-brands{
+  padding-left: 2em;
+}
+
+.plp-refine-color{
+  padding-left: 2em;
+  padding-top: 2em;
+}
+
+.plp-refine-price{
+  padding-left: 2em;
+  padding-top: 2em;
+}
+
+.plp-button{
+  margin: 1EM;
+  color: black;
+  background: orange;
+  width: 150px;
+  height: 30px;
+}
+.plp-refine-button{
+  padding-left: 5em;
+  padding-top: 2em;
+}

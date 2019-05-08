@@ -1,13 +1,13 @@
 This week ----
 
 1. Implement a toast message upon successfufl email sign up in home page. DONE
-2. PLP - Implemnet the sliders in the refine section.
+2. PLP - Implemnet the sliders in the refine section. DONE
 3. pass the product id from plp/clp to pdp so that the pdp can dispaly the relevant product.
 4. how to put the image url in the json data.
 5. Change the breadcrumb implementation to a component.
-6. Finish the product card component and use it in clp.
+6. Finish the product card component and use it in clp. DONE
 7. Publish your finished components in the comp library page thru the navigation on the main menu.
-8. Implement empty accordians for PDP - Specifications and Review section.
+8. Implement empty accordions for PDP - Specifications and Review section.
 
 NEXT Week ------
 

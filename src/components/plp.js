@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
+import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton, Slider, Checkbox} from 'react-mdl';
 import {Link} from 'react-router-dom';
 import PLPData from './../data/clp.json';
 import landingbanner from '../../src/assets/banners/landingbanner5.jpg';
@@ -55,7 +55,37 @@ class PLP extends Component {
                             
                         <Cell col={3}>
                             <div className="plp-refine">
-                               
+                                <div className="plp-refine-brands">
+                                    <h4>Brands</h4>
+                                    <Checkbox label="Gucci" ripple defaultChecked />
+                                    <Checkbox label="Aldo" ripple defaultChecked />
+                                </div>
+                                <div className="plp-refine-color">
+                                    <h4>Colors</h4>
+                                    <Checkbox label="Blue" ripple defaultChecked />
+                                    <Checkbox label="White" ripple defaultChecked />
+                                    <Checkbox label="Maroon" ripple defaultChecked />
+                                    <Checkbox label="Black" ripple defaultChecked />
+                                    <Checkbox label="Yellow" ripple defaultChecked />
+                                    <Checkbox label="Baige" ripple defaultChecked />
+                                    <Checkbox label="Green" ripple defaultChecked />
+                                    <Checkbox label="Brown" ripple defaultChecked />
+                                    <Checkbox label="Orange" ripple defaultChecked />
+                                </div>
+                                <div className="plp-refine-color">
+                                    <h4>Material</h4>
+                                    <Checkbox label="Leather" ripple defaultChecked />
+                                    <Checkbox label="Fabric" ripple defaultChecked />
+                                    <Checkbox label="Mixed" ripple defaultChecked />
+                                </div>
+                                <div  className="plp-refine-price">
+                                    <h4>Price</h4>
+                                    <Slider min={0} max={5000} defaultValue={2500} />
+                                </div>
+                                <div className="plp-refine-button">
+                                <Button class="plp-button" raised colored onClick={this.handleShowSnackbar}>Apply</Button>
+                                <Button class="plp-button" raised colored onClick={this.handleShowSnackbar}>Reset</Button>
+                                </div>
                             </div>
                         </Cell>
                         <Cell col={9}>
