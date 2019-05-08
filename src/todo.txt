@@ -1,6 +1,6 @@
 This week ----
 
-1. Implement a toast message upon successfufl email sign up in home page.
+1. Implement a toast message upon successfufl email sign up in home page. DONE
 2. PLP - Implemnet the sliders in the refine section.
 3. pass the product id from plp/clp to pdp so that the pdp can dispaly the relevant product.
 4. how to put the image url in the json data.
