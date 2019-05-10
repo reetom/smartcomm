@@ -1,0 +1,25 @@
+[
+    { 
+        "productID": "1",
+        "productName":"",
+        "reviews":[{"Name":"Pamela", "date":"5/24/2015","feedback":"This is an amazing bag"},
+            {"Name":"Nick", "date":"5/24/2015","feedback":"This is an amazing bag"},
+            {"Name":"James", "date":"5/24/2015","feedback":"This is an amazing bag"},
+            {"Name":"Michael", "date":"5/24/2015","feedback":"This is an amazing bag"},
+            {"Name":"Richard", "date":"5/24/2015","feedback":"This is an amazing bag"},
+            {"Name":"Reetom", "date":"5/24/2015","feedback":"This is an amazing bag"}
+        ]
+    },
+    { 
+        "productID": "2",
+        "productName":"",
+        "reviews":[{"Name":"Pamela", "date":"5/24/2015","feedback":"This is an amazing bag"},
+            {"Name":"Ben", "date":"5/24/2015","feedback":"This is an amazing bag"},
+            {"Name":"Anindo", "date":"5/24/2015","feedback":"This is an amazing bag"},
+            {"Name":"Khurram", "date":"5/24/2015","feedback":"This is an amazing bag"},
+            {"Name":"David", "date":"5/24/2015","feedback":"This is an amazing bag"},
+            {"Name":"Jason", "date":"5/24/2015","feedback":"This is an amazing bag"}
+        ]
+    }
+]
+
