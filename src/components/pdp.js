@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Grid, Cell, Button, FABButton,Icon, Textfield} from 'react-mdl';
 import bag1 from '../../src/assets/products/bag1.jpeg';
 import PDPData from './../data/pdp.json';
+import ProductReviews from './../data/productreview.json';
+import Accordion from './complibrary/specaccordion';
 
 
 class PDP extends Component {
@@ -10,6 +12,7 @@ class PDP extends Component {
         this.state = {
             products:[],
             isLoaded: false,
+            currentIndex: -1,
        }
     }
 
@@ -26,9 +29,17 @@ class PDP extends Component {
     
     }
 
+    handleChange = i => {
+        this.setState({
+          currentIndex: i
+        });
+      };
+
     render() {
         var products = PDPData;//Fixture data, delete when connected to APIs and uncomment the next line
         //var {products} = this.state;
+        const { handleChange } = this;
+        const { currentIndex, isActive } = this.state;
         console.log(PDPData);
         return(
             <Grid className = "pdp-grid">
@@ -60,8 +71,15 @@ class PDP extends Component {
                     <Button class="pdp-button" raised colored>Save for Later</Button>
                 </div>
 
-
             </Cell>
+            <Cell col={12}>
+                <div className="accordion">
+                    
+                    <Accordion productSpecs={products[0].productSpecs} handleChange={handleChange} currentIndex={currentIndex}/>
+                    
+                </div>
+            </Cell>
+           
             </Grid>
         )
     }
