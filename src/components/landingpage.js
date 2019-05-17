@@ -17,8 +17,17 @@ class Landing extends Component {
         this.handleShowSnackbar = this.handleShowSnackbar.bind(this);
         this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);
         this.handleClickActionSnackbar = this.handleClickActionSnackbar.bind(this);
-        this.state = { isSnackbarActive: false };
+        this.handleChange = this.handleChange.bind(this);
+        this.state = { isSnackbarActive: false,
+                        email: 'Please enter your email address'
+        };
       }
+
+      handleChange(event) {
+        this.setState({value: event.target.value});
+        console.log(this.state.email);
+      }
+
 
       handleShowSnackbar() {
         this.setState({
@@ -39,7 +48,7 @@ class Landing extends Component {
       }
 
     render() {
-        const { btnBgColor, isSnackbarActive } = this.state;
+        const { btnBgColor, isSnackbarActive, email } = this.state;
 
         return(
             <div style={{width: '100%', margin: 'auto'}}>
@@ -226,9 +235,10 @@ class Landing extends Component {
                         </div>
                         <div className="email-sign-up">
                             <Textfield
-                                onChange={() => {}}
+                                onChange={this.handleChane}
                                 label="Please Enter Your Email Address"
                                 style={{width: '235px'}}
+                                value={email}
                             />
                             <Button class="pdp-button" raised colored onClick={this.handleShowSnackbar}>Sign Up</Button>
                             <Snackbar

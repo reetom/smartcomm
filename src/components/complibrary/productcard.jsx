@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
 import {Link} from 'react-router-dom';
-import bag1 from '../../../src/assets/products/bag1.jpeg';
 function ProductCard ({product}){
 
     return(
@@ -10,8 +9,8 @@ function ProductCard ({product}){
                 <CardTitle style={{color: '#fff', height: '250px'}}>
                 <Link to="/pdp">
                 <img
-                src={bag1}
-                alt="bag1"
+                src={product.imageURL}
+                alt={product.imageName}
                 className="card-image"
                 />
                 </Link>

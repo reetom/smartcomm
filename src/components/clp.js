@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
 import landingbanner from '../../src/assets/banners/landingbanner3.jpg';
-import {Link} from 'react-router-dom';
 import CLPData from './../data/clp.json';
 import ProductCard from './complibrary/productcard';
 
@@ -14,7 +13,7 @@ class CLP extends Component {
             isLoaded: false,
        }
     }
-    
+    np
     componentDidMount(){
         //Todo - replace with the clp url
         fetch('https://jsonplaceholder.typicode.com/users')
@@ -32,10 +31,9 @@ class CLP extends Component {
 
         var products = CLPData;//Fixture data, delete when connected to APIs and uncomment the next line
         //var {products} = this.state;
-        console.log(CLPData);
         //loop through every product in the array and build the card.
         const cardUnit = products.map(product =>  <ProductCard product={product}/>)
-
+        console.log({cardUnit});
         return(
             <div style={{width: '100%', margin: 'auto'}}>
                 <Grid className = "clp-landing-grid">

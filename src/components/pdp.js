@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Grid, Cell, Button, FABButton,Icon, Textfield} from 'react-mdl';
-import bag1 from '../../src/assets/products/bag1.jpeg';
 import PDPData from './../data/pdp.json';
 import ProductReviews from './../data/productreview.json';
 import Accordion from './complibrary/specaccordion';
+import bag1 from '../../src/assets/products/bag1.jpeg'
+
 
 
 class PDP extends Component {
@@ -26,7 +27,7 @@ class PDP extends Component {
                 isLoaded: true,               
             })
         });
-    
+
     }
 
     handleChange = i => {
@@ -36,18 +37,23 @@ class PDP extends Component {
       };
 
     render() {
-        var products = PDPData;//Fixture data, delete when connected to APIs and uncomment the next line
+       var products = PDPData;//Fixture data, delete when connected to APIs and uncomment the next line
+      // const products = this.props.match.params.value;
+       console.log({products});
         //var {products} = this.state;
         const { handleChange } = this;
         const { currentIndex, isActive } = this.state;
-        console.log(PDPData);
+        
         return(
             <Grid className = "pdp-grid">
             <Cell col={6}>
-            <img src={bag1}
-                alt="bag1"
-                className="pdp-image"
-            />
+           <div class="Sirv" data-effect="zoom" >
+                <img data-src={products[0].imageURL}
+                    alt=""
+                    className="pdp-image"
+                />
+            </div>
+            
             </Cell>
             <Cell col={6}>
                 <h1>{products[0].productName}   </h1>
