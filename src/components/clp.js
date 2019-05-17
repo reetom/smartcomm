@@ -13,7 +13,7 @@ class CLP extends Component {
             isLoaded: false,
        }
     }
-    np
+    
     componentDidMount(){
         //Todo - replace with the clp url
         fetch('https://jsonplaceholder.typicode.com/users')
