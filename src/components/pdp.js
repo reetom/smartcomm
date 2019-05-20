@@ -3,9 +3,6 @@ import {Grid, Cell, Button, FABButton,Icon, Textfield} from 'react-mdl';
 import PDPData from './../data/pdp.json';
 import ProductReviews from './../data/productreview.json';
 import Accordion from './complibrary/specaccordion';
-import bag1 from '../../src/assets/products/bag1.jpeg'
-
-
 
 class PDP extends Component {
     constructor(props){
@@ -27,7 +24,6 @@ class PDP extends Component {
                 isLoaded: true,               
             })
         });
-
     }
 
     handleChange = i => {
@@ -39,11 +35,11 @@ class PDP extends Component {
     render() {
        var products = PDPData;//Fixture data, delete when connected to APIs and uncomment the next line
       // const products = this.props.match.params.value;
-       console.log({products});
+
         //var {products} = this.state;
         const { handleChange } = this;
         const { currentIndex, isActive } = this.state;
-        
+
         return(
             <Grid className = "pdp-grid">
             <Cell col={6}>
