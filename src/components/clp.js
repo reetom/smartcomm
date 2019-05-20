@@ -24,7 +24,6 @@ class CLP extends Component {
                 isLoaded: true,               
             })
         });
-    
     }
 
     render() {

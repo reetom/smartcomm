@@ -7,7 +7,12 @@ function ProductCard ({product}){
         <div>
             <Card shadow={5} style={{minwidth: '200'}}>
                 <CardTitle style={{color: '#fff', height: '250px'}}>
-                <Link to="/pdp">
+                <Link to={{
+                    pathname: '/pdp',
+                    state: {
+                        productToDisplay: product
+                    }
+                    }}>
                 <img
                 src={product.imageURL}
                 alt={product.imageName}

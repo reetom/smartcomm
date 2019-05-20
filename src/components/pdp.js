@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Grid, Cell, Button, FABButton,Icon, Textfield} from 'react-mdl';
-import PDPData from './../data/pdp.json';
 import ProductReviews from './../data/productreview.json';
 import Accordion from './complibrary/specaccordion';
 
@@ -10,7 +9,7 @@ class PDP extends Component {
         this.state = {
             products:[],
             isLoaded: false,
-            currentIndex: -1,
+            currentIndex: -1
        }
     }
 
@@ -33,18 +32,16 @@ class PDP extends Component {
       };
 
     render() {
-       var products = PDPData;//Fixture data, delete when connected to APIs and uncomment the next line
-      // const products = this.props.match.params.value;
-
-        //var {products} = this.state;
         const { handleChange } = this;
-        const { currentIndex, isActive } = this.state;
+        const { currentIndex, isActive} = this.state;
+        var {productToDisplay} = this.props.location.state
+        console.log({productToDisplay});
 
         return(
             <Grid className = "pdp-grid">
             <Cell col={6}>
            <div class="Sirv" data-effect="zoom" >
-                <img data-src={products[0].imageURL}
+                <img data-src={productToDisplay.imageURL}
                     alt=""
                     className="pdp-image"
                 />
@@ -52,9 +49,9 @@ class PDP extends Component {
             
             </Cell>
             <Cell col={6}>
-                <h1>{products[0].productName}   </h1>
-                <h3 className="price">${products[0].price}</h3>
-                {products[0].productDescShort}
+                <h1>{productToDisplay.productName}   </h1>
+                <h3 className="price">${productToDisplay.price}</h3>
+                {productToDisplay.productDescShort}
                 <div className="pdp-button-div">
                     <Textfield
                         onChange={() => {}}
@@ -77,7 +74,7 @@ class PDP extends Component {
             <Cell col={12}>
                 <div className="accordion">
                     
-                    <Accordion productSpecs={products[0].productSpecs} handleChange={handleChange} currentIndex={currentIndex}/>
+                    <Accordion productSpecs={productToDisplay.productSpecs} handleChange={handleChange} currentIndex={currentIndex}/>
                     
                 </div>
             </Cell>
