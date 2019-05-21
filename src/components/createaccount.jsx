@@ -34,7 +34,14 @@ class CreateAccount extends Component {
                     />
                 </div>
                 <div>
-                    <Button class="pdp-button" raised colored>Create Account</Button>
+                    <Textfield
+                    onChange={() => {}}
+                    label=" Confirm Password"
+                    style={{width: '200px'}}
+                    />
+                </div>
+                <div>
+                    <Button class="submit-button" raised colored>Create Account</Button>
                 </div>
             </div>
         )

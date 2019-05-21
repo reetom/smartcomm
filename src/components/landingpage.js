@@ -240,7 +240,7 @@ class Landing extends Component {
                                 style={{width: '235px'}}
                                 value={email}
                             />
-                            <Button class="pdp-button" raised colored onClick={this.handleShowSnackbar}>Sign Up</Button>
+                            <Button class="submit-button" raised colored onClick={this.handleShowSnackbar}>Sign Up</Button>
                             <Snackbar
                                 active={isSnackbarActive}
                                 onClick={this.handleClickActionSnackbar}

@@ -30,6 +30,9 @@ class CLP extends Component {
 
         var products = CLPData;//Fixture data, delete when connected to APIs and uncomment the next line
         //var {products} = this.state;
+        //filter the products based on category selected in the landing page.
+        var {categoryName} = this.props.location.state;
+        console.log({categoryName});
         //loop through every product in the array and build the card.
         const cardUnit = products.map(product =>  <ProductCard product={product}/>)
         console.log({cardUnit});
@@ -48,9 +51,7 @@ class CLP extends Component {
                             <h1>Departments > Women</h1>
                         </div>
                         <div className="clp-grid"> 
-                                
-                                {cardUnit}
-                               
+                            {cardUnit}
                         </div>
                     </Cell>
                 </Grid>

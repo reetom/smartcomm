@@ -20,7 +20,7 @@ class Login extends Component {
                     />
                 </div>
                 <div>
-                    <Button class="pdp-button" raised colored>Sign In</Button>
+                    <Button class="submit-button" raised colored>Sign In</Button>
                 </div>
                 <div>
                     <Link to="/passwordreset">

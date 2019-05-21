@@ -31,10 +31,30 @@ class App extends Component {
         </Header>
         <Drawer title="Departments" c>
             <Navigation>
-                <Link to ="/plp">Men</Link>
-                <Link to ="/clp">Women</Link>
-                <Link to ="/clp">Boys</Link>
-                <Link to ="/clp">Girls</Link>
+                <Link to={{
+                    pathname: "/plp",
+                    state: {
+                        categoryName: "men"
+                    }
+                    }}>Men</Link>
+                <Link to={{
+                    pathname: "/clp",
+                    state: {
+                        categoryName: "women"
+                    }
+                    }}>Women</Link>
+                <Link to={{
+                    pathname: "/clp",
+                    state: {
+                        categoryName: "boys"
+                    }
+                    }}>Boys</Link>
+                <Link to={{
+                    pathname: "/clp",
+                    state: {
+                        categoryName: "girls"
+                    }
+                    }}>Girls</Link>
                 <Link to ="/complib">Component Library</Link>
             </Navigation>
         </Drawer>

@@ -66,8 +66,8 @@ class PDP extends Component {
                     </FABButton>
                 </div>
                 <div className="pdp-button-div1">
-                    <Button class="pdp-button" raised colored>Add to Cart</Button>
-                    <Button class="pdp-button" raised colored>Save for Later</Button>
+                    <Button class="submit-button" raised colored>Add to Cart</Button>
+                    <Button class="submit-button" raised colored>Save for Later</Button>
                 </div>
 
             </Cell>
