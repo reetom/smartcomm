@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
 import {Link} from 'react-router-dom';
+import { join } from 'path';
 function ProductCard ({product}){
 
     return(
@@ -26,11 +27,17 @@ function ProductCard ({product}){
                 </CardText>
                 <CardMenu style={{color: 'RED'}}>
                     <IconButton name="share" style={{color: 'Blue'}}/>
-                    <IconButton name="favorite" />
+                    <IconButton name="favorite" onClick={() => addToFav({product})} />
                     <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
                 </CardMenu>
             </Card>
     </div>
     )
+}
+
+function addToFav({product}){
+    var favList =[];
+    favList.push(product);
+    localStorage.setItem("favList",JSON.stringify({product}));
 }
 export default ProductCard;
