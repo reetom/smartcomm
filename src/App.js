@@ -34,7 +34,7 @@ class App extends Component {
                 <Link to={{
                     pathname: "/plp",
                     state: {
-                        categoryName: "men"
+                        categoryName: "Men"
                     }
                     }}>Men</Link>
                 <Link to={{
@@ -46,13 +46,13 @@ class App extends Component {
                 <Link to={{
                     pathname: "/clp",
                     state: {
-                        categoryName: "boys"
+                        categoryName: "Boys"
                     }
                     }}>Boys</Link>
                 <Link to={{
                     pathname: "/clp",
                     state: {
-                        categoryName: "girls"
+                        categoryName: "Girls"
                     }
                     }}>Girls</Link>
                 <Link to ="/complib">Component Library</Link>
