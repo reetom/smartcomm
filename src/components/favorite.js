@@ -4,6 +4,8 @@ import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, Icon
 import PDPData from '../../src/data/pdp.json'
 class Favorite extends Component {
     
+
+    
     render() {
         const cardUnitStretched =  <ProductCardStretched product={PDPData}/>
         return(

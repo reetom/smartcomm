@@ -19,7 +19,7 @@ class CLP extends Component {
         //get the category name that was selected on the landing page and set it in state.
         var {categoryName} = this.props.location.state;
         this.setState({categoryName: {categoryName}});
-        console.log("loading data for ".concat({categoryName}).concat(" category"));
+        console.log("loading data for ".concat(categoryName).concat(" category"));
         //Load the stubbed CLPData
         var allProducts = CLPData;
         //Todo - replace with the clp url and get rid of the above stubbed data
@@ -34,8 +34,6 @@ class CLP extends Component {
         //filter the products based on category selected in the landing page.
         var filteredproducts= [];
         allProducts.map(product =>{
-                console.log(product.category);
-                console.log(categoryName);
                 if(product.category === categoryName){
                     filteredproducts.push(product);
                 }
@@ -46,10 +44,8 @@ class CLP extends Component {
 
     render() {
         var {products} = this.state;
-        console.log({products});
         //loop through every product in the array and build the card.
         const cardUnit = products.map(product =>  <ProductCard product={product}/>)
-        console.log({cardUnit});
         return(
             <div style={{width: '100%', margin: 'auto'}}>
                 <Grid className = "clp-landing-grid">
