@@ -24,7 +24,8 @@ class PLP extends Component {
         //Load the stubbed CLPData
         var allProducts = CLPData;
         //Todo - replace with the clp url and get rid of the above stubbed data
-        fetch('https://jsonplaceholder.typicode.com/users')
+        {/*
+            fetch('https://jsonplaceholder.typicode.com/users')
             .then(res => res.json())
             .then (json => {
                 this.setState({
@@ -32,6 +33,7 @@ class PLP extends Component {
                     isLoaded: true,               
                 })
             });
+        */}
         //filter the products based on category selected in the landing page.
         var filteredproducts= [];
         allProducts.map(product =>{
