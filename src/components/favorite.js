@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ProductCardStretched from './complibrary/productcardstretched';
+import ProductCardFavorite from './complibrary/productcardfavorite';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
 
 class Favorite extends Component {
@@ -9,6 +9,7 @@ class Favorite extends Component {
         this.state = {
             products:[],
             isLoaded: false,
+            favCardUnit:"",
        }
     }
 
@@ -21,6 +22,8 @@ class Favorite extends Component {
             if (favList != null){
             //Loop through the products in the fav list and build the product cards to display.
             console.log(favList);
+            const favCardUnit = favList.map(product =>  <ProductCardFavorite product={product}/>)
+            this.setState({favCardUnit: favCardUnit})
 
         } else {
             console.log("YOUR FAV LIST IS EMPTY");
@@ -28,20 +31,20 @@ class Favorite extends Component {
     }
        
     render() { 
-        return(null)
-      {/*  const cardUnitStretched =  <ProductCardStretched product={null}/>
+        const {favCardUnit} = this.state;
+      {
         return(
             <div style={{width: '100%', margin: 'auto'}}>
                 <Grid className = "fav-landing-grid">
                     <Cell col={12}>
                         <div className="fav-grid"> 
-                            {cardUnitStretched}
+                            {favCardUnit}
                         </div>
                     </Cell>
                 </Grid>
             </div>
              
-        )*/}
+        )}
     }
 }
 export default Favorite;

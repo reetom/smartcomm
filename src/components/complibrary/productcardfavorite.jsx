@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
 import {Link} from 'react-router-dom';
 
-function ProductCardStretched ({product}){
+function ProductCardFavorite ({product}){
 
     return(
         <div>
@@ -34,4 +34,4 @@ function ProductCardStretched ({product}){
     </div>
     )
 }
-export default ProductCardStretched;
+export default ProductCardFavorite;
