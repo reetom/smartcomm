@@ -36,16 +36,20 @@ function ProductCard ({product}){
 }
 
 function addToFav({product}){
-    //localStorage.removeItem("favList");
     var favList =[];
+    var favCount = 0;
     //First check if the favList in local storate is empty, if not empty add to the list
     let favListFromLocalStoreage = JSON.parse(localStorage.getItem("favList"));
     if (favListFromLocalStoreage != null) {
-        favListFromLocalStoreage.map(forEachProduct => favList.push(forEachProduct));
+        favListFromLocalStoreage.map(forEachProduct => {favList.push(forEachProduct); favCount = favCount+1});
     } 
+    //Push the current fav to the array
     favList.push(product);
+    favCount = favCount+1;
     localStorage.setItem("favList",JSON.stringify(favList));
-    console.log(favList);    
+    localStorage.setItem("favCount",JSON.stringify(favCount))
+    console.log(favList);  
+    console.log(favCount);  
 
 }
 export default ProductCard;

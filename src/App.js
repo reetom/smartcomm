@@ -9,6 +9,14 @@ var fs = require('fs');
 class App extends Component {
 
   render() {
+    const favCount = localStorage.getItem("favCount")
+    var favBadgeToDisplay = "";
+    if (favCount != null && favCount != "0"){
+        favBadgeToDisplay = <Badge text={favCount} overlap><Icon name="favorite" /></Badge>
+    }else {
+        favBadgeToDisplay = <Badge><Icon name="favorite" /></Badge>
+    }
+    console.log(favCount);
     return (
 <div style={{height: '1080px', position: 'relative'}}>
     <Layout fixedHeader>
@@ -18,9 +26,7 @@ class App extends Component {
                 <Link to ="/signin">Sign In</Link>
                 <Link to ="/createaccount">My Account</Link>
                 <Link to ="/favorite">
-                    <Badge text="1" overlap>
-                        <Icon name="favorite" />
-                    </Badge>
+                    {favBadgeToDisplay}
                 </Link>
                 <Link to ="/cart">
                     <Badge text="5" overlap>
@@ -55,7 +61,7 @@ class App extends Component {
                         categoryName: "girls"
                     }
                     }}>Girls</Link>
-                <Link to ="/complib">Component Library</Link>
+                <Link to ="/clearCache">Clear Cache</Link>
             </Navigation>
         </Drawer>
       <Content>
