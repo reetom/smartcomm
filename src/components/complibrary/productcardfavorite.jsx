@@ -27,11 +27,30 @@ function ProductCardFavorite ({product}){
                 </CardText>
                 <CardMenu style={{color: 'RED'}}>
                     <IconButton name="share" style={{color: 'Blue'}}/>
-                    <IconButton name="delete" />
+                    <IconButton name="delete" onClick={() => removeFromFav({product})}/>
                     <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
                 </CardMenu>
             </Card>
     </div>
     )
+}
+
+function removeFromFav({product}){
+    var favList =[];
+    var favCount = 0;
+    //First check if the favList in local storate is empty, if not empty add to the list
+    let favListFromLocalStoreage = JSON.parse(localStorage.getItem("favList"));
+    if (favListFromLocalStoreage != null) {
+        favListFromLocalStoreage.map(forEachProduct => {
+            if(forEachProduct.productName != product.productName)
+            favList.push(forEachProduct)
+        
+        });
+    } 
+    favCount = favCount-1;
+    localStorage.setItem("favList",JSON.stringify(favList));
+    localStorage.setItem("favCount",JSON.stringify(favCount))
+    console.log(favList);  
+    console.log(favCount);  
 }
 export default ProductCardFavorite;
