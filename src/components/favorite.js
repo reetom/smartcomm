@@ -18,15 +18,17 @@ class Favorite extends Component {
         //this.hydrateStateWithLocalStorage();
         // Get the list of favorites from localstorage for the guest user.
         let favList = JSON.parse(localStorage.getItem("favList"));
+        var favCardUnit ="";
         //Get the list of favorites from backend for the signed in user. @ToDo
-            if (favList != null){
+            if (favList != null && favList.length >0){
             //Loop through the products in the fav list and build the product cards to display.
             console.log(favList);
-            const favCardUnit = favList.map(product =>  <ProductCardFavorite product={product}/>)
+            favCardUnit = favList.map(product =>  <ProductCardFavorite product={product}/>)
             this.setState({favCardUnit: favCardUnit})
 
         } else {
-            console.log("YOUR FAV LIST IS EMPTY");
+            favCardUnit = <h1>Your Favorite List is Empty...</h1>
+            this.setState({favCardUnit: favCardUnit})
         }
     }
        
