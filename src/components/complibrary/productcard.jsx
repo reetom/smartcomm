@@ -23,7 +23,7 @@ function ProductCard ({product}){
                 </CardTitle>
                 <CardText>
                     {product.productName} 
-                    ${product.price}
+                    <div>${product.price}</div>
                 </CardText>
                 <CardMenu style={{color: 'RED'}}>
                     <IconButton name="share" style={{color: 'Blue'}}/>
@@ -36,8 +36,16 @@ function ProductCard ({product}){
 }
 
 function addToFav({product}){
+    //localStorage.removeItem("favList");
     var favList =[];
+    //First check if the favList in local storate is empty, if not empty add to the list
+    let favListFromLocalStoreage = JSON.parse(localStorage.getItem("favList"));
+    if (favListFromLocalStoreage != null) {
+        favListFromLocalStoreage.map(forEachProduct => favList.push(forEachProduct));
+    } 
     favList.push(product);
-    localStorage.setItem("favList",JSON.stringify({product}));
+    localStorage.setItem("favList",JSON.stringify(favList));
+    console.log(favList);    
+
 }
 export default ProductCard;
