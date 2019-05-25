@@ -49,7 +49,7 @@ class PDP extends Component {
             
             </Cell>
             <Cell col={6}>
-                <h1>{productToDisplay.productName}   </h1>
+                <h3>{productToDisplay.productName}   </h3>
                 <h3 className="price">${productToDisplay.price}</h3>
                 {productToDisplay.productDescShort}
                 <div className="pdp-button-div">
