@@ -42,12 +42,13 @@ function removeFromFav({product}){
     let favListFromLocalStoreage = JSON.parse(localStorage.getItem("favList"));
     if (favListFromLocalStoreage != null) {
         favListFromLocalStoreage.map(forEachProduct => {
-            if(forEachProduct.productName != product.productName)
-            favList.push(forEachProduct)
+            if(forEachProduct.productName != product.productName){ 
+                favList.push(forEachProduct);
+                favCount= favCount+1;
+            }
         
         });
     } 
-    favCount = favCount-1;
     localStorage.setItem("favList",JSON.stringify(favList));
     localStorage.setItem("favCount",JSON.stringify(favCount))
     console.log(favList);  

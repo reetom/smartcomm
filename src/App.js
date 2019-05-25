@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import './App.css';
 import {Layout, Header, Navigation, Drawer, Content, Footer,FooterSection, FooterDropDownSection, FooterLinkList} from 'react-mdl';
 import MainRoute from './routes/mainroute';
@@ -7,8 +7,10 @@ import {Badge, Icon} from 'react-mdl';
 
 var fs = require('fs');
 class App extends Component {
+    
 
   render() {
+
     const favCount = localStorage.getItem("favCount")
     var favBadgeToDisplay = "";
     if (favCount != null && favCount != "0"){
@@ -16,7 +18,7 @@ class App extends Component {
     }else {
         favBadgeToDisplay = <Badge><Icon name="favorite" /></Badge>
     }
-    console.log(favCount);
+
     return (
 <div style={{height: '1080px', position: 'relative'}}>
     <Layout fixedHeader>
@@ -26,7 +28,7 @@ class App extends Component {
                 <Link to ="/signin">Sign In</Link>
                 <Link to ="/createaccount">My Account</Link>
                 <Link to ="/favorite">
-                    {favBadgeToDisplay}
+                  {favBadgeToDisplay}
                 </Link>
                 <Link to ="/cart">
                     <Badge text="5" overlap>
