@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
 import {Link} from 'react-router-dom';
-
+import BuildFavBadge from './buildfavbadge';
 class BuildProductCard extends Component {
 
     constructor(props){
@@ -17,6 +17,7 @@ class BuildProductCard extends Component {
     render() {
 
         const product = this.props.productFromParent;
+
         return(
             <div>
                 <Card shadow={5} style={{minwidth: '200'}}>
@@ -75,11 +76,17 @@ function addToFav({product}){
         favList.push(product);
         favCount = favCount +1;
     }
+    //Update the favs list and count in the localstorage.
     localStorage.setItem("favList",JSON.stringify(favList));
     localStorage.setItem("favCount",JSON.stringify(favCount))
+    //BuildFavBadge.updateFavBadge();
 }
 
 function openSocialShare(){
+    //todo
+}
 
+function addToCart(){
+    //todo
 }
 export default BuildProductCard;
