@@ -3,7 +3,7 @@ import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, Icon
 import {Link} from 'react-router-dom';
 import CLPData from './../data/clp.json';
 import landingbanner from '../../src/assets/banners/landingbanner5.jpg';
-import ProductCard from './complibrary/productcard';
+import BuildProductCard from './complibrary/buildproductcard';
 
 
 class PLP extends Component {
@@ -47,7 +47,7 @@ class PLP extends Component {
     render() {
         var {products} = this.state;
         //loop through every product in the array and build the card.
-        const cardUnit = products.map(product =>  <ProductCard product={product}/>)
+        const cardUnit = products.map(product =>  <BuildProductCard productFromParent={product}/>)
 
         return(
             <div style={{width: '100%', margin: 'auto'}}>

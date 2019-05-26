@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ProductCardFavorite from './complibrary/productcardfavorite';
+import BuildProductCardFavorites from './complibrary/buildproductcardfavorites';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
 
 class Favorite extends Component {
@@ -23,7 +23,7 @@ class Favorite extends Component {
             if (favList != null && favList.length >0){
             //Loop through the products in the fav list and build the product cards to display.
             console.log(favList);
-            favCardUnit = favList.map(product =>  <ProductCardFavorite product={product}/>)
+            favCardUnit = favList.map(product =>  <BuildProductCardFavorites productFromParent={product}/>)
             this.setState({favCardUnit: favCardUnit})
 
         } else {
