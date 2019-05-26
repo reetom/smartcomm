@@ -63,7 +63,8 @@ function addToFav({product}){
             //Check if the product already exist in the fav list
             if (favAlreadyExist === "false"){
                 if(forEachProduct.productID === product.productID){
-                    favAlreadyExist = "true"; console.log(favAlreadyExist);
+                    favAlreadyExist = "true"; 
+                    console.log("Product is already in the favorite list");
                 }
             }
         
@@ -71,8 +72,6 @@ function addToFav({product}){
     } 
     //If the product doesn't exist in the fav list, add it to the fav list.
     if (favAlreadyExist == "false"){
-        console.log("^^^^^^^^^^^^^^^");
-        console.log(favAlreadyExist);
         favList.push(product);
         favCount = favCount +1;
     }

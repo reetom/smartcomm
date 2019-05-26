@@ -26,7 +26,7 @@ class BuildProductCardFavorites extends Component {
                         state: {
                             productToDisplay: product
                         }
-                        }}>
+                    }}>
                     <img
                     src={product.imageURL}
                     alt={product.imageName}
@@ -40,7 +40,9 @@ class BuildProductCardFavorites extends Component {
                     </CardText>
                     <CardMenu style={{color: 'RED'}}>
                         <IconButton name="share" style={{color: 'Blue'}}/>
-                        <IconButton name="delete" onClick={() => removeFromFav({product})} />
+                        <IconButton name="delete" onClick={() => {  localStorage.setItem("itemToRemove", JSON.stringify(product));
+                                                                    this.props.buildFavoriteCards.removeFromFav();
+                                                                    }}/>
                         <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
                     </CardMenu>
                 </Card>
@@ -50,22 +52,6 @@ class BuildProductCardFavorites extends Component {
 }
 
 
-function removeFromFav({product}){
-    var favList =[];
-    var favCount = 0;
-    //First check if the favList in local storate is empty, if not empty add to the list
-    let favListFromLocalStoreage = JSON.parse(localStorage.getItem("favList"));
-    if (favListFromLocalStoreage != null) {
-        favListFromLocalStoreage.map(forEachProduct => {
-            if(forEachProduct.productName != product.productName){ 
-                favList.push(forEachProduct);
-                favCount= favCount+1;
-            }
-        
-        });
-    } 
-    localStorage.setItem("favList",JSON.stringify(favList));
-    localStorage.setItem("favCount",JSON.stringify(favCount)) 
-}
+
 
 export default BuildProductCardFavorites;
