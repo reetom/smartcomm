@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
 import landingbanner from '../../src/assets/banners/landingbanner3.jpg';
 import CLPData from './../data/clp.json';
-import ProductCard from './complibrary/productcard';
+import BuildProductCard from './complibrary/buildproductcard';
 
 
 class CLP extends Component {
@@ -47,7 +47,7 @@ class CLP extends Component {
     render() {
         var {products} = this.state;
         //loop through every product in the array and build the card.
-        const cardUnit = products.map(product =>  <ProductCard product={product}/>)
+        const cardUnit = products.map(product =>  <BuildProductCard productFromParent={product}/>)
         return(
             <div style={{width: '100%', margin: 'auto'}}>
                 <Grid className = "clp-landing-grid">
