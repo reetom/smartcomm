@@ -20,12 +20,11 @@ class Favorite extends Component {
         let favList = JSON.parse(localStorage.getItem("favList"));
         var favCardUnit ="";
         //Get the list of favorites from backend for the signed in user. @ToDo
-            if (favList != null && favList.length >0){
-            //Loop through the products in the fav list and build the product cards to display.
-            console.log(favList);
-            favCardUnit = favList.map(product =>  <BuildProductCardFavorites productFromParent={product}/>)
-            this.setState({favCardUnit: favCardUnit})
-
+        if (favList != null && favList.length >0){
+        //Loop through the products in the fav list and build the product cards to display.
+        console.log(favList);
+        favCardUnit = favList.map(product =>  <BuildProductCardFavorites productFromParent={product}/>)
+        this.setState({favCardUnit: favCardUnit})
         } else {
             favCardUnit = <h1>Your Favorite List is Empty...</h1>
             this.setState({favCardUnit: favCardUnit})
@@ -34,7 +33,6 @@ class Favorite extends Component {
        
     render() { 
         const {favCardUnit} = this.state;
-      {
         return(
             <div style={{width: '100%', margin: 'auto'}}>
                 <Grid className = "fav-landing-grid">
@@ -45,8 +43,7 @@ class Favorite extends Component {
                     </Cell>
                 </Grid>
             </div>
-             
-        )}
+        )
     }
 }
 export default Favorite;

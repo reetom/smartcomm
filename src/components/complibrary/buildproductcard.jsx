@@ -39,7 +39,7 @@ class BuildProductCard extends Component {
                         <div>${product.price}</div>
                     </CardText>
                     <CardMenu style={{color: 'RED'}}>
-                        <IconButton name="share" style={{color: 'Blue'}}/>
+                        <IconButton name="share" style={{color: 'Blue'}} onClick={() => openSocialShare({product})}/>
                         <IconButton name="favorite" onClick={() => addToFav({product})} />
                         <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
                     </CardMenu>
@@ -50,20 +50,37 @@ class BuildProductCard extends Component {
     }
 }
 
-
 function addToFav({product}){
     var favList =[];
     var favCount = 0;
+    var favAlreadyExist = "false";
     //First check if the favList in local storate is empty, if not empty add to the list
     let favListFromLocalStoreage = JSON.parse(localStorage.getItem("favList"));
     if (favListFromLocalStoreage != null) {
-        favListFromLocalStoreage.map(forEachProduct => {favList.push(forEachProduct); favCount = favCount+1});
+        favListFromLocalStoreage.map(forEachProduct => {
+            favList.push(forEachProduct); 
+            favCount = favCount+1;
+            //Check if the product already exist in the fav list
+            if (favAlreadyExist === "false"){
+                if(forEachProduct.productID === product.productID){
+                    favAlreadyExist = "true"; console.log(favAlreadyExist);
+                }
+            }
+        
+        });
     } 
-    //Push the current fav to the array
-    favList.push(product);
-    favCount = favCount+1;
+    //If the product doesn't exist in the fav list, add it to the fav list.
+    if (favAlreadyExist == "false"){
+        console.log("^^^^^^^^^^^^^^^");
+        console.log(favAlreadyExist);
+        favList.push(product);
+        favCount = favCount +1;
+    }
     localStorage.setItem("favList",JSON.stringify(favList));
     localStorage.setItem("favCount",JSON.stringify(favCount))
-    console.log("product successfully addeded to favorite :" + favList);   
+}
+
+function openSocialShare(){
+
 }
 export default BuildProductCard;

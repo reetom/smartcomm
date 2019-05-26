@@ -46,7 +46,6 @@ class BuildProductCardFavorites extends Component {
                 </Card>
         </div>
         )
-
     }
 }
 
@@ -66,9 +65,7 @@ function removeFromFav({product}){
         });
     } 
     localStorage.setItem("favList",JSON.stringify(favList));
-    localStorage.setItem("favCount",JSON.stringify(favCount))
-    console.log(favList);  
-    console.log(favCount);  
+    localStorage.setItem("favCount",JSON.stringify(favCount)) 
 }
 
 export default BuildProductCardFavorites;
