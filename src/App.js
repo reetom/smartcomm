@@ -49,8 +49,14 @@ class App extends Component {
                     </Header>
                     <Drawer title="Departments" c>
                         <Navigation>
-                            <Link to={{
+                        <Link to={{
                                 pathname: "/plp",
+                                state: {
+                                    categoryName: "all"
+                                }
+                                }}>All</Link>
+                            <Link to={{
+                                pathname: "/clp",
                                 state: {
                                     categoryName: "men"
                                 }

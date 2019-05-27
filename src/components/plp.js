@@ -36,11 +36,18 @@ class PLP extends Component {
         */}
         //filter the products based on category selected in the landing page.
         var filteredproducts= [];
-        allProducts.map(product =>{
+        if (categoryName ==="all"){
+            // set all category products in state
+            allProducts.map(product =>{
+            filteredproducts.push(product);
+            })
+        } else {
+            allProducts.map(product =>{
                 if(product.category === categoryName){
                     filteredproducts.push(product);
                 }
-        })
+            })
+        }
         // set the filtered category products in state
         this.setState({products:filteredproducts});
     }
