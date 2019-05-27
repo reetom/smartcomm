@@ -35,7 +35,6 @@ class PDP extends Component {
         const { handleChange } = this;
         const { currentIndex, isActive} = this.state;
         var {productToDisplay} = this.props.location.state
-        console.log({productToDisplay});
 
         return(
             <Grid className = "pdp-grid">

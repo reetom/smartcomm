@@ -2,16 +2,14 @@ import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
 import {Link} from 'react-router-dom';
 import BuildFavBadge from './buildfavbadge';
+import App from '../../App';
 class BuildProductCard extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            //empty for now
+ 
         }
-    }
-
-    componentDidMount(){
     }
 
     render() {
@@ -40,7 +38,7 @@ class BuildProductCard extends Component {
                         <div>${product.price}</div>
                     </CardText>
                     <CardMenu style={{color: 'RED'}}>
-                        <IconButton name="share" style={{color: 'Blue'}} onClick={() => openSocialShare({product})}/>
+                        <IconButton name="share" style={{color: 'Blue'}} onClick={() => openSocialShare(product)}/>
                         <IconButton name="favorite" onClick={() => addToFav({product})} />
                         <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
                     </CardMenu>
@@ -50,7 +48,9 @@ class BuildProductCard extends Component {
 
     }
 }
+function openSocialShare ({product}){
 
+}
 function addToFav({product}){
     var favList =[];
     var favCount = 0;
@@ -79,11 +79,7 @@ function addToFav({product}){
     //Update the favs list and count in the localstorage.
     localStorage.setItem("favList",JSON.stringify(favList));
     localStorage.setItem("favCount",JSON.stringify(favCount))
-    //BuildFavBadge.updateFavBadge();
-}
-
-function openSocialShare(){
-    //todo
+    new App().buildFavoriteBadge();
 }
 
 function addToCart(){

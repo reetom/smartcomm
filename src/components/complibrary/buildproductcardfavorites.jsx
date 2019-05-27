@@ -15,7 +15,6 @@ class BuildProductCardFavorites extends Component {
     }
 
     render() {
-
         const product = this.props.productFromParent;
         return(
             <div>
@@ -50,8 +49,4 @@ class BuildProductCardFavorites extends Component {
         )
     }
 }
-
-
-
-
 export default BuildProductCardFavorites;

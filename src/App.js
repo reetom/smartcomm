@@ -14,19 +14,21 @@ class App extends Component {
         this.state = {
             displayFavBadge: "",
        }
+       this.buildFavoriteBadge = this.buildFavoriteBadge.bind(this)
     }
-    //This function is also called when add to fav icon is clicked and that's why this code is not inside componentDidMount().
-    updateStateForBadgeCount(){
-        const displayFavBadge = <BuildFavBadge/>;
+    //Build the fav badge and count alone. No setting state.
+    buildFavoriteBadge(){
+        const displayFavBadge = <BuildFavBadge />;
         this.setState({displayFavBadge: displayFavBadge});
     }
 
     componentDidMount(){
-        this.updateStateForBadgeCount();
+        this.buildFavoriteBadge();
     }
 
     render() {
-        const {displayFavBadge} = this.state;
+        var {displayFavBadge} = this.state;
+        console.log(displayFavBadge);
         return (
             <div style={{height: '1080px', position: 'relative'}}>
                 <Layout fixedHeader>
@@ -36,7 +38,7 @@ class App extends Component {
                             <Link to ="/signin">Sign In</Link>
                             <Link to ="/createaccount">My Account</Link>
                             <Link to ="/favorite">
-                            {displayFavBadge}
+                                {displayFavBadge}
                             </Link>
                             <Link to ="/cart">
                                 <Badge text="5" overlap>

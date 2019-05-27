@@ -13,26 +13,26 @@ class BuildFavBadge extends Component{
 
     updateFavBadge(){
         const favCount = localStorage.getItem("favCount");
-        console.log(favCount);
         var favBadgeToDisplay = "";
+        console.log(favCount);
         if (favCount != null && favCount != "0"){
             favBadgeToDisplay = <Badge text={favCount} overlap><Icon name="favorite" /></Badge>
+            console.log("returning Badge with some count");
         }else {
-            favBadgeToDisplay = <Badge><Icon name="favorite" /></Badge>
+            favBadgeToDisplay = <Badge><Icon name="favorite" /></Badge>;
+            console.log("returning empty Badge with 0 count");
         }
-        //Set the state for app.js here
-        this.setState({displayFavBadge: favBadgeToDisplay})
-        
+        this.setState({displayFavBadge: favBadgeToDisplay});
     }
 
     componentDidMount(){
         this.updateFavBadge();
+        
     }
 
     render(){
         const {displayFavBadge} =  this.state;
         return(displayFavBadge);
     }
-
 }
 export default BuildFavBadge;
