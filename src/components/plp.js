@@ -9,12 +9,12 @@ import Pagination from './complibrary/pagination';
 class PLP extends Component {
     constructor(props){
         super(props);
-        var exampleItems = [...Array(150).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
+      //  var exampleItems = [...Array(150).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
         this.state = {
             products:[],
             isLoaded: false,
             categoryName:"",
-            exampleItems: exampleItems,
+            exampleItems: [],
             pageOfItems: [],
        }
        // bind function in constructor instead of render
@@ -59,11 +59,12 @@ class PLP extends Component {
         }
         // set the filtered category products in state
         this.setState({products:filteredproducts});
+        this.setState({exampleItems:filteredproducts});
     }
     render() {
         var {products} = this.state;
         //loop through every product in the array and build the card.
-        const cardUnit = products.map(product =>  <BuildProductCard productFromParent={product}/>)
+        const cardUnit = this.state.pageOfItems.map(product =>  <BuildProductCard productFromParent={product}/>)
 
         return(
             <div style={{width: '100%', margin: 'auto'}}>
