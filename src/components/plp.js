@@ -1,21 +1,30 @@
 import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton, Slider, Checkbox} from 'react-mdl';
-import {Link} from 'react-router-dom';
 import CLPData from './../data/clp.json';
 import landingbanner from '../../src/assets/banners/landingbanner5.jpg';
 import BuildProductCard from './complibrary/buildproductcard';
+import Pagination from './complibrary/pagination';
 
 
 class PLP extends Component {
     constructor(props){
         super(props);
+        var exampleItems = [...Array(150).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
         this.state = {
             products:[],
             isLoaded: false,
             categoryName:"",
+            exampleItems: exampleItems,
+            pageOfItems: [],
        }
+       // bind function in constructor instead of render
+       this.onChangePage = this.onChangePage.bind(this);
     }
-    
+    //Pagination Stuff
+    onChangePage(pageOfItems) {
+        // update state with new page of items
+        this.setState({ pageOfItems: pageOfItems });
+    }
     componentDidMount(){
         //get the category name that was selected on the landing page and set it in state.
         var {categoryName} = this.props.location.state;
@@ -61,18 +70,24 @@ class PLP extends Component {
                 <Grid className = "plp-landing-grid">
                     
                         <Cell col={12}>
-                        <div>
-                                <img
-                                    src={landingbanner}
-                                    alt="landingbanner1"
-                                    className="plp-landing-banner"
-                                />
-                        </div>
-                        <div className="breadcrumb">
-                            <h1>Departments > Women</h1>
-                        </div>
+                            <div>
+                                    <img
+                                        src={landingbanner}
+                                        alt="landingbanner1"
+                                        className="plp-landing-banner"
+                                    />
+                            </div>
                         </Cell>
-                            
+                        <Cell col={5}>
+                            <div>
+                                Breadcrumbs come here @ToDo
+                            </div>
+                        </Cell>
+                        <Cell col={7}>
+                            <div className="text-right">
+                                <Pagination items={this.state.exampleItems} onChangePage={this.onChangePage} />
+                            </div>
+                        </Cell>
                         <Cell col={3}>
                             <div className="plp-refine">
                                 <div className="plp-refine-brands">
