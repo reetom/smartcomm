@@ -9,7 +9,6 @@ import Pagination from './complibrary/pagination';
 class PLP extends Component {
     constructor(props){
         super(props);
-      //  var exampleItems = [...Array(150).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
         this.state = {
             products:[],
             isLoaded: false,
@@ -57,8 +56,7 @@ class PLP extends Component {
                 }
             })
         }
-        // set the filtered category products in state
-        this.setState({products:filteredproducts});
+        // set the filtered category products in state for pagination
         this.setState({exampleItems:filteredproducts});
     }
     render() {
