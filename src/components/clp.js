@@ -4,6 +4,7 @@ import landingbanner from '../../src/assets/banners/landingbanner3.jpg';
 import CLPData from './../data/clp.json';
 import BuildProductCard from './complibrary/buildproductcard';
 import Pagination from './complibrary/pagination';
+import BreadCrumbs from './../components/complibrary/breadcrumbs';
 
 class CLP extends Component {
     constructor(props){
@@ -30,7 +31,7 @@ class CLP extends Component {
         console.log("loading data for ".concat(categoryName).concat(" category"));
         //Load the stubbed CLPData
         var allProducts = CLPData;
-        //Todo - replace with the clp url and get rid of the above stubbed data
+        //Todo - replace with the clp url and get rid of the stubbed data
         {/*
             fetch('https://jsonplaceholder.typicode.com/users')
             .then(res => res.json())
@@ -53,7 +54,6 @@ class CLP extends Component {
     }
 
     render() {
-        var {products} = this.state;
         //loop through every product in the array and build the card.
         const cardUnit = this.state.pageOfItems.map(product =>  <BuildProductCard productFromParent={product}/>)
         return(
@@ -70,7 +70,7 @@ class CLP extends Component {
                     </Cell>
                     <Cell col={5}>
                         <div>
-                            Breadcrumbs come here @ToDo
+                            <BreadCrumbs/>
                         </div>
                     </Cell>
                     <Cell col={7}>

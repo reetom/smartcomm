@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 
-function BreadCrumbs ({breadcrumblink}){
+
+function BreadCrumbs (){
 
     return(
         <div>
-            return(null)
-    </div>
+            return(
+                null
+            )
+        </div>
     )
 }
 export default BreadCrumbs;

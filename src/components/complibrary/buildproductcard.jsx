@@ -1,20 +1,27 @@
 import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
 import {Link} from 'react-router-dom';
-import BuildFavBadge from './buildfavbadge';
 import App from '../../App';
+import SocialShareModal from './socialsharemodal';
+import {ButtonToolbar} from 'react-bootstrap';
 class BuildProductCard extends Component {
 
     constructor(props){
         super(props);
-        this.state = {
- 
-        }
+        
+        this.state = { modalShow: false };
     }
+    //}
+   // constructor(...args) {
+   //     super(...args);
+    
+   //     this.state = { modalShow: false };
+   // } 
 
     render() {
 
         const product = this.props.productFromParent;
+        let modalClose = () => this.setState({ modalShow: false });
 
         return(
             <div>
@@ -38,7 +45,13 @@ class BuildProductCard extends Component {
                         <div>${product.price}</div>
                     </CardText>
                     <CardMenu style={{color: 'RED'}}>
-                        <IconButton name="share" style={{color: 'Blue'}} onClick={() => openSocialShare(product)}/>
+                        <IconButton name="share" style={{color: 'Blue'}} 
+                        onClick={() => this.setState({ modalShow: true })}
+                        />
+                        <SocialShareModal style={{opacity:1}}
+                            show={this.state.modalShow}
+                            onHide={modalClose}
+                        />
                         <IconButton name="favorite" onClick={() => addToFav({product})} />
                         <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
                     </CardMenu>
@@ -48,9 +61,7 @@ class BuildProductCard extends Component {
 
     }
 }
-function openSocialShare ({product}){
 
-}
 function addToFav({product}){
     var favList =[];
     var favCount = 0;
