@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Modal, Button} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 class SocialShareModal extends Component {
     constructor(props, context) {
@@ -15,12 +16,10 @@ class SocialShareModal extends Component {
     
       handleClose() {
         this.setState({ show: false });
-        console.log("Modal closed");
       }
     
       handleShow() {
         this.setState({ show: true });
-        console.log("Modal Open");
       }
     
       render() { 
@@ -37,12 +36,23 @@ class SocialShareModal extends Component {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <h4>Centered Modal</h4>
-                <p>
-                  Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                  dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-                  ac consectetur ac, vestibulum at eros.
-                </p>
+                <h4>Love it, share it..</h4>
+                <a href="https://www.facebook.com/" target="_blank">
+                    <img src="https://ehroplar.sirv.com/Images/smartcomm/socialMediaIcons/iconfinder_facebook_4416093.png" width="53" height="50" alt=""  onClick={()=> this.handleClose}/>
+                </a>
+                <a href="https://www.whatsapp.com/" target="_blank">
+                    <img src="https://ehroplar.sirv.com/Images/smartcomm/socialMediaIcons/iconfinder_whatsapp_4416091.png" width="53" height="50" alt=""  onClick={()=> this.handleClose}/>
+                </a>
+                <a href="https://www.twitter.com/" target="_blank">
+                    <img src="https://ehroplar.sirv.com/Images/smartcomm/socialMediaIcons/iconfinder_twitter_4416099.png" width="53" height="50" alt=""  onClick={()=> this.handleClose}/>
+                </a>
+                <a href="https://www.instagram.com/" target="_blank">
+                    <img src="https://ehroplar.sirv.com/Images/smartcomm/socialMediaIcons/iconfinder_insta_4416094.png" width="53" height="50" alt=""  onClick={()=> this.handleClose}/>
+                </a>
+                <a href="https://www.tumblr.com/" target="_blank">
+                    <img src="https://ehroplar.sirv.com/Images/smartcomm/socialMediaIcons/iconfinder_tumblr_4416098.png" width="53" height="50" alt=""  onClick={()=> this.handleClose}/>
+                </a>
+                
               </Modal.Body>
               <Modal.Footer>
                 <Button onClick={this.props.onHide}>Close</Button>
