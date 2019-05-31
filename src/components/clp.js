@@ -4,7 +4,7 @@ import landingbanner from '../../src/assets/banners/landingbanner3.jpg';
 import CLPData from './../data/clp.json';
 import BuildProductCard from './complibrary/buildproductcard';
 import Pagination from './complibrary/pagination';
-import BreadCrumbs from './../components/complibrary/breadcrumbs';
+import {Breadcrumb} from 'react-bootstrap';
 
 class CLP extends Component {
     constructor(props){
@@ -56,6 +56,7 @@ class CLP extends Component {
     render() {
         //loop through every product in the array and build the card.
         const cardUnit = this.state.pageOfItems.map(product =>  <BuildProductCard productFromParent={product}/>)
+        const {categoryName} = this.state;
         return(
             <div style={{width: '100%', margin: 'auto'}}>
                 <Grid className = "clp-landing-grid">
@@ -67,13 +68,12 @@ class CLP extends Component {
                                     className="clp-landing-banner"
                                 />
                         </div>
-                    </Cell>
-                    <Cell col={5}>
                         <div>
-                            <BreadCrumbs/>
+                            <Breadcrumb >
+                                <Breadcrumb.Item href="http://localhost:3000" >Home</Breadcrumb.Item>
+                                <Breadcrumb.Item active>men</Breadcrumb.Item>                       
+                            </Breadcrumb>
                         </div>
-                    </Cell>
-                    <Cell col={7}>
                         <div className="text-right">
                             <Pagination items={this.state.exampleItems} onChangePage={this.onChangePage} />
                         </div>

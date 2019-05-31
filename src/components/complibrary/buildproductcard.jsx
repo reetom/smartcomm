@@ -1,27 +1,37 @@
 import React, {Component} from 'react';
-import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
+import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton, Snackbar} from 'react-mdl';
 import {Link} from 'react-router-dom';
 import App from '../../App';
 import SocialShareModal from './socialsharemodal';
-import {ButtonToolbar} from 'react-bootstrap';
+
+
 class BuildProductCard extends Component {
 
     constructor(props){
         super(props);
-        
-        this.state = { modalShow: false };
+        this.state = { 
+            modalShow: false,
+            isSnackbarActive: false,
+        };
+        this.handleShowSnackbar = this.handleShowSnackbar.bind(this);
+        this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);
     }
-    //}
-   // constructor(...args) {
-   //     super(...args);
-    
-   //     this.state = { modalShow: false };
-   // } 
+
+    handleShowSnackbar() {
+        this.setState({
+          isSnackbarActive: true,
+        });
+    }
+
+    handleTimeoutSnackbar() {
+        this.setState({ isSnackbarActive: false });
+    }
 
     render() {
 
         const product = this.props.productFromParent;
         let modalClose = () => this.setState({ modalShow: false });
+        var {isSnackbarActive} = this.state;
 
         return(
             <div>
@@ -46,17 +56,25 @@ class BuildProductCard extends Component {
                     </CardText>
                     <CardMenu style={{color: 'RED'}}>
                         <IconButton name="share" style={{color: 'Blue'}} 
-                        onClick={() => this.setState({ modalShow: true })}
+                            onClick={() => this.setState({ modalShow: true })}
                         />
                         <SocialShareModal style={{opacity:1}}
                             show={this.state.modalShow}
                             onHide={modalClose}
                         />
-                        <IconButton name="favorite" onClick={() => addToFav({product})} />
-                        <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
+                        <IconButton name="favorite" onClick={() => addToFav({product})}/>
+                        <IconButton name="shoppingcart"  style={{color: 'Orange'}}
+                            onClick={this.handleShowSnackbar}
+                        />
+                            <Snackbar
+                                active={isSnackbarActive}
+                                onClick={this.handleClickActionSnackbar}
+                                onTimeout={this.handleTimeoutSnackbar}
+                                action="View Cart"> Product Add to Cart
+                            </Snackbar>
                     </CardMenu>
                 </Card>
-        </div>
+            </div>
         )
 
     }
@@ -93,7 +111,7 @@ function addToFav({product}){
     new App().buildFavoriteBadge();
 }
 
-function addToCart(){
-    //todo
+function addToCart({product}){
+//todo
 }
 export default BuildProductCard;

@@ -16,24 +16,22 @@ class Landing extends Component {
         super(props);
         this.handleShowSnackbar = this.handleShowSnackbar.bind(this);
         this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);
-        this.handleClickActionSnackbar = this.handleClickActionSnackbar.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.state = { isSnackbarActive: false,
                         email: 'Please enter your email address'
         };
       }
-
+      //email
       handleChange(event) {
         this.setState({value: event.target.value});
         console.log(this.state.email);
       }
 
-
+      //Snackbar functions follow
       handleShowSnackbar() {
         this.setState({
           isSnackbarActive: true,
-          btnBgColor: '#' +
-            Math.floor(Math.random() * 0xFFFFFF).toString(16)
+          
         });
       }
 
@@ -41,14 +39,8 @@ class Landing extends Component {
         this.setState({ isSnackbarActive: false });
       }
 
-      handleClickActionSnackbar() {
-        this.setState({
-          btnBgColor: ''
-        });
-      }
-
     render() {
-        const { btnBgColor, isSnackbarActive, email } = this.state;
+        const {isSnackbarActive, email } = this.state;
 
         return(
             <div style={{width: '100%', margin: 'auto'}}>
@@ -245,7 +237,7 @@ class Landing extends Component {
                                 active={isSnackbarActive}
                                 onClick={this.handleClickActionSnackbar}
                                 onTimeout={this.handleTimeoutSnackbar}
-                                action="Cancel">Thank you for subscribing to SmartComm.
+                                action="">Thank you for subscribing to SmartComm
                             </Snackbar>
                         </div>
                         <div className="know-your-gucci-text">
