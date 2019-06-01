@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton, Textfield, Snackbar} from 'react-mdl';
 import {Link} from 'react-router-dom';
+//import SendEmail from "./complibrary/sendemail";
 import landingbanner from '../../src/assets/banners/landingbanner6.jpg';
 import bag9 from '../../src/assets/products/bag9.jpg';
 import bag10 from '../../src/assets/products/bag10.jpg';
