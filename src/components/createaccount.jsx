@@ -1,49 +1,49 @@
 import React, {Component} from 'react';
-import {Grid, Cell, Button, FABButton,Icon, Textfield} from 'react-mdl';
-import {Link} from 'react-router-dom';
+import {Form, Button} from 'react-bootstrap';
 class CreateAccount extends Component {
+
     render() {
         return(
-            <div className="login-div-primary">
-                <div>
-                    <Textfield
-                    onChange={() => {}}
-                    label="First Name"
-                    style={{width: '200px'}}
-                    />
-                </div>
-                <div>
-                    <Textfield
-                    onChange={() => {}}
-                    label="Last Name"
-                    style={{width: '200px'}}
-                    />
-                </div>
-                <div>
-                    <Textfield
-                    onChange={() => {}}
-                    label="Email Address"
-                    style={{width: '200px'}}
-                    />
-                </div>
-                <div>
-                    <Textfield
-                    onChange={() => {}}
-                    label="Password"
-                    style={{width: '200px'}}
-                    />
-                </div>
-                <div>
-                    <Textfield
-                    onChange={() => {}}
-                    label=" Confirm Password"
-                    style={{width: '200px'}}
-                    />
-                </div>
-                <div>
-                    <Button class="submit-button" raised colored>Create Account</Button>
-                </div>
+            <div>
+                <div className="login-div-container">
+                    <div></div>
+                    <div className="createaccount-form">
+                        <Form>
+                            <Form.Group controlId="formFirstName">
+                                <Form.Label>First Name</Form.Label>
+                                <Form.Control type="firstName" placeholder="Enter Frist Name" />
+                                <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                                </Form.Text>
+                            </Form.Group>
+                            <Form.Group controlId="formLastName">
+                                <Form.Label>Last Name</Form.Label>
+                                <Form.Control type="lastName" placeholder="Enter Last Name" />
+                                <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                                </Form.Text>
+                            </Form.Group>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>Email address</Form.Label>
+                                <Form.Control type="email" placeholder="Enter email" />
+                                <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                                </Form.Text>
+                            </Form.Group>
+
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" placeholder="Password" />
+                            </Form.Group>
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
+                        </Form>
+                    </div>
+                    <div></div>
             </div>
+            
+        </div>
         )
     }
 }

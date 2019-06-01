@@ -280,7 +280,6 @@
 }
 
 .login-div-container{
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1em;
@@ -290,4 +289,18 @@
 .login-form{
   padding-top: 5em;
   color: white;
+}
+.createaccount-form{
+  padding-top: 5em;
+  color: white;
+}
+.createaccount-container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+  grid-auto-rows: minmax(250px, auto);
+  height: 800px;
+}
+.text-muted{
+  color: whitesmoke;
 }
