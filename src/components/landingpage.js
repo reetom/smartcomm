@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton, Textfield, Snackbar} from 'react-mdl';
 import {Link} from 'react-router-dom';
-//import SendEmail from "./complibrary/sendemail";
+import SendEmail from "./complibrary/sendemail";
 import landingbanner from '../../src/assets/banners/landingbanner6.jpg';
 import bag9 from '../../src/assets/products/bag9.jpg';
 import bag10 from '../../src/assets/products/bag10.jpg';
@@ -11,6 +11,22 @@ import bag4 from '../../src/assets/products/bag4.jpeg';
 import bag5 from '../../src/assets/products/bag5.jpeg';
 import bag6 from '../../src/assets/products/bag6.jpeg';
 import bag7 from '../../src/assets/products/bag7.jpeg';
+
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'reetom@gmail.com',
+      pass: '***********'
+    }
+  });
+  
+  var mailOptions = {
+    from: 'reetom@gmail.com',
+    to: 'reetom@skava.com',
+    subject: 'SmartComm Subscription Notification',
+    text: 'Thank you for subscribing to SmartComm. Now watch how we take away your money!'
+  };
 
 class Landing extends Component {
     constructor(props) {
@@ -34,6 +50,13 @@ class Landing extends Component {
           isSnackbarActive: true,
           
         });
+         transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
       }
 
       handleTimeoutSnackbar() {

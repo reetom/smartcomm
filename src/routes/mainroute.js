@@ -6,7 +6,7 @@ import About from './../components/about';
 import Login from './../components/loginpage';
 import CreateAccount from './../components/createaccount';
 import Clp from './../components/clp';
-import Cart from './../components/cart';
+import ShoppingCart from './../components/shoppingcart';
 import Favorite from './../components/favorite';
 import PDP from './../components/pdp';
 import PLP from './../components/plp';
@@ -21,7 +21,7 @@ const MainRoute = () => (
         <Route exact path="/signin" component= {Login} />
         <Route exact path="/createaccount" component= {CreateAccount} />
         <Route exact path="/clp" component= {Clp} />
-        <Route exact path="/cart" component= {Cart} />
+        <Route exact path="/shoppingcart" component= {ShoppingCart} />
         <Route exact path="/favorite" component= {Favorite} />
         <Route exact path="/pdp" component= {PDP} />
         <Route exact path="/plp" component= {PLP} />

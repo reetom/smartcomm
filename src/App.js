@@ -40,7 +40,7 @@ class App extends Component {
                             <Link to ="/favorite">
                                 {displayFavBadge}
                             </Link>
-                            <Link to ="/cart">
+                            <Link to ="/shoppingcart">
                                 <Badge text="5" overlap>
                                     <Icon name="shoppingcart" />
                                 </Badge>

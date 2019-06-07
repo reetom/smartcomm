@@ -11,9 +11,9 @@ var transporter = nodemailer.createTransport({
   
   var mailOptions = {
     from: 'reetom@gmail.com',
-    to: 'james@yahoo.com',
+    to: 'reetom@skava.com',
     subject: 'SmartComm Subscription Notification',
-    text: 'Thank you for subscribing to SmartComm. Watch how we take away your money!'
+    text: 'Thank you for subscribing to SmartComm. Now watch how we take away your money!'
   };
   
   transporter.sendMail(mailOptions, function(error, info){
@@ -30,7 +30,8 @@ class SendEmail extends Component {
         super(props);
     }
     render(){
-        return(null);
+        return( null
+            );
     }
 }
 export default SendEmail;
