@@ -64,7 +64,7 @@ class BuildProductCard extends Component {
                         />
                         <IconButton name="favorite" onClick={() => addToFav({product})}/>
                         <IconButton name="shoppingcart"  style={{color: 'Orange'}}
-                            onClick={this.handleShowSnackbar}
+                            onClick={() => addToBag({product})}
                         />
                             <Snackbar
                                 active={isSnackbarActive}
@@ -108,10 +108,37 @@ function addToFav({product}){
     //Update the favs list and count in the localstorage.
     localStorage.setItem("favList",JSON.stringify(favList));
     localStorage.setItem("favCount",JSON.stringify(favCount))
-    new App().buildFavoriteBadge();
+    new App().buildFavoriteBadge();// this line of code is wrong.. I need to implement a observer for the badge to update the fav count.
 }
 
-function addToCart({product}){
-//todo
+//This function should be in a separare file so that addToBag code is not dublicated across the app.
+function addToBag({product}){
+    var cartProducts =[];
+    var cartCount = 0;
+    var prodAlreadyInCart = "false";
+    //First check if the favList in local storate is empty, if not empty add to the list
+    let favListFromLocalStoreage = JSON.parse(localStorage.getItem("cartProducts"));
+    if (favListFromLocalStoreage != null) {
+        favListFromLocalStoreage.map(forEachProduct => {
+            cartProducts.push(forEachProduct); 
+            cartCount = cartCount+1;
+            //Check if the product already exist in the fav list
+            if (prodAlreadyInCart === "false"){
+                if(forEachProduct.productID === product.productID){
+                    prodAlreadyInCart = "true"; 
+                    console.log("Product is already in the favorite list");
+                }
+            }
+        
+        });
+    } 
+    //If the product doesn't exist in the fav list, add it to the fav list.
+    if (prodAlreadyInCart == "false"){
+        cartProducts.push(product);
+        cartCount = cartCount +1;
+    }
+    //Update the favs list and count in the localstorage.
+    localStorage.setItem("cartProducts",JSON.stringify(cartProducts));
+    localStorage.setItem("cartCount",JSON.stringify(cartCount))
 }
 export default BuildProductCard;
