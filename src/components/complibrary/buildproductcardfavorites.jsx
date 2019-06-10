@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
+import {CardText,Card,CardTitle, CardMenu, IconButton} from 'react-mdl';
 import {Link} from 'react-router-dom';
 
 class BuildProductCardFavorites extends Component {

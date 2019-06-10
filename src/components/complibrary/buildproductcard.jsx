@@ -126,7 +126,7 @@ function addToBag({product}){
             if (prodAlreadyInCart === "false"){
                 if(forEachProduct.productID === product.productID){
                     prodAlreadyInCart = "true"; 
-                    console.log("Product is already in the favorite list");
+                    console.log("Product is already in your cart...");
                 }
             }
         
@@ -139,6 +139,6 @@ function addToBag({product}){
     }
     //Update the favs list and count in the localstorage.
     localStorage.setItem("cartProducts",JSON.stringify(cartProducts));
-    localStorage.setItem("cartCount",JSON.stringify(cartCount))
+    localStorage.setItem("cartCount",JSON.stringify(cartCount));
 }
 export default BuildProductCard;
