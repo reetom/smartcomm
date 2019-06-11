@@ -61,7 +61,7 @@ class Favorite extends Component {
     render() { 
         const {favCardUnit} = this.state;
         return(
-            <div style={{width: '100%', margin: 'auto'}}>
+            <div style={{width: '100%', height: "100%", margin: 'auto'}}>
                 <Grid className = "fav-landing-grid">
                     <Cell col={12}>
                         {favCardUnit}
