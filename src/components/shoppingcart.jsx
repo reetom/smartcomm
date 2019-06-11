@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button} from 'react-mdl';
-import { Container,Row, Col} from 'react-bootstrap';
+import { Form, Container,Row, Col} from 'react-bootstrap';
 
 
 class ShoppingCart extends Component{
@@ -46,6 +46,7 @@ class ShoppingCart extends Component{
                             <div>Price: ${product.price}    $<del>3000</del></div>
                             <div>Quantity: 2</div>
                             <div>Color: {product.filterableFacets.color}</div>
+                            <div>SUBTOTAL: {product.price*2}</div>
                         </div>
                     </Col>
                     <Col sm={4}> 
@@ -131,20 +132,67 @@ class ShoppingCart extends Component{
                         {singleProductRow}
                     </Col>
                     <Col sm={3}>
-                        <Button class="payment-buttons" raised onClick={this.saveProduct("cart")}>Checkout</Button>
-                        <Button class="payment-buttons"raised onClick={this.saveProduct("cart")}>Checkout with Paypal</Button>
+                        <div className="pricing-block-cart">
+                            <Button class="payment-buttons" raised onClick={this.saveProduct("cart")}>Checkout</Button>
+                            <Button class="payment-buttons" raised onClick={this.saveProduct("cart")}>Checkout with Paypal</Button>
+                            <Row>
+                                <Col sm={6}>
+                                    <div className="cart-totals-label">SUBTOTAL: </div>
+                                </Col>
+                                <Col sm={6}>
+                                    <div className="cart-totals-value">$0.00</div>  
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col sm={6}>
+                                    <div className="cart-totals-label">SHIPPING: </div>
+                                </Col>
+                                <Col sm={6}>
+                                    <div className="cart-totals-value">$0.00 </div>  
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col sm={6}>
+                                    <div className="cart-totals-label">TAX: </div> 
+                                </Col>
+                                <Col sm={6}>
+                                    <div className="cart-totals-value">$0.00</div>  
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col sm={6}>
+                                    <div className="cart-totals-label">TOTAL: </div>  
+                                </Col>
+                                <Col sm={6}>
+                                    <div className="cart-totals-value">$0.00</div>  
+                                </Col>
+                            </Row>
+                             <Form>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Label></Form.Label>
+                                    <Form.Control type="text" placeholder="Enter Promo Code" onChange={this.handleChange}/>
+                                    <Form.Text className="text-muted">
+                                    </Form.Text>
+                                </Form.Group>
+                            </Form>
+                            <Button class="payment-buttons" raised onClick={this.saveProduct("cart")}>Apply Promotion</Button>
+                        </div>
                     </Col>
                 </Row>
                     
                 <Row>
-                    ----------------------------------
-                    Saved Producs come here
-                    ----------------------------------
+                   <Col sm={12}>
+                        <div className="section-heading">
+                            <h3> Your Saved Products</h3>
+                        </div>
+                   </Col>
                 </Row>
                 <Row>
-                    ----------------------------------
-                    Recommended Products come here
-                    ----------------------------------
+                    <Col sm={12}>
+                        <div className="section-heading">
+                            <h3> Recommended Products</h3>
+                        </div>
+                   </Col>
                 </Row>
 
             </Container>
