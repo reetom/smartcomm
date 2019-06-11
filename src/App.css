@@ -314,7 +314,8 @@
 }
 
 .cart-prod-row{
-  margin-bottom: 30px;
+  clear: both;
+  height: 5em;
 }
 
 .cart-buttons{
@@ -328,4 +329,20 @@
 .cart-image{
   width: 200px;
  height: 200px;
+}
+
+.payment-buttons{
+  margin: 0.5em;
+  color: black;
+  background: orange;
+  width: 300px;
+  height: 30px;
+}
+
+.cart-product-details{
+  color: white;
+}
+
+.login-submit-button{
+  margin: 1em;
 }

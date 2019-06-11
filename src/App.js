@@ -36,7 +36,6 @@ class App extends Component {
                         <Navigation>
                             <Link to ="/">Home</Link>
                             <Link to ="/signin">Sign In</Link>
-                            <Link to ="/createaccount">My Account</Link>
                             <Link to ="/favorite">
                                 {displayFavBadge}
                             </Link>

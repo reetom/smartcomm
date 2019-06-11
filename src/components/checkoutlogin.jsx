@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Form, Button} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
 
 //Regex to validate the email address.
 const emailRegex = RegExp(
@@ -24,7 +23,7 @@ const formValid = ({ formErrors, ...rest }) => {
     return valid;
 };
 
-class Login extends Component {
+class CheckoutLogin extends Component {
 
     constructor(props){
         super(props);
@@ -93,13 +92,9 @@ class Login extends Component {
                             <Form.Group controlId="formBasicChecbox">
                                 <Form.Check type="checkbox" label="Save email"/>
                             </Form.Group>
-                            <div>
-                                <Link to="/createaccount"> Not Registered? Create Account</Link>
-                            </div>
-                            <div className="login-submit-button">
-                              <Button variant="primary" type="submit">Submit</Button>
-                            </div>
-
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
                         </Form>
                     </div>
                     <div></div>
@@ -108,4 +103,4 @@ class Login extends Component {
         </div>)
     }
 }
-export default Login;
+export default CheckoutLogin;

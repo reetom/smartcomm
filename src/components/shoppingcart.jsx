@@ -13,6 +13,8 @@ class ShoppingCart extends Component{
        }
        this.removeFromBag = this.removeFromBag.bind(this);
        this.saveProduct = this.saveProduct.bind(this);
+       this.checkout = this.checkout.bind(this);
+       this.checkoutWithPayPal = this.checkoutWithPayPal(this);
     }
 
     buildProductRows(){
@@ -39,10 +41,12 @@ class ShoppingCart extends Component{
 
                     </Col>
                     <Col sm={4}>
-                        <div>{product.productName}</div>
-                        <div>Price: ${product.price}</div>
-                        <div>Quantity: 2</div>
-                        <div>Color: {product.filterableFacets.color}</div>
+                        <div className="cart-product-details">
+                            <div>{product.productName}</div>
+                            <div>Price: ${product.price}    $<del>3000</del></div>
+                            <div>Quantity: 2</div>
+                            <div>Color: {product.filterableFacets.color}</div>
+                        </div>
                     </Col>
                     <Col sm={4}> 
                         <div className="text-right">
@@ -103,6 +107,14 @@ class ShoppingCart extends Component{
 
     }
 
+    checkout(cart){
+
+    }
+
+    checkoutWithPayPal(cart){
+
+    }
+
     componentDidMount(){
         this.buildProductRows();
         this.showSavedProducts();
@@ -118,7 +130,10 @@ class ShoppingCart extends Component{
                     <Col sm={9}>
                         {singleProductRow}
                     </Col>
-                    <Col sm={3}>This space is for the price This space is for the price This space is for the price This space is for the price This space is for the price</Col>
+                    <Col sm={3}>
+                        <Button class="payment-buttons" raised onClick={this.saveProduct("cart")}>Checkout</Button>
+                        <Button class="payment-buttons"raised onClick={this.saveProduct("cart")}>Checkout with Paypal</Button>
+                    </Col>
                 </Row>
                     
                 <Row>
@@ -138,3 +153,5 @@ class ShoppingCart extends Component{
 
 }
 export default ShoppingCart;
+
+

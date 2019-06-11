@@ -12,9 +12,11 @@ class BuildFavBadge extends Component{
     }
 
     updateFavBadge(){
-        const favCount = localStorage.getItem("favCount");
+        var favCount = localStorage.getItem("favCount");
         var favBadgeToDisplay = "";
         console.log(favCount);
+        //hardcoded for now, fix it...
+        favCount = 3;
         if (favCount != null && favCount != "0"){
             favBadgeToDisplay = <Badge text={favCount} overlap><Icon name="favorite" /></Badge>
             console.log("returning Badge with some count");
