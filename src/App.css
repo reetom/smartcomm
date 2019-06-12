@@ -385,3 +385,16 @@
   text-align: right;
   padding-right: 1em;
 }
+
+.guest-checkout-button{
+  color: black;
+  background: orange;
+  width: auto;
+  height: 30px;
+}
+
+.or-div{
+  padding-top: 2em;
+  padding-bottom: 2em;
+  text-align: center;
+}

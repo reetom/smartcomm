@@ -32,7 +32,7 @@ class CreateAccount extends Component {
                             </Form.Group>
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password" />
+                                <Form.Control type="password" placeholder="Enter Password" />
                             </Form.Group>
                             <Form.Group controlId="formBasicConfirmPassword">
                                 <Form.Label>Confirm Password</Form.Label>

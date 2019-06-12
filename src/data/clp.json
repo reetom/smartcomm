@@ -9,7 +9,7 @@
         "imageName": "bag1",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"Weight":"1.5 lbs", "Length":"10 inches", "Depth":"5 inches","Height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"brand":"Gucci", "material":"Leather", "color": "Baige"}
     },
     {
         "productID": "2",
@@ -20,7 +20,7 @@
         "imageURL": "https://ehroplar.sirv.com/Images/smartcomm/products/categories/women/bag2.jpeg",
         "imageName": "bag2",
         "productSpecs":{"Weight":"1.5 lbs", "Length":"10 inches", "Depth":"5 inches","Height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Aldo", "Material":"Leather", "Color": "Black"}
+        "filterableFacets":{"brand":"Aldo", "material":"Leather", "color": "Black"}
     },
     {
         "productID": "3",
