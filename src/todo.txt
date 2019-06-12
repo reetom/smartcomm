@@ -5,6 +5,23 @@
 5. Allow login for user by reading the JSON file created during create account. NOT DONE
 6. Start desiging the shopping cart. IN PROGRESS
 7. Fix the toast message on add to cart. NOT DONE.
+8. 
+
+
+Visualize the cart objec-
+
+cart = {
+    "productList":{product1, product2....},
+    "shippingMethodAndPrice": shippingObj,
+    "payment": {payment1, payment2, payment3},
+    "shippingAddress": "shippingAddressObj",
+    "billingAddress": "billingAddressObj",
+    "customer": "customerObj",
+    "Promotions": "promotionsobj",
+    "tax": "taxObj",
+    "cartTotal": "cartTotalPrice"
+
+}
 
 
 

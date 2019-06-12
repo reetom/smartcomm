@@ -1,7 +1,17 @@
 import React, {Component} from 'react';
 import {Button} from 'react-mdl';
 import { Form, Container,Row, Col} from 'react-bootstrap';
+import BuildProductCardFavorites from './complibrary/buildproductcardfavorites';
 
+const ColoredLine = ({ color }) => (
+    <hr
+        style={{
+            color: color,
+            backgroundColor: color,
+            height: 2
+        }}
+    />
+);
 
 class ShoppingCart extends Component{
     constructor(props){
@@ -10,6 +20,7 @@ class ShoppingCart extends Component{
             products:[],
             isLoaded: false,
             singleProductRow:"",
+            favCardUnit:""
        }
        this.removeFromBag = this.removeFromBag.bind(this);
        this.saveProduct = this.saveProduct.bind(this);
@@ -116,7 +127,25 @@ class ShoppingCart extends Component{
 
     }
 
+    buildSavedCards(){
+        // Get the list of favorites from localstorage for the guest user.
+        let favList = JSON.parse(localStorage.getItem("favList"));
+        var favCardUnit ="";
+        var favCardUnitToDisplay ="";
+        //Get the list of favorites from backend for the signed in user. @ToDo
+        if (favList != null && favList.length >0){
+        //Loop through the products in the fav list and build the product cards to display.
+        favCardUnit = favList.map(product =>  <BuildProductCardFavorites productFromParent={product} buildFavoriteCards = {this}/>)
+        favCardUnitToDisplay = <div className="fav-grid">{favCardUnit}</div>
+        this.setState({favCardUnit: favCardUnitToDisplay})
+        } else {
+            favCardUnit = <div className="no-fav-grid"> <h1>There is nothing to show</h1></div>
+            this.setState({favCardUnit: favCardUnit})
+        }
+    }
+
     componentDidMount(){
+        this.buildSavedCards();
         this.buildProductRows();
         this.showSavedProducts();
         this.showRecommendedProducts();
@@ -124,7 +153,7 @@ class ShoppingCart extends Component{
 
     render(){
 
-        const {singleProductRow} = this.state;
+        const {singleProductRow, favCardUnit} = this.state;
         return(
             <Container className="cart-page">
                 <Row>
@@ -184,6 +213,8 @@ class ShoppingCart extends Component{
                    <Col sm={12}>
                         <div className="section-heading">
                             <h3> Your Saved Products</h3>
+                            <ColoredLine color="white"/>
+                            {favCardUnit}
                         </div>
                    </Col>
                 </Row>
@@ -191,6 +222,8 @@ class ShoppingCart extends Component{
                     <Col sm={12}>
                         <div className="section-heading">
                             <h3> Recommended Products</h3>
+                            <ColoredLine color="white"/>
+                            {favCardUnit}
                         </div>
                    </Col>
                 </Row>
