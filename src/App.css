@@ -416,12 +416,13 @@
 }
 
 .recommendations-section{
-  height: 400px;
+  height: auto;
   padding-top: 2em; 
+  padding-bottom: 2em;
 }
 
 .saved-proeducts-section{
-  height: 400px;
+  height: auto;
   padding-top: 2em; 
 }
 

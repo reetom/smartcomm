@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-
+import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 
 //Regex to validate the email address.
 const emailRegex = RegExp(
@@ -81,6 +81,7 @@ class CheckoutOptions extends Component {
         
         return(
             <div>
+                <SectionHeadingAndWhiteLine heading="Checkout" color="white"/>
                 <div className="login-div-container">
                     <div></div>
                     <div className="login-form">
