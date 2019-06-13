@@ -13,6 +13,7 @@ import PLP from './../components/plp';
 import Data from './../components/data';
 import ClearCache from './../components/complibrary/clearcache';
 import CheckoutOptions from './../components/checkoutoptions';
+import CheckoutPage from './../components/checkoutpage';
 
 const MainRoute = () => (
     <Switch>
@@ -29,6 +30,7 @@ const MainRoute = () => (
         <Route exact path="/data" component= {Data} />
         <Route exact path="/clearcache" component= {ClearCache} />
         <Route exact path="/checkoutoptions" component= {CheckoutOptions} />
+        <Route exact path="/checkoutpage" component= {CheckoutPage} />
     </Switch>
 )
 

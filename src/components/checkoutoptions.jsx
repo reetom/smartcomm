@@ -34,6 +34,7 @@ class CheckoutOptions extends Component {
             passwrod:"",
             saveEmail:"",
         }
+        this.checkout = this.checkout.bind(this);
     }
 
     handleSubmit = e => {
@@ -71,6 +72,10 @@ class CheckoutOptions extends Component {
         this.setState({ formErrors, [name]: value }, () => console.log(this.state));
     };
 
+    checkout(){
+        let path = '/checkoutpage';
+        this.props.history.push(path);
+    }
     render() {
         const { formErrors } = this.state;
         
@@ -80,7 +85,7 @@ class CheckoutOptions extends Component {
                     <div></div>
                     <div className="login-form">
                     <div className="guest-checkout-button">                    
-                        <Button class="payment-buttons" raised >Guest Checkout</Button>
+                        <Button class="payment-buttons" raised onClick={this.checkout}>Guest Checkout</Button>
                     </div>
                     <div className="or-div"> Or, Please Sign-in</div>
 

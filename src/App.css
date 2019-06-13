@@ -347,13 +347,6 @@
   margin: 1em;
 }
 
-.section-heading{
-  color: white;
-  text-align: center;
-  height: 400px;
-  
-}
-
 .pricing-block-cart{
   display: block;
   height: 425px;
@@ -398,3 +391,37 @@
   padding-bottom: 2em;
   text-align: center;
 }
+
+.shipping-address-form{
+  padding-top: 2em;
+  color: white;
+  width: 400px;
+}
+
+.checkout-address-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1em;
+  grid-auto-rows: minmax(250px, auto);
+  height: auto;
+ /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ 
+}
+
+.section-heading{
+  color: white;
+  text-align: center;  
+}
+
+.recommendations-section{
+  height: 400px;
+  padding-top: 2em; 
+}
+
+.saved-proeducts-section{
+  height: 400px;
+  padding-top: 2em; 
+}
+

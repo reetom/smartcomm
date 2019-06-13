@@ -2,16 +2,7 @@ import React, {Component} from 'react';
 import {Button} from 'react-mdl';
 import { Form, Container,Row, Col} from 'react-bootstrap';
 import BuildProductCardFavorites from './complibrary/buildproductcardfavorites';
-
-const ColoredLine = ({ color }) => (
-    <hr
-        style={{
-            color: color,
-            backgroundColor: color,
-            height: 2
-        }}
-    />
-);
+import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 
 class ShoppingCart extends Component{
     constructor(props){
@@ -24,8 +15,8 @@ class ShoppingCart extends Component{
        }
        this.removeFromBag = this.removeFromBag.bind(this);
        this.saveProduct = this.saveProduct.bind(this);
-       this.checkout = this.checkout.bind(this);
-       this.checkoutWithPayPal = this.checkoutWithPayPal(this);
+       this.checkoutWithPayPal = this.checkoutWithPayPal.bind(this);
+       this.beginCheckout = this.beginCheckout.bind(this);
     }
 
     buildProductRows(){
@@ -57,7 +48,7 @@ class ShoppingCart extends Component{
                             <div>Price: ${product.price}    $<del>3000</del></div>
                             <div>Quantity: 2</div>
                             <div>Color: {product.filterableFacets.color}</div>
-                            <div>SUBTOTAL: {product.price*2}</div>
+                            <div>SUBTOTAL: ${product.price*2}</div>
                         </div>
                     </Col>
                     <Col sm={4}> 
@@ -119,8 +110,9 @@ class ShoppingCart extends Component{
 
     }
 
-    checkout(cart){
-
+    beginCheckout(){
+        let path = '/checkoutoptions';
+       this.props.history.push(path);
     }
 
     checkoutWithPayPal(cart){
@@ -162,7 +154,7 @@ class ShoppingCart extends Component{
                     </Col>
                     <Col sm={3}>
                         <div className="pricing-block-cart">
-                            <Button class="payment-buttons" raised onClick={this.saveProduct("cart")}>Checkout</Button>
+                            <Button class="payment-buttons" raised onClick={this.beginCheckout}>Checkout</Button>
                             <Button class="payment-buttons" raised onClick={this.saveProduct("cart")}>Checkout with Paypal</Button>
                             <Row>
                                 <Col sm={6}>
@@ -211,18 +203,16 @@ class ShoppingCart extends Component{
                     
                 <Row>
                    <Col sm={12}>
-                        <div className="section-heading">
-                            <h3> Your Saved Products</h3>
-                            <ColoredLine color="white"/>
+                        <div className="saved-proeducts-section">
+                            <SectionHeadingAndWhiteLine heading="Your Saved Products" color="white"/>
                             {favCardUnit}
                         </div>
                    </Col>
                 </Row>
                 <Row>
                     <Col sm={12}>
-                        <div className="section-heading">
-                            <h3> Recommended Products</h3>
-                            <ColoredLine color="white"/>
+                        <div className="recommendations-section">
+                            <SectionHeadingAndWhiteLine heading="Recommended Products" color="white"/>
                             {favCardUnit}
                         </div>
                    </Col>
