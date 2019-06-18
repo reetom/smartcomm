@@ -5,18 +5,20 @@ import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline
 
 class CheckoutPage extends Component {
 
-    constructor(props){
-        super(props);
+    constructor(...args){
+        super(...args);
         this.state = { validated: false };
     }
-    handleSubmit(event){
 
+    handleSubmit(event){
+        console.log("Hello Hello Hello");
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
           event.preventDefault();
           event.stopPropagation();
         }
         this.setState({ validated: true });
+
         console.log("Order Review button submitted");
         let path = '/orderreviewpage';
         this.props.history.push(path);
@@ -31,37 +33,38 @@ class CheckoutPage extends Component {
                     <div className="content-center">
                     <div className="shipping-address-form">
                         <SectionHeadingAndWhiteLine heading="Shipping Address" color="white"/>
-                        <Form noValidate validated={validated}onSubmit={e => this.handleSubmit(e)}>
-                            <Form.Group controlId="formFirstName">
+
+                        <Form noValidate validated={validated} onSubmit={e => this.handleSubmit(e)}>
+                            <Form.Group controlId="validateFirstName">
                                 <Form.Label>First Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Frist Name" onChange={this.handleChange}/>
+                                <Form.Control type="text" placeholder="Enter Frist Name" />
                             </Form.Group>
-                            <Form.Group controlId="formLastName">
+                            <Form.Group controlId="validateLastName">
                                 <Form.Label>Last Name</Form.Label>
                                 <Form.Control type="text" placeholder="Enter Last Name" />
                             </Form.Group>
-                            <Form.Group controlId="formBasicEmail">
+                            <Form.Group controlId="validateStreetAddreess">
                                 <Form.Label>Address</Form.Label>
                                 <Form.Control type="text" placeholder="Enter Street Address" />
                             </Form.Group>
-                            <Form.Group controlId="formBasicPassword">
+                            <Form.Group controlId="validateCity">
                                 <Form.Label>City</Form.Label>
-                                <Form.Control type="password" placeholder="Enter City" />
+                                <Form.Control type="text" placeholder="Enter City" />
                             </Form.Group>
-                            <Form.Group controlId="formBasicConfirmPassword">
+                            <Form.Group controlId="valiateState">
                                 <Form.Label>State</Form.Label>
-                                <Form.Control type="password" placeholder="Enter State" />
+                                <Form.Control type="text" placeholder="Enter State" />
                             </Form.Group>
                             <Form.Row>
 
-                                    <Form.Group as={Col} controlId="formBasicConfirmPassword">
+                                    <Form.Group as={Col} controlId="validateZipcode">
                                     <Form.Label>Zip Code</Form.Label>
-                                    <Form.Control type="password" placeholder="Enter Zip Code" />
+                                    <Form.Control type="text" placeholder="Enter Zip Code" />
                                     </Form.Group>
 
-                                    <Form.Group as={Col} controlId="formBasicConfirmPassword">
+                                    <Form.Group as={Col} controlId="validateCountry">
                                     <Form.Label>Country</Form.Label>
-                                    <Form.Control type="password" placeholder="Enter Country" />
+                                    <Form.Control type="text" placeholder="Enter Country" />
                                     </Form.Group>
 
                             </Form.Row>
@@ -74,35 +77,35 @@ class CheckoutPage extends Component {
                     </div>
                     
                     <div className="shipping-address-form"> 
-                    <Form>
+                    <Form>  
                             <SectionHeadingAndWhiteLine heading="Billing Address" color="white"/>
-                            <Form.Group controlId="formFirstName">
+                            <Form.Group controlId="validateBillingFirstName">
                                 <Form.Label>First Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Frist Name" onChange={this.handleChange}/>
+                                <Form.Control type="text" placeholder="Enter Frist Name"/>
                             </Form.Group>
-                            <Form.Group controlId="formLastName">
+                            <Form.Group controlId="validateBillingLastName">
                                 <Form.Label>Last Name</Form.Label>
                                 <Form.Control type="text" placeholder="Enter Last Name" />
                             </Form.Group>
-                            <Form.Group controlId="formBasicEmail">
+                            <Form.Group controlId="validateBillingStreetAddress">
                                 <Form.Label>Address</Form.Label>
                                 <Form.Control type="text" placeholder="Enter Street Address" />
                             </Form.Group>
-                            <Form.Group controlId="formBasicPassword">
+                            <Form.Group controlId="validateBillingCity">
                                 <Form.Label>City</Form.Label>
-                                <Form.Control type="password" placeholder="Enter City" />
+                                <Form.Control type="text" placeholder="Enter City" />
                             </Form.Group>
-                            <Form.Group controlId="formBasicConfirmPassword">
+                            <Form.Group controlId="validateBillingState">
                                 <Form.Label>State</Form.Label>
-                                <Form.Control type="password" placeholder="Enter State" />
+                                <Form.Control type="text" placeholder="Enter State" />
                             </Form.Group>
-                            <Form.Group controlId="formBasicConfirmPassword">
+                            <Form.Group controlId="validateBillingZipcode">
                                 <Form.Label>Zip Code</Form.Label>
-                                <Form.Control type="password" placeholder="Enter Zip Code" />
+                                <Form.Control type="text" placeholder="Enter Zip Code" />
                             </Form.Group>
-                            <Form.Group controlId="formBasicConfirmPassword">
+                            <Form.Group controlId="validateBillingCountry">
                                 <Form.Label>Country</Form.Label>
-                                <Form.Control type="password" placeholder="Enter Country" />
+                                <Form.Control type="text" placeholder="Enter Country" />
                             </Form.Group>
                                 
                         </Form>
@@ -116,7 +119,7 @@ class CheckoutPage extends Component {
                         <div className="checkout-shipping-radio-button"> 
                             <Form.Check 
                                     type="radio"
-                                    id="radio-freeshipping"
+                                    id="radio-free-shipping"
                                     label="Standard Ground Shipping - Free"
                                 />
                         </div>
@@ -126,7 +129,7 @@ class CheckoutPage extends Component {
                         <div className="checkout-shipping-radio-button">
                             <Form.Check 
                                     type="radio"
-                                    id="radio-freeshipping"
+                                    id="radio-economy-shipping"
                                     label="Economy Shipping- $7"
                                 />
                         </div>
@@ -136,7 +139,7 @@ class CheckoutPage extends Component {
                         <div className="checkout-shipping-radio-button">
                             <Form.Check 
                                     type="radio"
-                                    id="radio-freeshipping"
+                                    id="radio-expedite-shipping"
                                     label="Expedite Shipping- $35"
                                 />
                         </div>
@@ -148,7 +151,7 @@ class CheckoutPage extends Component {
             </div>
 
                         <div className="order-review-button">                    
-                                    <Button type="submit">Review Your Order</Button>
+                                    <Button type="submit" onClick={(e) => this.handleSubmit}>Review Your Order</Button>
                         </div>
                     </div>
 

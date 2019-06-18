@@ -24,6 +24,7 @@ class ShoppingCart extends Component{
        this.checkoutWithPayPal = this.checkoutWithPayPal.bind(this);
        this.beginCheckout = this.beginCheckout.bind(this);
        this.updateCartInSession = this.updateCartInSession.bind(this);
+       this.clearCart = this.clearCart.bind(this);
     }
 
     buildProductRows(){
@@ -102,6 +103,20 @@ class ShoppingCart extends Component{
         //UpdatedCart price in local storage
         UpdateCart("updateCartTotals", cartTotalDetails);
     }
+
+    clearCart(){
+        // This will empty the main cart object.
+          CreateEmptyCart();
+          const singleProductRow = <div> <h1>Your Cart is Empty, Continue to Shop...</h1></div>;
+          //clear the cart items in state
+          this.setState({singleProductRow: singleProductRow});
+          //Clear the cart obects in session.
+          localStorage.setItem("cartProducts","");
+          //Clear the cart totals in state.
+          const cartTotalDetails= {"subtotal": 0.00, "tax":0.00, "discount":0.00, "total":0.00}
+          this.setState({cartTotalDetails:cartTotalDetails});
+    }
+
     // This method is to remove an item from the saved list that is displayed at the bottom of the cart
     removeSavedProduct(){
         var savedList =[];
@@ -271,7 +286,7 @@ class ShoppingCart extends Component{
                                 </Form.Group>
                             </Form>
                             <Button class="payment-buttons" raised onClick={this.saveProduct("cart")}>Apply Promotion</Button>
-                            <Button class="payment-buttons" raised onClick={this.clearcart}>Clear Cart</Button>
+                            <Button class="payment-buttons" raised onClick={this.clearCart}>Clear Cart</Button>
                         </div>
                     </Col>
                 </Row>
