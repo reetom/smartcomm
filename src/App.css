@@ -345,11 +345,12 @@
 
 .login-submit-button{
   margin: 1em;
+  text-align: center;
 }
 
 .pricing-block-cart{
   display: block;
-  height: 425px;
+  height: auto;
   background-color: white;
   padding-top: 0.5em;
   padding-left: 0.5em;
@@ -380,10 +381,7 @@
 }
 
 .guest-checkout-button{
-  color: black;
-  background: orange;
-  width: auto;
-  height: 30px;
+  text-align: center;
 }
 
 .or-div{
@@ -393,21 +391,22 @@
 }
 
 .shipping-address-form{
-  padding-top: 2em;
   color: white;
-  width: 400px;
+  width: 500px;
+  padding-left: 8em;
+  display: block;
+
+
 }
 
 .checkout-address-container{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1em;
   grid-auto-rows: minmax(250px, auto);
   height: auto;
  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
- 
 }
 
 .section-heading{
@@ -426,3 +425,96 @@
   padding-top: 2em; 
 }
 
+.page-background{
+  
+  background: #bdc3c7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: auto;
+}
+
+.shipping-container{
+  height:auto;
+  color: white;
+  margin: 4em;
+  width: auto;
+  display: block;
+}
+.checkout-shipping-radio-button{
+  display: block;
+  background: #bdc3c7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: auto;
+}
+
+.payments-container{
+  height:auto;
+  color: white;
+}
+
+.muted-text{
+  color: whteat;
+  padding-left: 4em;
+  padding-bottom: 2em;
+}
+
+.pp-button{
+  text-align: center;
+}
+
+.order-review-button{
+  text-align: right;
+  padding-right: 2em;
+  padding-bottom: 2em;
+}
+
+.order-submit-button{
+  text-align: right;
+  padding-right: 2em;
+  padding-bottom: 2em;
+  padding-top: 2em;
+}
+
+.checkout-buttons{
+  padding-bottom: 2em;
+}
+
+.order-conf-section{
+  color: white;
+  padding-top: 15em;
+  text-align: center;
+  height: 780px;
+}
+
+.products-total{
+  height: 400px;
+}
+
+.shipping-billing-address{
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(250px, auto);
+ /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  text-align: center;
+}
+
+.gift-card-payment{
+  height: 200px;
+}
+
+.order-submit-button{
+  height: auto;
+}
+
+.payment-options{
+  height: 300px;
+}
+
+.div-display-block{
+  display: block;
+}

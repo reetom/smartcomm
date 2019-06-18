@@ -80,7 +80,7 @@ class CheckoutOptions extends Component {
         const { formErrors } = this.state;
         
         return(
-            <div>
+            <div className="page-background">
                 <SectionHeadingAndWhiteLine heading="Checkout" color="white"/>
                 <div className="login-div-container">
                     <div></div>

@@ -107,7 +107,7 @@ function addToFav({product}){
     }
     //Update the favs list and count in the localstorage.
     localStorage.setItem("favList",JSON.stringify(favList));
-    localStorage.setItem("favCount",JSON.stringify(favCount))
+    localStorage.setItem("favCount",JSON.stringify(favCount));
     new App().buildFavoriteBadge();// this line of code is wrong.. I need to implement a observer for the badge to update the fav count.
 }
 

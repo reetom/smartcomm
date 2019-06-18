@@ -3,6 +3,10 @@ import {Button} from 'react-mdl';
 import { Form, Container,Row, Col} from 'react-bootstrap';
 import BuildProductCardFavorites from './complibrary/buildproductcardfavorites';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
+import PayPalCheckoutPage from './paypalcheckoutpage';
+import UpdateCart from './complibrary/updatecart';
+import CreateEmptyCart from './complibrary/createemptycart';
+
 
 class ShoppingCart extends Component{
     constructor(props){
@@ -11,23 +15,26 @@ class ShoppingCart extends Component{
             products:[],
             isLoaded: false,
             singleProductRow:"",
-            favCardUnit:""
+            favCardUnit:"",
+            cartTotalDetails:{"subtotal": 0.00, "tax":0.00, "discount":0.00, "total":0.00},
+            selectedQuantity:"1"
        }
        this.removeFromBag = this.removeFromBag.bind(this);
        this.saveProduct = this.saveProduct.bind(this);
        this.checkoutWithPayPal = this.checkoutWithPayPal.bind(this);
        this.beginCheckout = this.beginCheckout.bind(this);
+       this.updateCartInSession = this.updateCartInSession.bind(this);
     }
 
     buildProductRows(){
         // Get the list of products in the cart from localstorage for the guest user.
         var cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
-        console.log(cartProducts);
         var singleProductRow ="";
         var productRowToDisplay ="";
+        var selectedQuantity = "1";
+        var sku="123456789";
         //Get the cart from backend for the signed in user. @ToDo
         if (cartProducts != null && cartProducts.length >0){
-            console.log("you are inside the condition");
         //Loop through the products in the  cart and build the product rows to display.
         singleProductRow = cartProducts.map(product =>  
             <div className="cart-pord-row">
@@ -46,9 +53,9 @@ class ShoppingCart extends Component{
                         <div className="cart-product-details">
                             <div>{product.productName}</div>
                             <div>Price: ${product.price}    $<del>3000</del></div>
-                            <div>Quantity: 2</div>
+                            <div>Quantity: {selectedQuantity}</div>
                             <div>Color: {product.filterableFacets.color}</div>
-                            <div>SUBTOTAL: ${product.price*2}</div>
+                            <div>SUBTOTAL: ${product.price*selectedQuantity}</div>
                         </div>
                     </Col>
                     <Col sm={4}> 
@@ -61,14 +68,41 @@ class ShoppingCart extends Component{
                     </Col>
                 </Row>
             </div>
-        )        
-        this.setState({singleProductRow: singleProductRow})
+            )   
         } else {
             singleProductRow = <div> <h1>Your Cart is Empty, Continue to Shop...</h1></div>
-            this.setState({singleProductRow: singleProductRow})
         }
+        this.setState({singleProductRow: singleProductRow});
     }
-    // This method is to remove an item from the saved list that displayed at the bottom of the cart
+
+    updateCartInSession(){
+
+        // Get the list of products in the cart from localstorage for the guest user.
+        var cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
+        var cartTotalDetails = {};
+        var cartProductsArray = [];
+        var selectedQuantity = "1";
+        var sku="123456789";
+        var subTotal = 0;
+        if (cartProducts != null && cartProducts.length >0){
+            //Loop through the products in the  cart and build the product rows to display.
+            cartProducts.map(product => 
+                {
+                    //Add every product and selected facet to the actual cart object.
+                    cartProductsArray.push({"product": product, "quantity": selectedQuantity, "sku":sku});
+                    subTotal = subTotal + (product.price*selectedQuantity);
+                    cartTotalDetails.subtotal = subTotal.toString();
+                    cartTotalDetails.tax = (subTotal*0.1).toString();
+                    cartTotalDetails.total = (subTotal*1.1).toString();
+                })
+        }
+        this.setState({cartTotalDetails: cartTotalDetails})
+        //Update the shopping cart with the products in localstorage.
+        UpdateCart("updateProducts", cartProductsArray);
+        //UpdatedCart price in local storage
+        UpdateCart("updateCartTotals", cartTotalDetails);
+    }
+    // This method is to remove an item from the saved list that is displayed at the bottom of the cart
     removeSavedProduct(){
         var savedList =[];
         var favCount = 0;
@@ -102,16 +136,42 @@ class ShoppingCart extends Component{
 
     // This method saves the selected products to the "Save For Later List".
     saveProduct(product){
-
+        var favList =[];
+        var favCount = 0;
+        var favAlreadyExist = "false";
+        //First check if the favList in local storate is empty, if not empty add to the list
+        let favListFromLocalStoreage = JSON.parse(localStorage.getItem("favList"));
+        if (favListFromLocalStoreage != null) {
+            favListFromLocalStoreage.map(forEachProduct => {
+                favList.push(forEachProduct); 
+                favCount = favCount+1;
+                //Check if the product already exist in the fav list
+                if (favAlreadyExist === "false"){
+                    if(forEachProduct.productID === product.productID){
+                        favAlreadyExist = "true"; 
+                        console.log("Product is already in the favorite list");
+                    }
+                }
+            
+            });
+        } 
+        //If the product doesn't exist in the fav list, add it to the fav list.
+        if (favAlreadyExist == "false"){
+            favList.push(product);
+            favCount = favCount +1;
+        }
+        //Update the favs list and count in the localstorage.
+        localStorage.setItem("favList",JSON.stringify(favList));
+        localStorage.setItem("favCount",JSON.stringify(favCount))
     }
 
     //This method removes the item from the bag.
     removeFromBag(product){
 
     }
-
+     //Rediect the user to checkout optoins page for guest or signed-in user checkout.
     beginCheckout(){
-        let path = '/checkoutoptions';
+       let path = '/checkoutoptions';
        this.props.history.push(path);
     }
 
@@ -137,15 +197,17 @@ class ShoppingCart extends Component{
     }
 
     componentDidMount(){
+        CreateEmptyCart();
         this.buildSavedCards();
         this.buildProductRows();
         this.showSavedProducts();
         this.showRecommendedProducts();
+        this.updateCartInSession();
     }
 
     render(){
 
-        const {singleProductRow, favCardUnit} = this.state;
+        const {singleProductRow, favCardUnit, cartTotalDetails} = this.state;
         return(
             <Container className="cart-page">
                 <Row>
@@ -155,21 +217,16 @@ class ShoppingCart extends Component{
                     <Col sm={3}>
                         <div className="pricing-block-cart">
                             <Button class="payment-buttons" raised onClick={this.beginCheckout}>Checkout</Button>
-                            <Button class="payment-buttons" raised onClick={this.saveProduct("cart")}>Checkout with Paypal</Button>
+                            <div classs="checkout-buttons">
+                                <PayPalCheckoutPage/>
+                            </div>
+
                             <Row>
                                 <Col sm={6}>
                                     <div className="cart-totals-label">SUBTOTAL: </div>
                                 </Col>
                                 <Col sm={6}>
-                                    <div className="cart-totals-value">$0.00</div>  
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col sm={6}>
-                                    <div className="cart-totals-label">SHIPPING: </div>
-                                </Col>
-                                <Col sm={6}>
-                                    <div className="cart-totals-value">$0.00 </div>  
+                                    <div className="cart-totals-value">${cartTotalDetails.subtotal}</div>  
                                 </Col>
                             </Row>
                             <Row>
@@ -177,15 +234,32 @@ class ShoppingCart extends Component{
                                     <div className="cart-totals-label">TAX: </div> 
                                 </Col>
                                 <Col sm={6}>
-                                    <div className="cart-totals-value">$0.00</div>  
+                                    <div className="cart-totals-value">${cartTotalDetails.tax}</div>  
                                 </Col>
                             </Row>
+                            <Row>
+                                <Col sm={6}>
+                                    <div className="cart-totals-label">SHIPPING: </div>
+                                </Col>
+                                <Col sm={6}>
+                                    <div className="cart-totals-value">------- </div>  
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col sm={6}>
+                                    <div className="cart-totals-label">DISCOIUNT: </div> 
+                                </Col>
+                                <Col sm={6}>
+                                    <div className="cart-totals-value">${cartTotalDetails.discount}</div>  
+                                </Col>
+                            </Row>
+
                             <Row>
                                 <Col sm={6}>
                                     <div className="cart-totals-label">TOTAL: </div>  
                                 </Col>
                                 <Col sm={6}>
-                                    <div className="cart-totals-value">$0.00</div>  
+                                    <div className="cart-totals-value">${cartTotalDetails.total}</div>  
                                 </Col>
                             </Row>
                              <Form>
@@ -197,6 +271,7 @@ class ShoppingCart extends Component{
                                 </Form.Group>
                             </Form>
                             <Button class="payment-buttons" raised onClick={this.saveProduct("cart")}>Apply Promotion</Button>
+                            <Button class="payment-buttons" raised onClick={this.clearcart}>Clear Cart</Button>
                         </div>
                     </Col>
                 </Row>

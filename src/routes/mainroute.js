@@ -14,6 +14,9 @@ import Data from './../components/data';
 import ClearCache from './../components/complibrary/clearcache';
 import CheckoutOptions from './../components/checkoutoptions';
 import CheckoutPage from './../components/checkoutpage';
+import PayPalCheckoutPage from './../components/paypalcheckoutpage';
+import OrderReviewPage from './../components/orderreviewpage';
+import OrderConfirmationPage from './../components/orderconfirmationpage';
 
 const MainRoute = () => (
     <Switch>
@@ -31,6 +34,9 @@ const MainRoute = () => (
         <Route exact path="/clearcache" component= {ClearCache} />
         <Route exact path="/checkoutoptions" component= {CheckoutOptions} />
         <Route exact path="/checkoutpage" component= {CheckoutPage} />
+        <Route exact path="/paypalcheckoutpage" component= {PayPalCheckoutPage} />
+        <Route exact path="/orderreviewpage" component= {OrderReviewPage} />
+        <Route exact path="/orderconfirmationpage" component= {OrderConfirmationPage} />
     </Switch>
 )
 
