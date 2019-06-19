@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Form, Button, Col, Row} from 'react-bootstrap';
+import { Col, Button, Form, FormGroup, Label, Input, FormText, Row, Container} from 'reactstrap';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 
 
@@ -28,125 +28,38 @@ class CheckoutPage extends Component {
         const { validated } = this.state;
         return(
             <div className="page-background">
-                <SectionHeadingAndWhiteLine heading="Proceed to Checkout" color="white"/>
-                <div className="checkout-address-container">
-                    <div className="content-center">
-                    <div className="shipping-address-form">
+            <Container>
+                <Row>
+                    <SectionHeadingAndWhiteLine heading="Proceed to Checkout" color="white"/>
+                </Row>
+                <Row>
+                    <Col xs="6">
                         <SectionHeadingAndWhiteLine heading="Shipping Address" color="white"/>
+                    </Col>
+                    <Col xs="6">
+                        <SectionHeadingAndWhiteLine heading="Billing Address" color="white"/>
+                    </Col>
+                </Row>
+            </Container>
 
-                        <Form noValidate validated={validated} onSubmit={e => this.handleSubmit(e)}>
-                            <Form.Group controlId="validateFirstName">
-                                <Form.Label>First Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Frist Name" />
-                            </Form.Group>
-                            <Form.Group controlId="validateLastName">
-                                <Form.Label>Last Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Last Name" />
-                            </Form.Group>
-                            <Form.Group controlId="validateStreetAddreess">
-                                <Form.Label>Address</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Street Address" />
-                            </Form.Group>
-                            <Form.Group controlId="validateCity">
-                                <Form.Label>City</Form.Label>
-                                <Form.Control type="text" placeholder="Enter City" />
-                            </Form.Group>
-                            <Form.Group controlId="valiateState">
-                                <Form.Label>State</Form.Label>
-                                <Form.Control type="text" placeholder="Enter State" />
-                            </Form.Group>
-                            <Form.Row>
-
-                                    <Form.Group as={Col} controlId="validateZipcode">
-                                    <Form.Label>Zip Code</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter Zip Code" />
-                                    </Form.Group>
-
-                                    <Form.Group as={Col} controlId="validateCountry">
-                                    <Form.Label>Country</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter Country" />
-                                    </Form.Group>
-
-                            </Form.Row>
-                            <Form.Group controlId="formBasicChecbox">
-                                <Form.Check type="checkbox" label="Same as Billing Address"/>
-                            </Form.Group>
-
-                        </Form>
-                    </div>
-                    </div>
-                    
-                    <div className="shipping-address-form"> 
-                    <Form>  
-                            <SectionHeadingAndWhiteLine heading="Billing Address" color="white"/>
-                            <Form.Group controlId="validateBillingFirstName">
-                                <Form.Label>First Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Frist Name"/>
-                            </Form.Group>
-                            <Form.Group controlId="validateBillingLastName">
-                                <Form.Label>Last Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Last Name" />
-                            </Form.Group>
-                            <Form.Group controlId="validateBillingStreetAddress">
-                                <Form.Label>Address</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Street Address" />
-                            </Form.Group>
-                            <Form.Group controlId="validateBillingCity">
-                                <Form.Label>City</Form.Label>
-                                <Form.Control type="text" placeholder="Enter City" />
-                            </Form.Group>
-                            <Form.Group controlId="validateBillingState">
-                                <Form.Label>State</Form.Label>
-                                <Form.Control type="text" placeholder="Enter State" />
-                            </Form.Group>
-                            <Form.Group controlId="validateBillingZipcode">
-                                <Form.Label>Zip Code</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Zip Code" />
-                            </Form.Group>
-                            <Form.Group controlId="validateBillingCountry">
-                                <Form.Label>Country</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Country" />
-                            </Form.Group>
-                                
-                        </Form>
-                    </div>
-            </div>
-
-            <SectionHeadingAndWhiteLine heading="Select Shipping Method" color="white"/>
-            <div className="shipping-container">
-                <Form>
-                    <div className="mb-3">
-                        <div className="checkout-shipping-radio-button"> 
-                            <Form.Check 
-                                    type="radio"
-                                    id="radio-free-shipping"
-                                    label="Standard Ground Shipping - Free"
-                                />
-                        </div>
-                        <div className="muted-text">
-                            Estimated Delivery Date:  Friday, June 25th  if order placed in the next 14 hours.
-                        </div>
-                        <div className="checkout-shipping-radio-button">
-                            <Form.Check 
-                                    type="radio"
-                                    id="radio-economy-shipping"
-                                    label="Economy Shipping- $7"
-                                />
-                        </div>
-                        <div className="muted-text">
-                            Estimated Delivery Date:  Monday, June 17th  if order placed in the next 14 hours
-                        </div>
-                        <div className="checkout-shipping-radio-button">
-                            <Form.Check 
-                                    type="radio"
-                                    id="radio-expedite-shipping"
-                                    label="Expedite Shipping- $35"
-                                />
-                        </div>
-                        <div className="muted-text">
-                            Estimated Delivery Date:  Friday, June 14th  if order placed in the next 14 hours.
-                        </div>
-                    </div>
+                
+                <div className="">
+                    <Form>
+                        <Row form>
+                            <Col md={6}>
+                                <FormGroup>
+                                    <Label for="exampleEmail">First Name</Label>
+                                    <Input type="text" name="firstName" id="firstName" placeholder="Enter First Name" />
+                                </FormGroup>
+                            </Col>
+                            <Col md={6}>
+                                <FormGroup>
+                                    <Label for="examplePassword">Last Name</Label>
+                                    <Input type="text" name="lastName" id="lastName" placeholder="Enter Last Name" />
+                                </FormGroup>
+                            </Col>
+                        </Row>
+        
                 </Form>
             </div>
 

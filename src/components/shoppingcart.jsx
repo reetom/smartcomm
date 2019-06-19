@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button} from 'react-mdl';
+import {Button} from 'reactstrap';
 import { Form, Container,Row, Col} from 'react-bootstrap';
 import BuildProductCardFavorites from './complibrary/buildproductcardfavorites';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
@@ -19,15 +19,16 @@ class ShoppingCart extends Component{
             cartTotalDetails:{"subtotal": 0.00, "tax":0.00, "discount":0.00, "total":0.00},
             selectedQuantity:"1"
        }
-       this.removeFromBag = this.removeFromBag.bind(this);
+
        this.saveProduct = this.saveProduct.bind(this);
-       this.checkoutWithPayPal = this.checkoutWithPayPal.bind(this);
        this.beginCheckout = this.beginCheckout.bind(this);
        this.updateCartInSession = this.updateCartInSession.bind(this);
        this.clearCart = this.clearCart.bind(this);
+       this.removeFromBag = this.removeFromBag.bind(this);
     }
 
     buildProductRows(){
+        console.log("building product rows in the cart");
         // Get the list of products in the cart from localstorage for the guest user.
         var cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
         var singleProductRow ="";
@@ -61,10 +62,10 @@ class ShoppingCart extends Component{
                     </Col>
                     <Col sm={4}> 
                         <div className="text-right">
-                        <Button class="cart-buttons" raised onClick={this.saveProduct(product)}>Save For Later</Button>
+                            <Button color="primary" class="cart-buttons" raised onClick={this.saveProduct(product)}>Save For Later</Button>
                         </div>
                         <div className="text-right">
-                        <Button class="cart-buttons" raised onClick={this.removeFromBag(product)}>Delete</Button>
+                            <Button color="primary" class="cart-buttons" raised onClick={() => this.removeFromBag(product)}>Delete</Button>
                         </div>
                     </Col>
                 </Row>
@@ -77,7 +78,6 @@ class ShoppingCart extends Component{
     }
 
     updateCartInSession(){
-
         // Get the list of products in the cart from localstorage for the guest user.
         var cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
         var cartTotalDetails = {};
@@ -117,38 +117,6 @@ class ShoppingCart extends Component{
           this.setState({cartTotalDetails:cartTotalDetails});
     }
 
-    // This method is to remove an item from the saved list that is displayed at the bottom of the cart
-    removeSavedProduct(){
-        var savedList =[];
-        var favCount = 0;
-        //Couldn't pass this item to remove as param and so the hack is to use local storage.
-        const product = JSON.parse(localStorage.getItem("itemToRemoveSavedList"));
-        //Clear the item from localstorage as we don't meed it anymore.
-        localStorage.removeItem("itemToRemoveSavedList");
-        //First check if the favList in local storate is empty, if not empty add to the list
-        let favListFromLocalStoreage = JSON.parse(localStorage.getItem("savedList"));
-        if (favListFromLocalStoreage != null) {
-            favListFromLocalStoreage.map(forEachProduct => {
-                if(forEachProduct.productName != product.productName){ 
-                    savedList.push(forEachProduct);
-                }
-            
-            });
-        }   
-        localStorage.setItem("savedList",JSON.stringify(savedList));
-        this.buildFavoriteCards();
-
-    }
-    // This method displays the recommended products based on the products in the cart.
-    showRecommendedProducts(){
-
-    }
-
-    // This method displays the saved list of products in the cart.
-    showSavedProducts(){
-
-    }
-
     // This method saves the selected products to the "Save For Later List".
     saveProduct(product){
         var favList =[];
@@ -180,18 +148,28 @@ class ShoppingCart extends Component{
         localStorage.setItem("favCount",JSON.stringify(favCount))
     }
 
-    //This method removes the item from the bag.
-    removeFromBag(product){
-
-    }
      //Rediect the user to checkout optoins page for guest or signed-in user checkout.
     beginCheckout(){
        let path = '/checkoutoptions';
        this.props.history.push(path);
     }
-
-    checkoutWithPayPal(cart){
-
+    removeFromBag(productToRemove){
+        console.log("removing product from bag" + productToRemove);
+        var cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
+        var newProductArray = [];
+        if (cartProducts != null && cartProducts.length >0){
+            //Loop through the products in the  cart and build the product rows to display.
+            cartProducts.map(product => {
+                    if(productToRemove.productID !== product.productID){
+                        newProductArray.push(product);
+                    }
+                }
+            )
+        }
+        //Set this new list of products in cart in session.
+        localStorage.setItem("cartProducts",JSON.stringify(newProductArray));
+        //Rebuild the product rows in the cart for display.
+        this.buildProductRows();
     }
 
     buildSavedCards(){
@@ -213,10 +191,8 @@ class ShoppingCart extends Component{
 
     componentDidMount(){
         CreateEmptyCart();
-        this.buildSavedCards();
         this.buildProductRows();
-        this.showSavedProducts();
-        this.showRecommendedProducts();
+        this.buildSavedCards();
         this.updateCartInSession();
     }
 
@@ -231,7 +207,7 @@ class ShoppingCart extends Component{
                     </Col>
                     <Col sm={3}>
                         <div className="pricing-block-cart">
-                            <Button class="payment-buttons" raised onClick={this.beginCheckout}>Checkout</Button>
+                            <Button color="primary" class="payment-buttons" raised onClick={this.beginCheckout}>Checkout</Button>
                             <div classs="checkout-buttons">
                                 <PayPalCheckoutPage/>
                             </div>
@@ -285,8 +261,8 @@ class ShoppingCart extends Component{
                                     </Form.Text>
                                 </Form.Group>
                             </Form>
-                            <Button class="payment-buttons" raised onClick={this.saveProduct("cart")}>Apply Promotion</Button>
-                            <Button class="payment-buttons" raised onClick={this.clearCart}>Clear Cart</Button>
+                            <Button color="primary" class="payment-buttons" >Apply Promotion</Button>
+                            <Button color="primary" class="payment-buttons" raised onClick={this.clearCart}>Clear Cart</Button>
                         </div>
                     </Col>
                 </Row>
@@ -311,7 +287,6 @@ class ShoppingCart extends Component{
             </Container>
         )
     }
-
 }
 export default ShoppingCart;
 
