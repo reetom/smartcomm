@@ -9,7 +9,10 @@ class OrderConfirmationPage extends Component {
             //empty for now..
         }
     }
-
+    componentDidMount(){
+        //Empty the localstorage.
+        localStorage.clear();
+    }
 
     render() {
         
