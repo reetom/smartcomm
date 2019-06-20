@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import {Button} from 'reactstrap';
 import { Form, Container,Row, Col} from 'react-bootstrap';
-import BuildProductCardFavorites from './complibrary/buildproductcardfavorites';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 import PayPalCheckoutPage from './paypalcheckoutpage';
 import UpdateCart from './complibrary/updatecart';
 import CreateEmptyCart from './complibrary/createemptycart';
 import RecommendedProducts from './../data/recommendedproducts';
 import BuildProductCard from './complibrary/buildproductcard';
-
+import { CardText,Card,CardTitle, CardMenu,IconButton, Snackbar} from 'react-mdl';
+import {Link} from 'react-router-dom';
+import SocialShareModal from './../components/complibrary/socialsharemodal';
 
 class ShoppingCart extends Component{
     constructor(props){
@@ -20,7 +21,7 @@ class ShoppingCart extends Component{
             favCardUnit:"",
             savedCardUnit: "",
             recommendedCardUnit:"",
-            cartTotalDetails:{"subtotal": 0.00, "tax":0.00, "discount":0.00, "total":0.00},
+            cartTotalDetails:{"subtotal": 0.00, "tax":0.00, "discount":0.00, "grandTotal":0.00},
             selectedQuantity:"1"
        }
        this.saveProduct = this.saveProduct.bind(this);
@@ -29,8 +30,12 @@ class ShoppingCart extends Component{
        this.clearCart = this.clearCart.bind(this);
        this.removeFromBag = this.removeFromBag.bind(this);
        this.showRecommendedProducts = this.showRecommendedProducts.bind(this);
+       this.addToBag = this.addToBag.bind(this);
+       this.addToFav = this.addToFav.bind(this);
+       this.removeFromSavedProducts = this.removeFromSavedProducts.bind(this);
     }
 
+    //This function buils the products rows in the carts main body.
     buildProductRows(){
         console.log("building product rows in the cart");
         // Get the list of products in the cart from localstorage for the guest user.
@@ -81,6 +86,7 @@ class ShoppingCart extends Component{
         this.setState({singleProductRow: singleProductRow});
     }
 
+    //This function will update the big ass cart object that has everything in it.
     updateCartInSession(){
         // Get the list of products in the cart from localstorage for the guest user.
         var cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
@@ -109,6 +115,7 @@ class ShoppingCart extends Component{
         UpdateCart("updateCartTotals", cartTotalDetails);
     }
 
+    //This function is called when the clear cart button is hit. This will empty the cart and zero the totals.
     clearCart(){
         // This will empty the main cart object.
           CreateEmptyCart();
@@ -122,11 +129,13 @@ class ShoppingCart extends Component{
           this.setState({cartTotalDetails:cartTotalDetails});
     }
 
-     //Rediect the user to checkout optoins page for guest or signed-in user checkout.
+     //Redierct the user to checkout optoins page for guest or signed-in user checkout.
     beginCheckout(){
        let path = '/checkoutoptions';
        this.props.history.push(path);
     }
+
+    //This function removes a product from the cart.
     removeFromBag(productToRemove){
         console.log("removing product from bag" + productToRemove);
         var cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
@@ -148,7 +157,7 @@ class ShoppingCart extends Component{
         this.updateCartInSession();
     }
 
-    // This method saves the selected products to the "Save For Later List".
+    // This method moves the selected products from the cart to the "Save For Later List".
     saveProduct(product){
         var savedList =[];
         var productAlreadyExist = "false";
@@ -161,7 +170,7 @@ class ShoppingCart extends Component{
                 if (productAlreadyExist === "false"){
                     if(forEachProduct.productID === product.productID){
                         productAlreadyExist = "true"; 
-                        console.log("Product is already in the favorite list");
+                        console.log("Product is already in the saved list");
                     }
                 }
             
@@ -179,19 +188,71 @@ class ShoppingCart extends Component{
         }
     }
 
+    //This function is used to remove a product from the saved list.
+    removeFromSavedProducts(product){
+        var favList =[];
+        var favCount = 0;
+        console.log("product to remove from saved list:" + product);
+        //First check if the favList in local storate is empty, if not empty add to the list
+        let savedListFromLocalStoreage = JSON.parse(localStorage.getItem("savedList"));
+
+        if (savedListFromLocalStoreage != null) {
+            savedListFromLocalStoreage.map(forEachProduct => {
+                if(forEachProduct.productName != product.productName){ 
+                    favList.push(forEachProduct);
+                    favCount= favCount+1;
+                }
+            
+            });
+        }   
+        localStorage.setItem("savedList",JSON.stringify(favList));
+        //Remove the product from the saved list.
+        this.buildSavedCards();
+
+    }
+
     buildSavedCards(){
         // Get the list of favorites from localstorage for the guest user.
         let savedList = JSON.parse(localStorage.getItem("savedList"));
         var savedCardUnit ="";
         var savedCardUnitToDisplay ="";
-        console.log("Reading saved products: " + savedList);
         //Get the list of favorites from backend for the signed in user. @ToDo
         if (savedList != null && savedList.length >0){
             //Loop through the products in the saved list and build the product cards to display.
-            savedCardUnit = savedList.map(product =>  <BuildProductCardFavorites productFromParent={product} buildFavoriteCards = {this}/>)
-            savedCardUnitToDisplay = <div className="fav-grid">{savedCardUnit}</div>
+            savedCardUnit = savedList.map(product =>  
+                    <div>
+                    <Card shadow={5} style={{minwidth: '200'}}>
+                        <CardTitle style={{color: '#fff', height: '250px'}}>
+                        <Link to={{
+                            pathname: '/pdp',
+                            state: {
+                                productToDisplay: product
+                            }
+                        }}>
+                        <img
+                        src={product.imageURL}
+                        alt={product.imageName}
+                        className="card-image"
+                        />
+                        </Link>
+                        </CardTitle>
+                        <CardText>
+                            {product.productName} 
+                            <div>${product.price}</div>
+                        </CardText>
+                        <CardMenu style={{color: 'RED'}}>
+                            <IconButton name="share" style={{color: 'Blue'}} />
+                            <IconButton name="delete" onClick={() => this.removeFromSavedProducts({product})}/>
+                            <IconButton name="shoppingcart" style={{color: 'Orange'}} onClick={() => {this.addToBag({product});
+                                                                                                    this.removeFromSavedProducts({product});
+                            }}/>
+                        </CardMenu>
+                    </Card>
+                </div>
+                );
+            savedCardUnitToDisplay = <div className="saved-prod-grid">{savedCardUnit}</div>
         } else {
-            savedCardUnitToDisplay = <div className="no-fav-grid"> <h5>There are no saved products</h5></div>
+            savedCardUnitToDisplay = <div className="no-saved-prod-grid"> <h5>There are no saved products</h5></div>
         }
         //Set the saved cards in the state.
         this.setState({savedCardUnit: savedCardUnitToDisplay});
@@ -199,20 +260,118 @@ class ShoppingCart extends Component{
 
     showRecommendedProducts(){
         // Get the list of favorites from localstorage for the guest user.
-        let recommendedList = RecommendedProducts
+        let recommendedList = RecommendedProducts;
         var recommendedCardUnit ="";
         var recommendedCardUnitToDisplay ="";
-        console.log("Reading saved products: " + recommendedList);
+
         //Get the list of favorites from backend for the signed in user. @ToDo
         if (recommendedList != null && recommendedList.length >0){
             //Loop through the products in the saved list and build the product cards to display.
-            recommendedCardUnit = recommendedList.map(product =>  <BuildProductCard productFromParent={product}/>)
-            recommendedCardUnitToDisplay = <div className="fav-grid">{recommendedCardUnit}</div>
-        } else {
-            recommendedCardUnitToDisplay = <div className="no-fav-grid"> <h5>There are no recommendations at this time</h5></div>
+            recommendedCardUnit = recommendedList.map(product =>  
+                <div>
+                    <Card shadow={5} style={{minwidth: '200'}}>
+                        <CardTitle style={{color: '#fff', height: '250px'}}>
+                        <Link to={{
+                            pathname: '/pdp',
+                            state: {
+                                productToDisplay: product
+                            }
+                            }}>
+                        <img
+                        src={product.imageURL}
+                        alt={product.imageName}
+                        className="card-image"
+                        />
+                        </Link>
+                        </CardTitle>
+                        <CardText>
+                            {product.productName} 
+                            <div>${product.price}</div>
+                        </CardText>
+                        <CardMenu style={{color: 'RED'}}>
+                            <IconButton name="share" style={{color: 'Blue'}} 
+                                
+                            />
+                            <IconButton name="favorite" onClick={() => this.addToFav({product})}/>
+                            <IconButton name="shoppingcart"  style={{color: 'Orange'}}
+                                onClick={() => this.addToBag({product})}
+                            />
+                        </CardMenu>
+                    </Card>
+                </div>
+                );
+                recommendedCardUnitToDisplay = <div className="recommended-prod-grid">{recommendedCardUnit}</div>;
+
+            } else {
+                recommendedCardUnitToDisplay = <div className="no-recommended-prod-grid"> <h5>There are no recommendations at this time</h5></div>
+            }
+            //Set the saved cards in the state.
+            this.setState({recommendedCardUnit: recommendedCardUnitToDisplay});
+    }
+    //This add to Fav fuction is used to mark a recommended product as favorite.
+    addToFav({product}){
+        var favList =[];
+        var favCount = 0;
+        var favAlreadyExist = "false";
+        //First check if the favList in local storate is empty, if not empty add to the list
+        let favListFromLocalStoreage = JSON.parse(localStorage.getItem("favList"));
+        if (favListFromLocalStoreage != null) {
+            favListFromLocalStoreage.map(forEachProduct => {
+                favList.push(forEachProduct); 
+                favCount = favCount+1;
+                //Check if the product already exist in the fav list
+                if (favAlreadyExist === "false"){
+                    if(forEachProduct.productID === product.productID){
+                        favAlreadyExist = "true"; 
+                        console.log("Product is already in the favorite list");
+                    }
+                }
+            
+            });
+        } 
+        //If the product doesn't exist in the fav list, add it to the fav list.
+        if (favAlreadyExist == "false"){
+            favList.push(product);
+            favCount = favCount +1;
         }
-        //Set the saved cards in the state.
-        this.setState({recommendedCardUnit: recommendedCardUnitToDisplay});
+        //Update the favs list and count in the localstorage.
+        localStorage.setItem("favList",JSON.stringify(favList));
+        localStorage.setItem("favCount",JSON.stringify(favCount));
+    
+    }
+    //This add to bag fuction is used to movea  product from the saved list or the recommended list to the cart.
+    addToBag({product}){console.log("adding product to bag :"+ {product});
+        var cartProducts =[];
+        var cartCount = 0;
+        var prodAlreadyInCart = "false";
+        //First check if the favList in local storate is empty, if not empty add to the list
+        let cartProductsFromLocalStoreage = JSON.parse(localStorage.getItem("cartProducts"));
+        if (cartProductsFromLocalStoreage != null) {
+            cartProductsFromLocalStoreage.map(forEachProduct => {
+                cartProducts.push(forEachProduct); 
+                cartCount = cartCount+1;
+                //Check if the product already exist in the fav list
+                if (prodAlreadyInCart === "false"){
+                    if(forEachProduct.productID === product.productID){
+                        prodAlreadyInCart = "true"; 
+                        console.log("Product is already in your cart...");
+                    }
+                }
+            
+            });
+        } 
+        //If the product doesn't exist in the fav list, add it to the fav list.
+        if (prodAlreadyInCart == "false"){
+            cartProducts.push(product);
+            cartCount = cartCount +1;
+        }
+        //Update the favs list and count in the localstorage.
+        localStorage.setItem("cartProducts",JSON.stringify(cartProducts));
+        localStorage.setItem("cartCount",JSON.stringify(cartCount));
+        //Rebuild the product rows in the cart for display.
+        this.buildProductRows();
+        //Update the cart in session so that the cart totals are reflected correctly.
+        this.updateCartInSession();
     }
 
     componentDidMount(){
@@ -230,11 +389,11 @@ class ShoppingCart extends Component{
         var cartTotals = "0.00";
         var tax = cartTotalDetails.tax;
         var discount = cartTotalDetails.discount;
-        var grandTotal = cartTotalDetails.total;
+        var grandTotal = cartTotalDetails.grandTotal;
         if (cartTotalDetails.subtotal !== null || cartTotalDetails.subtotal !== "" || typeof(cartTotalDetails.subtotal) !== "undefined"){
             cartTotals = cartTotalDetails.subtotal;
         }
-        console.log("cart totals :" +cartTotals);
+        console.log("Grand Total : " + grandTotal);
         return(
             <Container className="cart-page">
                 <Row>
@@ -243,10 +402,11 @@ class ShoppingCart extends Component{
                     </Col>
                     <Col className="text-center" sm={3}>
                         <div className="pricing-block-cart">
-                            <div classsName="center-aligned-buttons">
+                            <div >
                                 <Button color="primary" block raised onClick={this.beginCheckout}>Checkout</Button>
                             </div>
-                            <div classsName="center-aligned-buttons">
+                            <div className="one-em-spacing"></div>
+                            <div>
                                 <PayPalCheckoutPage/>
                             </div>
 
@@ -298,11 +458,12 @@ class ShoppingCart extends Component{
                                     <Form.Text className="text-muted">
                                     </Form.Text>
                                 </Form.Group>
+                                <div classsName="center-aligned-buttons">
+                                    <Button color="primary" block >Apply Promotion</Button>
+                                </div>
                             </Form>
-                            <div classsName="center-aligned-buttons">
-                                <Button color="primary" block disabled c>Apply Promotion</Button>
-                            </div>
-                            <div className="1em-spacing"></div>
+
+                            <div className="one-em-spacing"></div>
                             <div classsName="center-aligned-buttons">
                                 <Button color="primary" block raised onClick={this.clearCart}>Clear Cart</Button>
                             </div>

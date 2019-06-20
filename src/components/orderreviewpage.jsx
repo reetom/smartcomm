@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Container, Row, Col} from 'reactstrap';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
+import { PayPalButton } from "react-paypal-button-v2";
 
 const lineBreak = "<br/>";
 class OrderReviewPage extends Component {
@@ -142,14 +143,22 @@ class OrderReviewPage extends Component {
                         </div>
                     </Row>
                     <Row>
-                        <SectionHeadingAndWhiteLine heading="Enter Gift Cards" color="white"/>
-                        <div className="gift-card-payment">
-                            
-                        </div>
-                    </Row>
-                    <Row>
                         <SectionHeadingAndWhiteLine heading="Enter Payment Details" color="white"/>
                         <div className="payment-options">
+                            <PayPalButton
+                                amount="0.01"
+                                onSuccess={(details, data) => {
+                                alert("Transaction completed by " + details.payer.name.given_name);
+
+                                // OPTIONAL: Call your server to save the transaction
+                                return fetch("/paypal-transaction-complete", {
+                                    method: "post",
+                                    body: JSON.stringify({
+                                    orderID: data.orderID
+                                    })
+                                });
+                                }}
+                            />
                         </div>
                     </Row>
                     <Row>

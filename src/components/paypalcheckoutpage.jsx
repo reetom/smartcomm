@@ -12,8 +12,12 @@ const CLIENT = {
 
 export default class PayPalCheckoutPage extends React.Component {
     render() { 
-    const onSuccess = (payment) =>
+    const onSuccess = (payment) => {
       console.log('Successful payment!', payment);
+      //Redirect user to the order confirmation page
+      let path = '/orderconfirmationpage';
+      this.props.history.push(path);
+    }
 
     const onError = (error) =>
       console.log('Erroneous payment OR failed to load script!', error);

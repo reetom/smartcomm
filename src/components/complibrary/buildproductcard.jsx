@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton, Snackbar} from 'react-mdl';
+import { CardText,Card,CardTitle, CardMenu,IconButton, Snackbar} from 'react-mdl';
 import {Link} from 'react-router-dom';
 import App from '../../App';
 import SocialShareModal from './socialsharemodal';
@@ -11,28 +11,15 @@ class BuildProductCard extends Component {
         super(props);
         this.state = { 
             modalShow: false,
-            isSnackbarActive: false,
         };
-        this.handleShowSnackbar = this.handleShowSnackbar.bind(this);
-        this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);
     }
 
-    handleShowSnackbar() {
-        this.setState({
-          isSnackbarActive: true,
-        });
-    }
-
-    handleTimeoutSnackbar() {
-        this.setState({ isSnackbarActive: false });
-    }
 
     render() {
 
         const product = this.props.productFromParent;
         console.log("product from parent :" + {product});
         let modalClose = () => this.setState({ modalShow: false });
-        var {isSnackbarActive} = this.state;
 
         return(
             <div>
@@ -67,12 +54,6 @@ class BuildProductCard extends Component {
                         <IconButton name="shoppingcart"  style={{color: 'Orange'}}
                             onClick={() => addToBag({product})}
                         />
-                            <Snackbar
-                                active={isSnackbarActive}
-                                onClick={this.handleClickActionSnackbar}
-                                onTimeout={this.handleTimeoutSnackbar}
-                                action="View Cart"> Product Add to Cart
-                            </Snackbar>
                     </CardMenu>
                 </Card>
             </div>
@@ -109,7 +90,7 @@ function addToFav({product}){
     //Update the favs list and count in the localstorage.
     localStorage.setItem("favList",JSON.stringify(favList));
     localStorage.setItem("favCount",JSON.stringify(favCount));
-    new App().buildFavoriteBadge();// this line of code is wrong.. I need to implement a observer for the badge to update the fav count.
+
 }
 
 //This function should be in a separare file so that addToBag code is not dublicated across the app.

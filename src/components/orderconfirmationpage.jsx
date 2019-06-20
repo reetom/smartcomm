@@ -8,8 +8,16 @@ class OrderConfirmationPage extends Component {
         this.state = {
             //empty for now..
         }
+        this.storeConfirmationNumber = this.storeConfirmationNumber.bind(this);
+    }
+
+    storeConfirmationNumber(){
+
+        
     }
     componentDidMount(){
+        //Store the confirmation number in local file for now...
+        this.storeConfirmationNumber();
         //Empty the localstorage.
         localStorage.clear();
     }
@@ -20,7 +28,7 @@ class OrderConfirmationPage extends Component {
             <div className="page-background">
                 <div className="order-conf-section">
                     <h3>Thank you for shopping with SmartComm.</h3>
-                    <h3>Your confirmation number is : YOUR-ARE-TOTALLY-FUCKED!</h3>
+                    <h3>Your confirmation number is : #YOU-ARE-TOTALLY-FUCKED!</h3>
                 </div>
             </div>
         )
