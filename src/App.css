@@ -158,13 +158,6 @@
   color: red;
 }
 
-.login-div-container{
-  background: #bdc3c7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
- 
-}
-
 .new-arrivals-section{
   height:500px;
   background: #2193b0;
@@ -437,11 +430,19 @@
 }
 
 .page-background{
-  
   background: #bdc3c7;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   height: auto;
+  color: white;
+}
+
+.login-page-background{
+  background: #bdc3c7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 800px;
+  color: white;
 }
 
 .shipping-container{
@@ -569,6 +570,9 @@ height: 10px;
 
 .align-left{
   text-align: left;
+}
+.align-center{
+  text-align: center;
 }
 
 .review-cart-prod{

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Form, Button} from 'react-bootstrap';
+import { Col, Button, Form, FormGroup, Label, Input, Row, Container, ButtonGroup, FormFeedback} from 'reactstrap';
+import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 import {Link} from 'react-router-dom';
 
 //Regex to validate the email address.
@@ -33,79 +34,73 @@ class Login extends Component {
             passwrod:"",
             saveEmail:"",
         }
+        this.onSubmit = this.onSubmit.bind(this);
+        this.toCreateAccountPage = this.toCreateAccountPage.bind(this);
     }
 
-    handleSubmit = e => {
-        e.preventDefault();
-    
-        if (formValid(this.state)) {
-          console.log(`
-            --SUBMITTING--
-            Email: ${this.state.email}
-            Password: ${this.state.password}
-          `);
-        } else {
-          console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
-        }
-    };
-    
-    handleChange = e => {
-        e.preventDefault();
-        const { name, value } = e.target;
-        let formErrors = { ...this.state.formErrors };
-    
-        switch (name) {
-          case "email":
-            formErrors.email = emailRegex.test(value)
-              ? ""
-              : "invalid email address";
-            break;
-          case "password":
-            formErrors.password =
-              value.length < 8? "minimum 8 characaters required" : "";
-            break;
-          default:
-            break;
-        }
-        this.setState({ formErrors, [name]: value }, () => console.log(this.state));
-    };
+    onSubmit(event){
+
+      //send the user back to home on successful login
+      let path = '/';
+      this.props.history.push(path);
+    }
+
+    //send the user to create account page
+    toCreateAccountPage(){
+      let path = '/createaccount';
+      this.props.history.push(path);
+    }
 
     render() {
         const { formErrors } = this.state;
         
         return(
-            <div>
-                <div className="login-div-container">
-                    <div></div>
-                    <div className="login-form">
-                        <Form onSubmit={this.handleSubmit} noValidate>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control type="text" placeholder="Enter email" onChange={this.handleChange}/>
-                                <Form.Text className="text-muted">
-                                We'll never share your email with anyone else.
-                                </Form.Text>
-                            </Form.Group>
-                                <Form.Group controlId="formBasicPassword">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password" onChange={this.handleChange}/>
-                            </Form.Group>
-                            <Form.Group controlId="formBasicChecbox">
-                                <Form.Check type="checkbox" label="Save email"/>
-                            </Form.Group>
-                            <div>
-                                <Link to="/createaccount"> Not Registered? Create Account</Link>
+            <div className="login-page-background">
+              <Container>
+                <Row>
+                  <SectionHeadingAndWhiteLine heading="Sign-In or Create an Account" color="white"/>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                    </Col>
+                    <Col sm={4}>
+                      <Form onSubmit = {this.onSubmit}> 
+                        <FormGroup>
+                            <Label>E-mail Address</Label>
+                            <Input type="text" name="email" id="email" placeholder="Enter E-mail Address" />
+                          </FormGroup>
+                          <FormGroup>
+                            <Label>Passowrd</Label>
+                            <Input type="password" name="password" id="password" placeholder="Enter Password" />
+                          </FormGroup>
+                                                      
+                          <div className="align-left">
+                            <Button color="primary" type="submit">Sign In</Button>
                             </div>
-                            <div className="login-submit-button">
-                              <Button variant="primary" type="submit">Submit</Button>
-                            </div>
+                      </Form>
+                    </Col>
+                    <Col sm={4}>
+                    </Col>
+                </Row>
+                <Row>
+                  <div className="align-center">
+                    <Link to="/restpassword">Forgot your password? click here to reset your password</Link>
+                  </div>
+                </Row>
+                <Row>
+                  <div className="one-em-spacing"/>
+                  <div className="align-center">Or, Create an Account</div>
+                  <div className="one-em-spacing"/>
+                  <div className="align-center">
+                            <Button color="primary" onClick={this.toCreateAccountPage}>Create Account</Button>
+                  </div>
+                </Row>
 
-                        </Form>
-                    </div>
-                    <div></div>
-            </div>
+              </Container>
             
-        </div>)
+          </div>
+                          
+        );
     }
 }
 export default Login;

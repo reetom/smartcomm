@@ -102,9 +102,6 @@ class CheckoutOptions extends Component {
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Password" onChange={this.handleChange}/>
                             </Form.Group>
-                            <Form.Group controlId="formBasicChecbox">
-                                <Form.Check type="checkbox" label="Save email"/>
-                            </Form.Group>
                             <div>
                                 <Link to="/createaccount"> Not Registered? Create Account</Link>
                             </div>

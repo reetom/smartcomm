@@ -45,7 +45,7 @@ class BuildProductCardFavorites extends Component {
                         <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
                     </CardMenu>
                 </Card>
-        </div>
+            </div>
         )
     }
 }

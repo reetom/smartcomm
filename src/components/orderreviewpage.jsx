@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Button, Container, Row, Col} from 'reactstrap';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 import { PayPalButton } from "react-paypal-button-v2";
+import ReactDOM from 'react-dom';
 
-const lineBreak = "<br/>";
 class OrderReviewPage extends Component {
 
     constructor(props){
@@ -12,6 +12,8 @@ class OrderReviewPage extends Component {
             productRowsToDisplay: "",
             cartTotalToDisplay: "",
         }
+        window.React = React;
+        window.ReactDOM = ReactDOM;
         this.toOrderConfirmationPage = this.toOrderConfirmationPage.bind(this);
         this.buildProductRows = this.buildProductRows.bind(this);
     }
@@ -61,7 +63,10 @@ class OrderReviewPage extends Component {
         const shippingMethodAndPrice = cartObject.shippingMethodAndPrice;
         const cartTotal = cartObject.cartTotal;
         var grandTotal = (parseFloat(cartTotal.grandTotal) + parseFloat(shippingMethodAndPrice.shippingPrice)).toString();
-
+        //Printing the entire cart to console
+        console.log("-------------------Printing the entire cart to console-----------------------");
+        console.log(JSON.parse(localStorage.getItem("cart")));
+        console.log("------------------------------------------------------------------------------");
         return(
             <div className="page-background">
                 <Container>
@@ -78,7 +83,7 @@ class OrderReviewPage extends Component {
 
                     </Row>
                     <Row>
-                        <SectionHeadingAndWhiteLine heading="Shipping and Billing Details" color="white"/>
+                        <SectionHeadingAndWhiteLine heading="Review Shipping and Billing Details" color="white"/>
                     </Row>
                     <Row>
                         <div className="shipping-billing-address">
@@ -145,20 +150,7 @@ class OrderReviewPage extends Component {
                     <Row>
                         <SectionHeadingAndWhiteLine heading="Enter Payment Details" color="white"/>
                         <div className="payment-options">
-                            <PayPalButton
-                                amount="0.01"
-                                onSuccess={(details, data) => {
-                                alert("Transaction completed by " + details.payer.name.given_name);
 
-                                // OPTIONAL: Call your server to save the transaction
-                                return fetch("/paypal-transaction-complete", {
-                                    method: "post",
-                                    body: JSON.stringify({
-                                    orderID: data.orderID
-                                    })
-                                });
-                                }}
-                            />
                         </div>
                     </Row>
                     <Row>

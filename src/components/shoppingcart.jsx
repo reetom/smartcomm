@@ -6,10 +6,9 @@ import PayPalCheckoutPage from './paypalcheckoutpage';
 import UpdateCart from './complibrary/updatecart';
 import CreateEmptyCart from './complibrary/createemptycart';
 import RecommendedProducts from './../data/recommendedproducts';
-import BuildProductCard from './complibrary/buildproductcard';
 import { CardText,Card,CardTitle, CardMenu,IconButton, Snackbar} from 'react-mdl';
 import {Link} from 'react-router-dom';
-import SocialShareModal from './../components/complibrary/socialsharemodal';
+
 
 class ShoppingCart extends Component{
     constructor(props){
@@ -22,7 +21,8 @@ class ShoppingCart extends Component{
             savedCardUnit: "",
             recommendedCardUnit:"",
             cartTotalDetails:{"subtotal": 0.00, "tax":0.00, "discount":0.00, "grandTotal":0.00},
-            selectedQuantity:"1"
+            selectedQuantity:"1",
+            isCartEmpty:"true"
        }
        this.saveProduct = this.saveProduct.bind(this);
        this.beginCheckout = this.beginCheckout.bind(this);
@@ -44,8 +44,10 @@ class ShoppingCart extends Component{
         var productRowToDisplay ="";
         var selectedQuantity = "1";
         var sku="123456789";
+        var isCartEmpty = "true";
         //Get the cart from backend for the signed in user. @ToDo
         if (cartProducts != null && cartProducts.length >0){
+            isCartEmpty = "false";
         //Loop through the products in the  cart and build the product rows to display.
         singleProductRow = cartProducts.map(product =>  
             <div className="cart-pord-row">
@@ -84,6 +86,8 @@ class ShoppingCart extends Component{
             singleProductRow = <div> <h1>Your Cart is Empty, Continue to Shop...</h1></div>
         }
         this.setState({singleProductRow: singleProductRow});
+        this.setState( {isCartEmpty:isCartEmpty});
+        
     }
 
     //This function will update the big ass cart object that has everything in it.
@@ -127,6 +131,8 @@ class ShoppingCart extends Component{
           //Clear the cart totals in state.
           const cartTotalDetails= {"subtotal": 0.00, "tax":0.00, "discount":0.00, "total":0.00}
           this.setState({cartTotalDetails:cartTotalDetails});
+          //Set the isCartEmpty variable to "true". The other place it's set is in building the cart rows for default view.
+          this.setState({isCartEmpty:"true"});
     }
 
      //Redierct the user to checkout optoins page for guest or signed-in user checkout.
@@ -385,15 +391,32 @@ class ShoppingCart extends Component{
 
     render(){
 
-        const {singleProductRow, savedCardUnit, recommendedCardUnit, cartTotalDetails} = this.state;
+        const {singleProductRow, savedCardUnit, recommendedCardUnit, cartTotalDetails, isCartEmpty} = this.state;
         var cartTotals = "0.00";
         var tax = cartTotalDetails.tax;
         var discount = cartTotalDetails.discount;
         var grandTotal = cartTotalDetails.grandTotal;
+        var showChekcoutButton ="";
+        var showPromotionsButton ="";
+        var showPaypalButton ="";
+        var clearCartButton =""
         if (cartTotalDetails.subtotal !== null || cartTotalDetails.subtotal !== "" || typeof(cartTotalDetails.subtotal) !== "undefined"){
             cartTotals = cartTotalDetails.subtotal;
         }
-        console.log("Grand Total : " + grandTotal);
+
+        //Enable/disable buttons based on empty cart or not.
+         if (isCartEmpty === "true"){
+            showChekcoutButton = <Button color="primary" disabled block raised onClick={this.beginCheckout}>Checkout</Button>;
+            showPromotionsButton = <Button color="primary" disabled block >Apply Promotion</Button>;
+            showPaypalButton = "";
+            clearCartButton = <Button color="primary" disabled block raised onClick={this.clearCart}>Clear Cart</Button>;
+        } else {
+            showChekcoutButton =< Button color="primary" block raised onClick={this.beginCheckout}>Checkout</Button>;
+            showPromotionsButton = <Button color="primary" block >Apply Promotion</Button>;
+            showPaypalButton = <PayPalCheckoutPage/>;
+            clearCartButton = <Button color="primary" block raised onClick={this.clearCart}>Clear Cart</Button>;
+         }
+         
         return(
             <Container className="cart-page">
                 <Row>
@@ -403,11 +426,12 @@ class ShoppingCart extends Component{
                     <Col className="text-center" sm={3}>
                         <div className="pricing-block-cart">
                             <div >
-                                <Button color="primary" block raised onClick={this.beginCheckout}>Checkout</Button>
+                                {showChekcoutButton}
+                                
                             </div>
                             <div className="one-em-spacing"></div>
                             <div>
-                                <PayPalCheckoutPage/>
+                                {showPaypalButton}
                             </div>
 
                             <Row>
@@ -459,13 +483,13 @@ class ShoppingCart extends Component{
                                     </Form.Text>
                                 </Form.Group>
                                 <div classsName="center-aligned-buttons">
-                                    <Button color="primary" block >Apply Promotion</Button>
+                                    {showPromotionsButton}
                                 </div>
                             </Form>
 
                             <div className="one-em-spacing"></div>
                             <div classsName="center-aligned-buttons">
-                                <Button color="primary" block raised onClick={this.clearCart}>Clear Cart</Button>
+                                {clearCartButton}
                             </div>
                         </div>
                     </Col>

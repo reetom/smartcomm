@@ -56,8 +56,6 @@ class CheckoutPage extends Component {
         //Update the billing and shipping address in the cart object.
         UpdateCart("updateShippingAddress",shippingAddress);
         UpdateCart("updateBillingAddresss",billingAddress);
-        console.log(shippingAddress);
-        console.log(billingAddress);
         console.log("Redirecting to order review page");
         let path = '/orderreviewpage';
         this.props.history.push(path);
