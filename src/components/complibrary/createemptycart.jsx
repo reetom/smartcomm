@@ -40,7 +40,8 @@ const CreateEmptyCart = () => {
                              "expiryDate":"",
                             };
             var shippingMethodAndPrice = { "shippingMethod":"",
-                                           "shippingPrice":""
+                                           "shippingPrice":"",
+                                           "expectedDelivery": ""
                                          };
             var paymentDetails = {  "cardType": "",
                                     "cardNumber": "",

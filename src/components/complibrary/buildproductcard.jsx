@@ -30,6 +30,7 @@ class BuildProductCard extends Component {
     render() {
 
         const product = this.props.productFromParent;
+        console.log("product from parent :" + {product});
         let modalClose = () => this.setState({ modalShow: false });
         var {isSnackbarActive} = this.state;
 

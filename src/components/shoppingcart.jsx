@@ -6,6 +6,8 @@ import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline
 import PayPalCheckoutPage from './paypalcheckoutpage';
 import UpdateCart from './complibrary/updatecart';
 import CreateEmptyCart from './complibrary/createemptycart';
+import RecommendedProducts from './../data/recommendedproducts';
+import BuildProductCard from './complibrary/buildproductcard';
 
 
 class ShoppingCart extends Component{
@@ -16,15 +18,17 @@ class ShoppingCart extends Component{
             isLoaded: false,
             singleProductRow:"",
             favCardUnit:"",
+            savedCardUnit: "",
+            recommendedCardUnit:"",
             cartTotalDetails:{"subtotal": 0.00, "tax":0.00, "discount":0.00, "total":0.00},
             selectedQuantity:"1"
        }
-
        this.saveProduct = this.saveProduct.bind(this);
        this.beginCheckout = this.beginCheckout.bind(this);
        this.updateCartInSession = this.updateCartInSession.bind(this);
        this.clearCart = this.clearCart.bind(this);
        this.removeFromBag = this.removeFromBag.bind(this);
+       this.showRecommendedProducts = this.showRecommendedProducts.bind(this);
     }
 
     buildProductRows(){
@@ -61,11 +65,11 @@ class ShoppingCart extends Component{
                         </div>
                     </Col>
                     <Col sm={4}> 
-                        <div className="text-right">
-                            <Button color="primary" class="cart-buttons" raised onClick={this.saveProduct(product)}>Save For Later</Button>
+                        <div className="right-aligned-buttons">
+                            <Button color="primary"  raised onClick={() => this.saveProduct(product)}>Save For Later</Button>
                         </div>
-                        <div className="text-right">
-                            <Button color="primary" class="cart-buttons" raised onClick={() => this.removeFromBag(product)}>Delete</Button>
+                        <div className="right-aligned-buttons">
+                            <Button color="primary" raised onClick={() => this.removeFromBag(product)}>Delete</Button>
                         </div>
                     </Col>
                 </Row>
@@ -94,8 +98,9 @@ class ShoppingCart extends Component{
                     subTotal = subTotal + (product.price*selectedQuantity);
                     cartTotalDetails.subtotal = subTotal.toString();
                     cartTotalDetails.tax = (subTotal*0.1).toString();
-                    cartTotalDetails.total = (subTotal*1.1).toString();
+                    cartTotalDetails.grandTotal = (subTotal*1.1).toString();
                 })
+                cartTotalDetails.discount = "0.00";
         }
         this.setState({cartTotalDetails: cartTotalDetails})
         //Update the shopping cart with the products in localstorage.
@@ -115,37 +120,6 @@ class ShoppingCart extends Component{
           //Clear the cart totals in state.
           const cartTotalDetails= {"subtotal": 0.00, "tax":0.00, "discount":0.00, "total":0.00}
           this.setState({cartTotalDetails:cartTotalDetails});
-    }
-
-    // This method saves the selected products to the "Save For Later List".
-    saveProduct(product){
-        var favList =[];
-        var favCount = 0;
-        var favAlreadyExist = "false";
-        //First check if the favList in local storate is empty, if not empty add to the list
-        let favListFromLocalStoreage = JSON.parse(localStorage.getItem("favList"));
-        if (favListFromLocalStoreage != null) {
-            favListFromLocalStoreage.map(forEachProduct => {
-                favList.push(forEachProduct); 
-                favCount = favCount+1;
-                //Check if the product already exist in the fav list
-                if (favAlreadyExist === "false"){
-                    if(forEachProduct.productID === product.productID){
-                        favAlreadyExist = "true"; 
-                        console.log("Product is already in the favorite list");
-                    }
-                }
-            
-            });
-        } 
-        //If the product doesn't exist in the fav list, add it to the fav list.
-        if (favAlreadyExist == "false"){
-            favList.push(product);
-            favCount = favCount +1;
-        }
-        //Update the favs list and count in the localstorage.
-        localStorage.setItem("favList",JSON.stringify(favList));
-        localStorage.setItem("favCount",JSON.stringify(favCount))
     }
 
      //Rediect the user to checkout optoins page for guest or signed-in user checkout.
@@ -170,45 +144,109 @@ class ShoppingCart extends Component{
         localStorage.setItem("cartProducts",JSON.stringify(newProductArray));
         //Rebuild the product rows in the cart for display.
         this.buildProductRows();
+        //Update the cart in session so that the cart totals are reflected correctly.
+        this.updateCartInSession();
+    }
+
+    // This method saves the selected products to the "Save For Later List".
+    saveProduct(product){
+        var savedList =[];
+        var productAlreadyExist = "false";
+        //First check if the favList in local storate is empty, if not empty add to the list
+        let favListFromLocalStoreage = JSON.parse(localStorage.getItem("savedList"));
+        if (favListFromLocalStoreage != null) {
+            favListFromLocalStoreage.map(forEachProduct => {
+                savedList.push(forEachProduct); 
+                //Check if the product already exist in the fav list
+                if (productAlreadyExist === "false"){
+                    if(forEachProduct.productID === product.productID){
+                        productAlreadyExist = "true"; 
+                        console.log("Product is already in the favorite list");
+                    }
+                }
+            
+            });
+        } 
+        //If the product doesn't exist in the fav list, add it to the fav list.
+        if (productAlreadyExist == "false"){
+            savedList.push(product);
+            //Update the favs list and count in the localstorage.
+            localStorage.setItem("savedList",JSON.stringify(savedList));
+            this.buildSavedCards();
+            //Also, remove this product from the cart.
+            this.removeFromBag(product);
+
+        }
     }
 
     buildSavedCards(){
         // Get the list of favorites from localstorage for the guest user.
-        let favList = JSON.parse(localStorage.getItem("favList"));
-        var favCardUnit ="";
-        var favCardUnitToDisplay ="";
+        let savedList = JSON.parse(localStorage.getItem("savedList"));
+        var savedCardUnit ="";
+        var savedCardUnitToDisplay ="";
+        console.log("Reading saved products: " + savedList);
         //Get the list of favorites from backend for the signed in user. @ToDo
-        if (favList != null && favList.length >0){
-        //Loop through the products in the fav list and build the product cards to display.
-        favCardUnit = favList.map(product =>  <BuildProductCardFavorites productFromParent={product} buildFavoriteCards = {this}/>)
-        favCardUnitToDisplay = <div className="fav-grid">{favCardUnit}</div>
-        this.setState({favCardUnit: favCardUnitToDisplay})
+        if (savedList != null && savedList.length >0){
+            //Loop through the products in the saved list and build the product cards to display.
+            savedCardUnit = savedList.map(product =>  <BuildProductCardFavorites productFromParent={product} buildFavoriteCards = {this}/>)
+            savedCardUnitToDisplay = <div className="fav-grid">{savedCardUnit}</div>
         } else {
-            favCardUnit = <div className="no-fav-grid"> <h1>There is nothing to show</h1></div>
-            this.setState({favCardUnit: favCardUnit})
+            savedCardUnitToDisplay = <div className="no-fav-grid"> <h5>There are no saved products</h5></div>
         }
+        //Set the saved cards in the state.
+        this.setState({savedCardUnit: savedCardUnitToDisplay});
+    }
+
+    showRecommendedProducts(){
+        // Get the list of favorites from localstorage for the guest user.
+        let recommendedList = RecommendedProducts
+        var recommendedCardUnit ="";
+        var recommendedCardUnitToDisplay ="";
+        console.log("Reading saved products: " + recommendedList);
+        //Get the list of favorites from backend for the signed in user. @ToDo
+        if (recommendedList != null && recommendedList.length >0){
+            //Loop through the products in the saved list and build the product cards to display.
+            recommendedCardUnit = recommendedList.map(product =>  <BuildProductCard productFromParent={product}/>)
+            recommendedCardUnitToDisplay = <div className="fav-grid">{recommendedCardUnit}</div>
+        } else {
+            recommendedCardUnitToDisplay = <div className="no-fav-grid"> <h5>There are no recommendations at this time</h5></div>
+        }
+        //Set the saved cards in the state.
+        this.setState({recommendedCardUnit: recommendedCardUnitToDisplay});
     }
 
     componentDidMount(){
         CreateEmptyCart();
         this.buildProductRows();
+        //Need to have this call for first time render of the cart page.
         this.buildSavedCards();
         this.updateCartInSession();
+        this.showRecommendedProducts();
     }
 
     render(){
 
-        const {singleProductRow, favCardUnit, cartTotalDetails} = this.state;
+        const {singleProductRow, savedCardUnit, recommendedCardUnit, cartTotalDetails} = this.state;
+        var cartTotals = "0.00";
+        var tax = cartTotalDetails.tax;
+        var discount = cartTotalDetails.discount;
+        var grandTotal = cartTotalDetails.total;
+        if (cartTotalDetails.subtotal !== null || cartTotalDetails.subtotal !== "" || typeof(cartTotalDetails.subtotal) !== "undefined"){
+            cartTotals = cartTotalDetails.subtotal;
+        }
+        console.log("cart totals :" +cartTotals);
         return(
             <Container className="cart-page">
                 <Row>
                     <Col sm={9}>
                         {singleProductRow}
                     </Col>
-                    <Col sm={3}>
+                    <Col className="text-center" sm={3}>
                         <div className="pricing-block-cart">
-                            <Button color="primary" class="payment-buttons" raised onClick={this.beginCheckout}>Checkout</Button>
-                            <div classs="checkout-buttons">
+                            <div classsName="center-aligned-buttons">
+                                <Button color="primary" block raised onClick={this.beginCheckout}>Checkout</Button>
+                            </div>
+                            <div classsName="center-aligned-buttons">
                                 <PayPalCheckoutPage/>
                             </div>
 
@@ -217,7 +255,7 @@ class ShoppingCart extends Component{
                                     <div className="cart-totals-label">SUBTOTAL: </div>
                                 </Col>
                                 <Col sm={6}>
-                                    <div className="cart-totals-value">${cartTotalDetails.subtotal}</div>  
+                                    <div className="cart-totals-value">${cartTotals}</div>  
                                 </Col>
                             </Row>
                             <Row>
@@ -225,7 +263,7 @@ class ShoppingCart extends Component{
                                     <div className="cart-totals-label">TAX: </div> 
                                 </Col>
                                 <Col sm={6}>
-                                    <div className="cart-totals-value">${cartTotalDetails.tax}</div>  
+                                    <div className="cart-totals-value">${tax}</div>  
                                 </Col>
                             </Row>
                             <Row>
@@ -241,7 +279,7 @@ class ShoppingCart extends Component{
                                     <div className="cart-totals-label">DISCOIUNT: </div> 
                                 </Col>
                                 <Col sm={6}>
-                                    <div className="cart-totals-value">${cartTotalDetails.discount}</div>  
+                                    <div className="cart-totals-value">${discount}</div>  
                                 </Col>
                             </Row>
 
@@ -250,7 +288,7 @@ class ShoppingCart extends Component{
                                     <div className="cart-totals-label">TOTAL: </div>  
                                 </Col>
                                 <Col sm={6}>
-                                    <div className="cart-totals-value">${cartTotalDetails.total}</div>  
+                                    <div className="cart-totals-value">${grandTotal}</div>  
                                 </Col>
                             </Row>
                              <Form>
@@ -261,8 +299,13 @@ class ShoppingCart extends Component{
                                     </Form.Text>
                                 </Form.Group>
                             </Form>
-                            <Button color="primary" class="payment-buttons" >Apply Promotion</Button>
-                            <Button color="primary" class="payment-buttons" raised onClick={this.clearCart}>Clear Cart</Button>
+                            <div classsName="center-aligned-buttons">
+                                <Button color="primary" block disabled c>Apply Promotion</Button>
+                            </div>
+                            <div className="1em-spacing"></div>
+                            <div classsName="center-aligned-buttons">
+                                <Button color="primary" block raised onClick={this.clearCart}>Clear Cart</Button>
+                            </div>
                         </div>
                     </Col>
                 </Row>
@@ -271,7 +314,7 @@ class ShoppingCart extends Component{
                    <Col sm={12}>
                         <div className="saved-proeducts-section">
                             <SectionHeadingAndWhiteLine heading="Your Saved Products" color="white"/>
-                            {favCardUnit}
+                            {savedCardUnit}
                         </div>
                    </Col>
                 </Row>
@@ -279,7 +322,7 @@ class ShoppingCart extends Component{
                     <Col sm={12}>
                         <div className="recommendations-section">
                             <SectionHeadingAndWhiteLine heading="Recommended Products" color="white"/>
-                            {favCardUnit}
+                            {recommendedCardUnit}
                         </div>
                    </Col>
                 </Row>

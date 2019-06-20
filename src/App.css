@@ -317,25 +317,9 @@
   width: 100%;
 }
 
-.cart-buttons{
-  margin: 1em;
-  color: black;
-  background: orange;
-  width: 150px;
-  height: 30px;
-}
-
 .cart-image{
-  width: 200px;
+ width: 200px;
  height: 200px;
-}
-
-.payment-buttons{
-  margin: 0.5em;
-  color: black;
-  background: orange;
-  width: 300px;
-  height: 30px;
 }
 
 .cart-product-details{
@@ -352,8 +336,7 @@
   display: block;
   height: auto;
   background-color: white;
-  padding-top: 0.5em;
-  padding-left: 0.5em;
+  margin: 1em;
   background: #bdc3c7;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -501,6 +484,7 @@
   background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
   text-align: center;
+  padding-left: 2em;
 }
 
 .gift-card-payment{
@@ -517,4 +501,63 @@
 
 .div-display-block{
   display: block;
+}
+
+.right-aligned-buttons{
+  text-align: right;
+  margin: 1em;
+}
+
+.center-aligned-buttons{
+  text-align: center;
+    margin: 1em;
+}
+
+.one-em-spacing{
+height: 10px;
+}
+
+.radio-button-div{
+  margin:1em;
+}
+
+.white-text{
+  color: white;
+}
+
+.review-shipping-method{
+  display: block;
+  color: white;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ 
+}
+
+.align-right{
+  text-align: right;
+}
+
+.align-left{
+  text-align: left;
+}
+
+.review-cart-prod{
+  color: white;
+  height: auto;
+  display: block;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin: 1em;
+
+}
+
+.review-image{
+  width: 200px;
+  height: 200px;
+}
+
+.image-center{
+  text-align: center;
 }
