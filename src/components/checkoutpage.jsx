@@ -186,27 +186,45 @@ class CheckoutPage extends Component {
                     <Row>
                         <SectionHeadingAndWhiteLine heading="Select Shipping Method" color="white"/>
                     </Row>
-                    <ButtonGroup>
-                        <Row>
-                            <div className="radio-button-div">
+                    
+                    <Row>
+                        <Col sm={3}>
+                            <div className="align-right">
                                 <Button color="primary" onClick={() => this.onRadioBtnClick(1)} active={this.state.rSelected === 1}>Free Shipping</Button>
+                            </div>
+                        </Col>
+                        <Col sm={9}>
                                 Estimated Delivery Date:  Friday, June 30th  if order placed in the next 22 hours - FREE
-                            </div>
-           
-                        </Row>
-                        <Row>
-                            <div className="radio-button-div">
+                        </Col>
+                    </Row>
+                    <Row>
+                        <div className="one-em-spacing"></div>
+                    </Row>
+                    <Row>
+                        <Col sm={3}>
+                            <div className="align-right">
                                 <Button color="primary" onClick={() => this.onRadioBtnClick(2)} active={this.state.rSelected === 2}>Standard Shipping</Button>
-                                Estimated Delivery Date:  Friday, June 25th  if order placed in the next 22 hours - $7.99
                             </div>
-                        </Row>
-                        <Row>
-                            <div className="radio-button-div">
+                        </Col>
+                        <Col sm={9}>
+                            Estimated Delivery Date:  Friday, June 25th  if order placed in the next 22 hours - $7.99
+                        </Col>
+                    </Row>
+                    <Row>
+                        <div className="one-em-spacing"></div>
+                    </Row>
+                    <Row>
+                        <Col sm={3}>
+                            <div className="align-right">
                                 <Button color="primary" onClick={() => this.onRadioBtnClick(3)} active={this.state.rSelected === 3}>Expedite Shipping</Button>
-                                Estimated Delivery Date:  Friday, June 21st  if order placed in the next 22 hours - $24.95
                             </div>
-                        </Row>
-                    </ButtonGroup>
+                        </Col>
+                        <Col sm={9}>
+                            Estimated Delivery Date:  Friday, June 21st  if order placed in the next 22 hours - $24.95
+                        </Col>
+                    </Row>
+
+     
                     <div className="order-review-button">
                         <Button color="primary" type="submit">Review Your Order</Button>
                     </div>

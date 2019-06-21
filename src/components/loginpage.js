@@ -68,16 +68,16 @@ class Login extends Component {
                         <FormGroup>
                             <Label>E-mail Address</Label>
                             <Input type="text" name="email" id="email" placeholder="Enter E-mail Address" />
-                          </FormGroup>
-                          <FormGroup>
+                        </FormGroup>
+                        <FormGroup>
                             <Label>Passowrd</Label>
                             <Input type="password" name="password" id="password" placeholder="Enter Password" />
-                          </FormGroup>
+                        </FormGroup>
                                                       
                           <div className="align-left">
                             <Button color="primary" type="submit">Sign In</Button>
                             </div>
-                      </Form>
+                        </Form>
                     </Col>
                     <Col sm={4}>
                     </Col>
