@@ -2,7 +2,7 @@ import React from 'react';
 import PaypalButton from './complibrary/paypalbutton';
  
 const CLIENT = {
-    sandbox: 'xxxXXX',
+    sandbox: 'xxxxxx',
     production: 'xxxXXX',
   };
 
@@ -14,6 +14,8 @@ export default class PayPalCheckoutPage extends React.Component {
     render() { 
     const onSuccess = (payment) => {
       console.log('Successful payment!', payment);
+
+
       //Redirect user to the order confirmation page
       let path = '/orderconfirmationpage';
       this.props.history.push(path);
@@ -32,7 +34,7 @@ export default class PayPalCheckoutPage extends React.Component {
           env={ENV}
           commit={true}
           currency={'USD'}
-          total={100}
+          total={0.01}
           onSuccess={onSuccess}
           onError={onError}
           onCancel={onCancel}

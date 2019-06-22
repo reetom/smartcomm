@@ -8,10 +8,10 @@ const CreateEmptyCart = () => {
         // Create an empty cart with placeholders and all values set to 0.
 
             var cartItems = [];
-            var cartTotal ={  "subtotal": "0",
-                              "tax":"0",
-                              "discount":"0",
-                              "grandTotal":"0"
+            var cartTotal ={  "subtotal": "0.00",
+                              "tax":"0.00",
+                              "discount":"0.00",
+                              "grandTotal":"0.00"
                             };
             var shippingAddress = { "firstName":"",
                                     "lastName":"",
@@ -31,8 +31,9 @@ const CreateEmptyCart = () => {
                                 };
             var promotions = { "promocode":"",
                                "isPromoCodeValid":"",
-                               "discountPrice":"",
-                               "expiryDate":""
+                               "discountPrice":"0.00",
+                               "expiryDate":"",
+                               "discountPercentage":""
                             };
             var giftCard = { "cardNumber":"",
                              "isGiftCardValid":"",

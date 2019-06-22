@@ -12,8 +12,8 @@ class OrderReviewPage extends Component {
             productRowsToDisplay: "",
             cartTotalToDisplay: "",
         }
-        window.React = React;
-        window.ReactDOM = ReactDOM;
+        //window.React = React;
+        //window.ReactDOM = ReactDOM;
         this.toOrderConfirmationPage = this.toOrderConfirmationPage.bind(this);
         this.buildProductRows = this.buildProductRows.bind(this);
     }
@@ -28,7 +28,7 @@ class OrderReviewPage extends Component {
         const cartItems = cartObject.cartItems;
 
         var productRowsToDisplay = cartItems.map(cartItem =>
-                            <div className="review-cart-prod">
+                            <div className="display-block-white-text">
                                 <Row>
                                     <Col sm={4}>
                                         <div className="image-center">
@@ -40,10 +40,10 @@ class OrderReviewPage extends Component {
                                         </div>
                                     </Col>
                                     <Col sm={8}>
-                                        <div>Name: {cartItem.product.productName}</div>
-                                        <div>Price: ${cartItem.product.price}    $<del>3000</del></div>
-                                        <div>Quantity: {cartItem.quantity}</div>
-                                        <div>SUBTOTAL: ${cartItem.product.price * cartItem.quantity}</div>
+                                        <div className="align-left"><strong>Name:</strong> {cartItem.product.productName}</div>
+                                        <div className="align-left"><strong>Quantity:</strong>  {cartItem.quantity}   </div>
+                                        <div className="align-left"><strong>Price:</strong> ${cartItem.product.price}  $<del>3000</del></div>
+                                        <div className="align-left"><strong>Subtotal:</strong>  ${cartItem.product.price * cartItem.quantity}</div>
                                     </Col>
                                 </Row>
                             </div>
@@ -107,7 +107,7 @@ class OrderReviewPage extends Component {
                     </Row>
                     <Row>
                         <SectionHeadingAndWhiteLine heading="Review Shipping Method" color="white"/>
-                        <div className="review-shipping-method">
+                        <div className="display-block-white-text">
                             <Col sm={6}>
                               <div className="align-right">
                                     <h5>Shipping Method :</h5>
@@ -126,7 +126,7 @@ class OrderReviewPage extends Component {
                     </Row>
                     <Row>
                         <SectionHeadingAndWhiteLine heading="Grand Total" color="white"/>
-                        <div className="review-shipping-method">
+                        <div className="display-block-white-text">
                             <Col sm={6}>
                               <div className="align-right">
                                     <h5>Subtotal :</h5>
@@ -149,8 +149,8 @@ class OrderReviewPage extends Component {
                     </Row>
                     <Row>
                         <SectionHeadingAndWhiteLine heading="Enter Payment Details" color="white"/>
-                        <div className="payment-options">
-
+                        <div className="display-block-white-text">
+                
                         </div>
                     </Row>
                     <Row>

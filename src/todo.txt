@@ -25,4 +25,6 @@ cart = {
 
 
 
+npm i -g now
+
 

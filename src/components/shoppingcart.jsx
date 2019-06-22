@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Button} from 'reactstrap';
-import { Form, Container,Row, Col} from 'react-bootstrap';
+import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Container,Row, Col} from 'react-bootstrap';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 import PayPalCheckoutPage from './paypalcheckoutpage';
 import UpdateCart from './complibrary/updatecart';
@@ -8,6 +8,7 @@ import CreateEmptyCart from './complibrary/createemptycart';
 import RecommendedProducts from './../data/recommendedproducts';
 import { CardText,Card,CardTitle, CardMenu,IconButton, Snackbar} from 'react-mdl';
 import {Link} from 'react-router-dom';
+import { cpus } from 'os';
 
 
 class ShoppingCart extends Component{
@@ -33,6 +34,7 @@ class ShoppingCart extends Component{
        this.addToBag = this.addToBag.bind(this);
        this.addToFav = this.addToFav.bind(this);
        this.removeFromSavedProducts = this.removeFromSavedProducts.bind(this);
+       this.onSubmit = this.onSubmit.bind(this);
     }
 
     //This function buils the products rows in the carts main body.
@@ -90,6 +92,32 @@ class ShoppingCart extends Component{
         
     }
 
+    //This function is to submit promo code, recalcualte cart and update the session.
+        onSubmit(event){
+        event.preventDefault();
+        const data = new FormData(event.target);
+        const promoCodeEntered = data.get('promotion');
+        var promotions = {};
+        if ("discount20" === promoCodeEntered){
+            // update promotion details in the cart. We don't have APIs so we will apply 20% discount.
+            promotions ={"promocode":"",
+                            "isPromoCodeValid": "true",
+                            "expiryDate":"Not Applicable",
+                            "discountPercentage":"20",
+                            "discountPrice":"0.00"
+            };
+
+            //Update the shopping cart with the products in localstorage.
+            UpdateCart("updatePromotions", promotions);
+            //Recalcualte  Cart Total and update session
+            this. updateCartInSession();
+        }
+        else {
+            console.log("Invalid Promo Code : " + promoCodeEntered);
+        }
+    }
+
+
     //This function will update the big ass cart object that has everything in it.
     updateCartInSession(){
         // Get the list of products in the cart from localstorage for the guest user.
@@ -97,8 +125,17 @@ class ShoppingCart extends Component{
         var cartTotalDetails = {};
         var cartProductsArray = [];
         var selectedQuantity = "1";
-        var sku="123456789";
+        const sku="123456789";
         var subTotal = 0;
+        const cartFromSession = JSON.parse(localStorage.getItem("cart"));
+        const promotions = cartFromSession.promotions;
+        var discountPercentage ="";
+        var discountPrice ="";
+        if (typeof(promotions) != "undefined"){
+            discountPercentage = promotions.discountPercentage;
+            discountPrice = promotions.discountPrice;
+        }
+
         if (cartProducts != null && cartProducts.length >0){
             //Loop through the products in the  cart and build the product rows to display.
             cartProducts.map(product => 
@@ -110,7 +147,14 @@ class ShoppingCart extends Component{
                     cartTotalDetails.tax = (subTotal*0.1).toString();
                     cartTotalDetails.grandTotal = (subTotal*1.1).toString();
                 })
-                cartTotalDetails.discount = "0.00";
+            if (discountPrice !== ""){
+                cartTotalDetails.grandTotal = cartTotalDetails.grandTotal - discountPrice;
+                cartTotalDetails.discount = discountPrice;
+
+            }else if (discountPercentage != ""){
+                cartTotalDetails.grandTotal = cartTotalDetails.grandTotal *(100-discountPercentage)/100;
+                cartTotalDetails.discount = cartTotalDetails.grandTotal * (discountPercentage/100);
+            }
         }
         this.setState({cartTotalDetails: cartTotalDetails})
         //Update the shopping cart with the products in localstorage.
@@ -418,102 +462,104 @@ class ShoppingCart extends Component{
          }
          
         return(
-            <Container className="cart-page">
-                <Row>
-                    <Col sm={9}>
-                        {singleProductRow}
-                    </Col>
-                    <Col className="text-center" sm={3}>
-                        <div className="pricing-block-cart">
-                            <div >
-                                {showChekcoutButton}
-                                
-                            </div>
-                            <div className="one-em-spacing"></div>
-                            <div>
-                                {showPaypalButton}
-                            </div>
-
-                            <Row>
-                                <Col sm={6}>
-                                    <div className="cart-totals-label">SUBTOTAL: </div>
-                                </Col>
-                                <Col sm={6}>
-                                    <div className="cart-totals-value">${cartTotals}</div>  
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col sm={6}>
-                                    <div className="cart-totals-label">TAX: </div> 
-                                </Col>
-                                <Col sm={6}>
-                                    <div className="cart-totals-value">${tax}</div>  
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col sm={6}>
-                                    <div className="cart-totals-label">SHIPPING: </div>
-                                </Col>
-                                <Col sm={6}>
-                                    <div className="cart-totals-value">------- </div>  
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col sm={6}>
-                                    <div className="cart-totals-label">DISCOIUNT: </div> 
-                                </Col>
-                                <Col sm={6}>
-                                    <div className="cart-totals-value">${discount}</div>  
-                                </Col>
-                            </Row>
-
-                            <Row>
-                                <Col sm={6}>
-                                    <div className="cart-totals-label">TOTAL: </div>  
-                                </Col>
-                                <Col sm={6}>
-                                    <div className="cart-totals-value">${grandTotal}</div>  
-                                </Col>
-                            </Row>
-                             <Form>
-                                <Form.Group controlId="formBasicEmail">
-                                    <Form.Label></Form.Label>
-                                    <Form.Control type="text" placeholder="Enter Promo Code" onChange={this.handleChange}/>
-                                    <Form.Text className="text-muted">
-                                    </Form.Text>
-                                </Form.Group>
-                                <div classsName="center-aligned-buttons">
-                                    {showPromotionsButton}
+            <div className="page-background">
+                <Container fluid>
+                    <Row>
+                        <Col sm={9}>
+                            {singleProductRow}
+                        </Col>
+                        <Col className="text-center" sm={3}>
+                            <div className="pricing-block-cart">
+                                <div >
+                                    {showChekcoutButton}
+                                    
                                 </div>
-                            </Form>
+                                <div className="one-em-spacing"></div>
+                                <div>
+                                    {showPaypalButton}
+                                </div>
 
-                            <div className="one-em-spacing"></div>
-                            <div classsName="center-aligned-buttons">
-                                {clearCartButton}
+                                <Row>
+                                    <Col sm={6}>
+                                        <div className="cart-totals-label">SUBTOTAL: </div>
+                                    </Col>
+                                    <Col sm={6}>
+                                        <div className="cart-totals-value">${cartTotals}</div>  
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col sm={6}>
+                                        <div className="cart-totals-label">TAX: </div> 
+                                    </Col>
+                                    <Col sm={6}>
+                                        <div className="cart-totals-value">${tax}</div>  
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col sm={6}>
+                                        <div className="cart-totals-label">SHIPPING: </div>
+                                    </Col>
+                                    <Col sm={6}>
+                                        <div className="cart-totals-value">------- </div>  
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col sm={6}>
+                                        <div className="cart-totals-label">DISCOIUNT: </div> 
+                                    </Col>
+                                    <Col sm={6}>
+                                        <div className="cart-totals-value">${discount}</div>  
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col sm={6}>
+                                        <div className="cart-totals-label">TOTAL: </div>  
+                                    </Col>
+                                    <Col sm={6}>
+                                        <div className="cart-totals-value">${grandTotal}</div>  
+                                        <div className="one-em-spacing"></div>
+                                        <div className="one-em-spacing"></div>
+                                    </Col>
+                                </Row>
+                                <Form onSubmit = {this.onSubmit}>
+                                    <FormGroup>
+                                        <Input type="text" name="promotion" id="promotion" placeholder="Enter Promo Code" />
+                                    </FormGroup>
+                                    <div classsName="center-aligned-buttons">
+                                        {showPromotionsButton}
+                                    </div>
+                                </Form>
+
+                                <div className="one-em-spacing"></div>
+                                <div classsName="center-aligned-buttons">
+                                    {clearCartButton}
+                                </div>
                             </div>
-                        </div>
-                    </Col>
-                </Row>
-                    
-                <Row>
-                   <Col sm={12}>
-                        <div className="saved-proeducts-section">
-                            <SectionHeadingAndWhiteLine heading="Your Saved Products" color="white"/>
-                            {savedCardUnit}
-                        </div>
-                   </Col>
-                </Row>
-                <Row>
-                    <Col sm={12}>
-                        <div className="recommendations-section">
-                            <SectionHeadingAndWhiteLine heading="Recommended Products" color="white"/>
-                            {recommendedCardUnit}
-                        </div>
-                   </Col>
-                </Row>
+                        </Col>
+                    </Row>
+                        
+                    <Row>
+                        <Col sm={12}>
+                                <div className="saved-proeducts-section">
+                                    <SectionHeadingAndWhiteLine heading="Your Saved Products" color="white"/>
+                                    {savedCardUnit}
+                                </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm={12}>
+                            <div className="recommendations-section">
+                                <SectionHeadingAndWhiteLine heading="Recommended Products" color="white"/>
+                                {recommendedCardUnit}
+                            </div>
+                        </Col>
+                    </Row>
 
-            </Container>
-        )
+                </Container>
+            </div>
+            
+        );
     }
 }
 export default ShoppingCart;

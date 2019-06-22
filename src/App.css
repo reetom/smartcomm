@@ -86,23 +86,12 @@
    border: 2px;
  }
 
-.pdp-button-div{
-  padding-top: 2em;
-  padding-left: 2em;
-}
-
 .submit-button{
   margin: 2em;
   color: black;
   background: orange;
   width: 150px;
   height: 30px;
-}
-
-.pdp-button-round{
-  margin: 1em;
-  color: black;
-  background: orange;
 }
 
 .plp-landing-banner{
@@ -524,9 +513,15 @@
   height: auto;
 }
 
-.payment-options{
-  height: auto;
+.display-block-white-text{
+  color: white;
+  height: 300px;
   text-align: center;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ 
+
 }
 
 .div-display-block{
@@ -552,8 +547,9 @@ height: 10px;
 }
 
 .review-shipping-method{
-  display: block;
   color: white;
+  height: auto;
+  display: block;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -571,7 +567,7 @@ height: 10px;
   text-align: center;
 }
 
-.review-cart-prod{
+.display-block-white-text{
   color: white;
   height: auto;
   display: block;
@@ -589,4 +585,7 @@ height: 10px;
 
 .image-center{
   text-align: center;
+}
+.accordion-div{
+    height: 400px;
 }
