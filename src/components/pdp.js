@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ProductReviews from './../data/productreview.json';
-import Accordion from './complibrary/specaccordion';
+import ProductSpecAccordion from './complibrary/productspecaccordion';
+import CustomerReviewsAccordion from './complibrary/customerreviewsaccordion';
 import {Button, Container, Row, Col, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 
 const Brown = {
@@ -18,8 +19,6 @@ class PDP extends Component {
         super(props);
         this.state = {
             products:[],
-            isLoaded: false,
-            currentIndex: -1,
             quantityDropdownOpen: false,
             quantityDropDownValue:"select",
             colorDropdownOpen: false,
@@ -143,7 +142,7 @@ class PDP extends Component {
 
         return(
             <div className="page-background">
-                <Container fluid>
+                <Container>
                     <Row>
                         <div className="pdp-image-prod-details">
                             <Col sm={6}>
@@ -154,6 +153,7 @@ class PDP extends Component {
                                 </div>
                             </Col>
                             <Col sm={6}>
+                                <div className="pdp-prod-details">
                                 <h3>{productToDisplay.productName}   </h3>
                                 <h3 className="pdp-price">${productToDisplay.price}</h3>
                                 <h6 className="h6-text-justify">{productToDisplay.productDescShort} </h6>
@@ -204,15 +204,26 @@ class PDP extends Component {
                                     <Button color="primary" raised>Add to Cart</Button> <Button color="primary" raised onClick={() => this.saveProduct(productToDisplay)}>Save for Later</Button>
                                 </div>
                                 <div className="one-em-spacing"></div>
+                                </div>
+                                
                             </Col>
                         </div>
 
                     </Row>
                     <Row>
+                        <div className="one-em-spacing"></div>
+                        <div className="one-em-spacing"></div>
+                        <div className="one-em-spacing"></div>
                         <div className="accordion-div">
-                            <Accordion productSpecs={productToDisplay.productSpecs} handleChange={handleChange} currentIndex={currentIndex}/>
+                            <ProductSpecAccordion productSpecs={productToDisplay.productSpecs}/>
                         </div>
                     </Row>
+                    <Row>
+                        <div className="accordion-div">
+                            <CustomerReviewsAccordion productSpecs={productToDisplay.productSpecs}/>
+                        </div>
+                    </Row>
+
                 </Container>
             </div>
         )
