@@ -24,7 +24,8 @@ cart = {
 }
 
 
-
+npm config set ignore-scripts false
 npm i -g now
+npm i -g --unsafe-perm now
 
 

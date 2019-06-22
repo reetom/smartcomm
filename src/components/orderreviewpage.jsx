@@ -10,13 +10,22 @@ class OrderReviewPage extends Component {
         super(props);
         this.state = {
             productRowsToDisplay: "",
-            cartTotalToDisplay: "",
+            cartTotalToDisplay: ""
+
         }
         //window.React = React;
         //window.ReactDOM = ReactDOM;
         this.toOrderConfirmationPage = this.toOrderConfirmationPage.bind(this);
         this.buildProductRows = this.buildProductRows.bind(this);
+        //For the quantity drop down
+        this.toggle = this.toggle.bind(this);
     }
+    //Toggle for the quantity dorpdown
+    toggle() {
+        this.setState({
+          dropdownOpen: !this.state.dropdownOpen
+        });
+      }
 
     toOrderConfirmationPage(){
         let path = '/orderconfirmationpage';

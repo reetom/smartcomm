@@ -143,8 +143,8 @@
   padding-top: 2em;
 }
 
-.price{
-  color: red;
+.pdp-price{
+  color: yellow;
 }
 
 .new-arrivals-section{
@@ -588,4 +588,26 @@ height: 10px;
 }
 .accordion-div{
     height: 400px;
+    padding-top: 2em;
+}
+
+.pdp-image-prod-details{
+  height: auto;
+  padding-top: 2em;
+}
+
+.h6-text-justify{
+  text-align: justify;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.quantity-color-toggle-div{
+  display: flex;
+
+  align-items: center;
+}
+.color-dropdown-text{
+  color: white;
+}
+.quantity-dropdown-text{
+  color:black;
 }

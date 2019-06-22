@@ -212,9 +212,9 @@ class ShoppingCart extends Component{
         var savedList =[];
         var productAlreadyExist = "false";
         //First check if the favList in local storate is empty, if not empty add to the list
-        let favListFromLocalStoreage = JSON.parse(localStorage.getItem("savedList"));
-        if (favListFromLocalStoreage != null) {
-            favListFromLocalStoreage.map(forEachProduct => {
+        let savedListFromLocalStoreage = JSON.parse(localStorage.getItem("savedList"));
+        if (savedListFromLocalStoreage != null) {
+            savedListFromLocalStoreage.map(forEachProduct => {
                 savedList.push(forEachProduct); 
                 //Check if the product already exist in the fav list
                 if (productAlreadyExist === "false"){
@@ -457,7 +457,7 @@ class ShoppingCart extends Component{
         } else {
             showChekcoutButton =< Button color="primary" block raised onClick={this.beginCheckout}>Checkout</Button>;
             showPromotionsButton = <Button color="primary" block >Apply Promotion</Button>;
-            showPaypalButton = <PayPalCheckoutPage/>;
+            //showPaypalButton = <PayPalCheckoutPage/>;
             clearCartButton = <Button color="primary" block raised onClick={this.clearCart}>Clear Cart</Button>;
          }
          
