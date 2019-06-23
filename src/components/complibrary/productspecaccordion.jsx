@@ -1,10 +1,30 @@
 import React, {Component} from 'react';
-import { UncontrolledCollapse, Button, CardBody, Card } from 'reactstrap';
+import { UncontrolledCollapse, Button, CardBody, Card, Table } from 'reactstrap';
 
+const Col1 = {
+  width: '20%'
+};
+const Col2 = {
+  width: '80%'
+};
 
 class ProductSpecAccordion extends Component{
 
+  constructor(props){
+    super(props);
+}
+
 render(){
+
+  const productSpecs = this.props.productSpecs;
+  let specsToDisplay = [];
+  for (let k of Object.keys(productSpecs)){
+    console.log(k + " - " + productSpecs[k]);
+    console.log(specsToDisplay);
+    specsToDisplay.push(<tr><td>{k}</td><td>{productSpecs[k]}</td></tr>);
+  }
+
+
     return(
       <div>
       <Button block color="primary" id="specsToggler" style={{ marginBottom: '1rem' }}>
@@ -14,9 +34,18 @@ render(){
         <Card>
           <CardBody>
             <div className="div-display-block">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt magni, voluptas debitis
-              similique porro a molestias consequuntur earum odio officiis natus, amet hic, iste sed
-              dignissimos esse fuga! Minus, alias.
+              <Table>
+
+                <tbody>
+                <thead>
+                    <tr>
+                      <th style={Col1}></th>
+                      <th style={Col2}></th>
+                    </tr>
+                  </thead>
+                  {specsToDisplay}
+                </tbody>
+              </Table>
             </div>
 
           </CardBody>
