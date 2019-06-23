@@ -56,7 +56,7 @@ class Login extends Component {
         
         return(
             <div className="login-page-background">
-              <Container>
+              <Container fluid>
                 <Row>
                   <SectionHeadingAndWhiteLine heading="Sign-In or Create an Account" color="white"/>
                 </Row>

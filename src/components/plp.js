@@ -70,7 +70,8 @@ class PLP extends Component {
                 <Container fluid>
                     <Row>
                         <Col sm={12}>
-                        <div>
+                            <div className="one-em-spacing"/>
+                            <div>
                                     <img
                                         src={landingbanner}
                                         alt="landingbanner1"

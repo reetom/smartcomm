@@ -59,6 +59,7 @@ class App extends Component {
                                     <Badge text="5" overlap>
                                         <Icon name="shoppingcart" />
                                     </Badge>
+                                    
                                 </div>
                             </Link>
                         </Navigation>

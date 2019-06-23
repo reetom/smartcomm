@@ -56,6 +56,7 @@
   background: white;
   font-weight: bold;
   text-align: center;
+  color: black;
  }
 
  .logo{
@@ -105,17 +106,17 @@
 }
 
 .email-sign-up-text{
-  height: 50px;
+  height: auto;
   background: #2193b0;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   text-align: center;
   color: white;
-  padding-top: 2px;
+
 }
 
 .email-sign-up{
-  height: 75px;
+  height: auto;
   background: #2193b0;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -619,4 +620,12 @@ height: 10px;
 
 .breadcrumb{
   background:#4169a8;
+}
+
+.email-section{
+  height: auto;
+  background: #2193b0;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
 }

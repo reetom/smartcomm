@@ -1,85 +1,37 @@
 import React, {Component} from 'react';
-import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton, Textfield, Snackbar} from 'react-mdl';
+import {CardText,Card,CardTitle, CardMenu,IconButton} from 'react-mdl';
 import {Link} from 'react-router-dom';
-import SendEmail from "./complibrary/sendemail";
+import {Container, Row, Col, Form, FormGroup, Button, Input} from 'reactstrap';
 import landingbanner from '../../src/assets/banners/landingbanner6.jpg';
 import bag9 from '../../src/assets/products/bag9.jpg';
 import bag10 from '../../src/assets/products/bag10.jpg';
 import bag11 from '../../src/assets/products/bag11.jpeg';
 import bag12 from '../../src/assets/products/bag12.jpg';
-import bag4 from '../../src/assets/products/bag4.jpeg';
 import bag5 from '../../src/assets/products/bag5.jpeg';
 import bag6 from '../../src/assets/products/bag6.jpeg';
 import bag7 from '../../src/assets/products/bag7.jpeg';
 
-var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'reetom@gmail.com',
-      pass: '***********'
-    }
-  });
-  
-  var mailOptions = {
-    from: 'reetom@gmail.com',
-    to: 'reetom@skava.com',
-    subject: 'SmartComm Subscription Notification',
-    text: 'Thank you for subscribing to SmartComm. Now watch how we take away your money!'
-  };
 
 class Landing extends Component {
     constructor(props) {
         super(props);
-        this.handleShowSnackbar = this.handleShowSnackbar.bind(this);
-        this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.state = { isSnackbarActive: false,
-                        email: 'Please enter your email address'
-        };
       }
-      //email
-      handleChange(event) {
-        this.setState({value: event.target.value});
-        console.log(this.state.email);
-      }
-
-      //Snackbar functions follow
-      handleShowSnackbar() {
-        this.setState({
-          isSnackbarActive: true,
-          
-        });
-         transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
-      }
-
-      handleTimeoutSnackbar() {
-        this.setState({ isSnackbarActive: false });
-      }
+  
 
     render() {
-        const {isSnackbarActive, email } = this.state;
 
         return(
-            <div style={{width: '100%', margin: 'auto'}}>
-                <Grid className = "landing-grid">
-                <Cell col={12}>
+            <div className="page-background">
+            <Container fluid>
+                <Row>
+                    <Col sm={12}>
+                        <div className="one-em-spacing"/>
                         <div className="promo-icon-block">
                              <p>Free shipping over $35 purchase, hurry!</p>
                         </div>
-                    </Cell>
-                    <Cell col={12}>
                         <div className="banner-text">
                             <h1> The only bag we don't have is the one you don't like!</h1>
                         </div>
-                    </Cell>
-                    <Cell col={12}>
                         <div>
                             <img
                                 src={landingbanner}
@@ -87,7 +39,11 @@ class Landing extends Component {
                                 className="landing-banner"
                             />
                         </div>
-                        <div className="new-arrivals-section"> 
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={12}>
+                    <div className="new-arrivals-section"> 
                         <div className="new-arrivals-text">
                             <h2>New Arrivals</h2>
                         </div>
@@ -167,7 +123,11 @@ class Landing extends Component {
                               </Card>
                         </div>
                         </div>
-                        <div className="currently-trending-section">
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={12}>
+                    <div className="currently-trending-section">
                             <div className="currently-trending-text">
                                 <h2>Currently Trending</h2>
                             </div>
@@ -243,36 +203,43 @@ class Landing extends Component {
                                     <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
                                 </CardMenu>
                               </Card>
+                            </div>
                         </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={12}>
+                        <div className="email-section">
+                            <div className="email-sign-up-text">
+                                    <h2>EMAIL SIGN UP</h2>
+                            </div>
+                            <div className="email-sign-up">
+                                <Form inline>
+                                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                    <Input type="email" name="email" id="Email" placeholder="email@something.com" />
+                                    </FormGroup>
+                                    <Button color="primary" >Sign Up</Button>
+                                </Form>
+                            </div>
+                            <div className="one-em-spacing"/>
                         </div>
 
-                        <div className="email-sign-up-text">
-                            <h2>EMAIL SIGN UP</h2>
-                        </div>
-                        <div className="email-sign-up">
-                            <Textfield
-                                onChange={this.handleChane}
-                                label="Please Enter Your Email Address"
-                                style={{width: '235px'}}
-                                value={email}
-                            />
-                            <Button class="submit-button" raised colored onClick={this.handleShowSnackbar}>Sign Up</Button>
-                            <Snackbar
-                                active={isSnackbarActive}
-                                onClick={this.handleClickActionSnackbar}
-                                onTimeout={this.handleTimeoutSnackbar}
-                                action="">Thank you for subscribing to SmartComm
-                            </Snackbar>
-                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={12}>
                         <div className="know-your-gucci-text">
                             <h2>KNOW YOUR GUCCI</h2>
                         </div>
                         <div className="video-iframe"> 
                             <iframe width="800" height="600" src="https://www.youtube.com/embed/c3SGeHNSJTg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
-                    </Cell>
-                </Grid>
-            </div>
+                    </Col>
+                </Row>
+            </Container>
+            <div className="one-em-spacing"/>
+        </div>
+
         )
     }
 }
