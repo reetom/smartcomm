@@ -16,6 +16,7 @@ class BuildProductCardFavorites extends Component {
 
     render() {
         const product = this.props.productFromParent;
+        var productNameEllipsis = product.productName.toString().substring(0,29) + "...";
         return(
             <div>
                 <Card shadow={5} style={{minwidth: '200'}}>
@@ -34,7 +35,7 @@ class BuildProductCardFavorites extends Component {
                     </Link>
                     </CardTitle>
                     <CardText>
-                        {product.productName} 
+                        {productNameEllipsis} 
                         <div>${product.price}</div>
                     </CardText>
                     <CardMenu style={{color: 'RED'}}>

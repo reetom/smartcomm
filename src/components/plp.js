@@ -5,7 +5,7 @@ import landingbanner from '../../src/assets/banners/landingbanner5.jpg';
 import BuildProductCard from './complibrary/buildproductcard';
 import Pagination from './complibrary/pagination';
 import {Button,Container, Row, Col} from 'reactstrap';
-import { cpus } from 'os';
+import {Breadcrumb} from 'react-bootstrap';
 
 
 class PLP extends Component {
@@ -83,8 +83,11 @@ class PLP extends Component {
                     <Row>
                         <Col sm={12}>
                             <div>
-                                Breadcrumbs come here @ToDo
-                            </div>
+                                <Breadcrumb >
+                                    <Breadcrumb.Item href="http://localhost:3000" >Home</Breadcrumb.Item>
+                                    <Breadcrumb.Item active>men</Breadcrumb.Item>                       
+                                </Breadcrumb>
+                            </div> 
                         </Col>
                     </Row>
                     <Row>

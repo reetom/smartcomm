@@ -266,12 +266,13 @@ class ShoppingCart extends Component{
         let savedList = JSON.parse(localStorage.getItem("savedList"));
         var savedCardUnit ="";
         var savedCardUnitToDisplay ="";
+        var productNameEllipsis = "";
         //Get the list of favorites from backend for the signed in user. @ToDo
         if (savedList != null && savedList.length >0){
             //Loop through the products in the saved list and build the product cards to display.
             savedCardUnit = savedList.map(product =>  
                     <div>
-                    <Card shadow={5} style={{minwidth: '200'}}>
+                        <Card shadow={5} style={{minwidth: '200'}}>
                         <CardTitle style={{color: '#fff', height: '250px'}}>
                         <Link to={{
                             pathname: '/pdp',
@@ -287,7 +288,7 @@ class ShoppingCart extends Component{
                         </Link>
                         </CardTitle>
                         <CardText>
-                            {product.productName} 
+                            {(product.productName.toString()).substring(0,29)+ "..."} 
                             <div>${product.price}</div>
                         </CardText>
                         <CardMenu style={{color: 'RED'}}>
@@ -299,6 +300,8 @@ class ShoppingCart extends Component{
                         </CardMenu>
                     </Card>
                 </div>
+            
+
                 );
             savedCardUnitToDisplay = <div className="saved-prod-grid">{savedCardUnit}</div>
         } else {

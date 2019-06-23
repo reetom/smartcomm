@@ -20,7 +20,7 @@ class BuildProductCard extends Component {
         const product = this.props.productFromParent;
         console.log("product from parent :" + {product});
         let modalClose = () => this.setState({ modalShow: false });
-
+        var productNameEllipsis = product.productName.toString().substring(0,29) + "...";
         return(
             <div>
                 <Card shadow={5} style={{minwidth: '200'}}>
@@ -39,7 +39,7 @@ class BuildProductCard extends Component {
                     </Link>
                     </CardTitle>
                     <CardText>
-                        {product.productName} 
+                        {productNameEllipsis} 
                         <div>${product.price}</div>
                     </CardText>
                     <CardMenu style={{color: 'RED'}}>
