@@ -14,7 +14,7 @@ const Brown = {
     background: 'black'
   };
 
-  const placeholder_image = "https://ehroplar.sirv.com/Images/smartcomm/socialMediaIcons/profile_pic_placeholder.png";
+const placeholder_image = "https://ehroplar.sirv.com/Images/smartcomm/placeholders/image_not_available.jpeg";
 
 class PDP extends Component {
     constructor(props){
@@ -167,13 +167,9 @@ class PDP extends Component {
 
                 <img src={placeholder_image}
                 alt=""
-                className="alt-image-property" onClick={() => this.toggleImage(placeholder_image)}/>      
-
-                <img src={placeholder_image}
-                alt=""
-                className="alt-image-property" onClick={() => this.toggleImage(placeholder_image)}/>  
+                className="alt-image-property" onClick={() => this.toggleImage(placeholder_image)}/>
             
-            </div>
+</div>
         );
         this.setState({altImagesToDisplay:altImagesToDisplay});
     }

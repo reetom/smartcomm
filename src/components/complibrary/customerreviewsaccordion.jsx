@@ -17,7 +17,7 @@ class CustomerReviewsAccordion extends Component{
     super(props);
     this.state = {
       productReviewsToDisplay:"",
-      profile_image:"https://ehroplar.sirv.com/Images/smartcomm/socialMediaIcons/profile_pic_placeholder.png"
+      profile_image:"https://ehroplar.sirv.com/Images/smartcomm/placeholders/profile_pic_placeholder.png"
     }
   }
 
