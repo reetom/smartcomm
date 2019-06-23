@@ -580,3 +580,13 @@ height: 10px;
 .pdp-prod-details{
   padding-left: 2em;
 }
+
+.profile-image{
+  width: 100px;
+  height: 100px;
+}
+
+.rating > span:hover:before {
+  content: "\2605";
+  position: absolute;
+}

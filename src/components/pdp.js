@@ -220,7 +220,7 @@ class PDP extends Component {
                     </Row>
                     <Row>
                         <div className="accordion-div">
-                            <CustomerReviewsAccordion productSpecs={productToDisplay.productSpecs}/>
+                            <CustomerReviewsAccordion product={productToDisplay}/>
                         </div>
                     </Row>
 
