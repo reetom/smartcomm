@@ -338,7 +338,7 @@ class ShoppingCart extends Component{
                         </Link>
                         </CardTitle>
                         <CardText>
-                            {product.productName} 
+                            {(product.productName.toString()).substring(0,29)+ "..."} 
                             <div>${product.price}</div>
                         </CardText>
                         <CardMenu style={{color: 'RED'}}>
