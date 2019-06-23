@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Button,Slider, Checkbox} from 'react-mdl';
+import {Slider, Checkbox} from 'react-mdl';
 import CLPData from './../data/clp.json';
 import landingbanner from '../../src/assets/banners/landingbanner5.jpg';
 import BuildProductCard from './complibrary/buildproductcard';
 import Pagination from './complibrary/pagination';
-import {Container, Row, Col} from 'reactstrap';
+import {Button,Container, Row, Col} from 'reactstrap';
 import { cpus } from 'os';
 
 
@@ -125,8 +125,7 @@ class PLP extends Component {
                                         <Slider min={0} max={5000} defaultValue={2500} />
                                     </div>
                                     <div className="plp-refine-button">
-                                        <Button class="plp-button" raised colored onClick={this.handleShowSnackbar}>Apply</Button>
-                                        <Button class="plp-button" raised colored onClick={this.handleShowSnackbar}>Reset</Button>
+                                        <Button color="primary" raised colored >Apply</Button> <Button color="primary" raised colored >Reset</Button>
                                     </div>
                                 </div>
                         </Col>
