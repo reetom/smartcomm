@@ -14,6 +14,8 @@ const Brown = {
     background: 'black'
   };
 
+  const placeholder_image = "https://ehroplar.sirv.com/Images/smartcomm/socialMediaIcons/profile_pic_placeholder.png";
+
 class PDP extends Component {
     constructor(props){
         super(props);
@@ -22,10 +24,11 @@ class PDP extends Component {
             quantityDropdownOpen: false,
             quantityDropDownValue:"select",
             colorDropdownOpen: false,
-            colorDropDownValue:"select"
+            colorDropDownValue:"select",
+            image_to_display: ""
        }
-       this.addToBag = this.addToBag.bind(this);
-       //this.saveForLater = this.saveForLater.bind(this);
+        this.addToBag = this.addToBag.bind(this);
+        //this.saveForLater = this.saveForLater.bind(this);
         //For the quantity drop down
         this.toggleQuantity = this.toggleQuantity.bind(this);
         this.changeQuantityValue = this.changeQuantityValue.bind(this);
@@ -33,6 +36,9 @@ class PDP extends Component {
         this.toggleColor = this.toggleColor.bind(this);
         this.changeColorValue = this.changeColorValue.bind(this);
         this.saveProduct = this.saveProduct.bind(this);
+        this.altImageGallery = this.altImageGallery.bind(this);
+        this.toggleImage = this.toggleImage.bind(this);
+        this.displayPrimaryImage = this.displayPrimaryImage.bind(this);
     }
 
     //Toggle for the quantity dorpdown
@@ -84,6 +90,23 @@ class PDP extends Component {
         }
     }
 
+    toggleImage( newImageToDisplay){
+        console.log(newImageToDisplay);
+        var primaryImageHTML = <img data-src={newImageToDisplay}
+                                    alt=""
+                                    className="pdp-image"/>;
+        this.setState({image_to_display: primaryImageHTML});
+
+    }
+
+    displayPrimaryImage(){
+        var {productToDisplay} = this.props.location.state;
+        var primaryImage = productToDisplay.imageURL;
+        var primaryImageHTML = <img data-src={primaryImage}
+                            alt=""
+                            className="pdp-image"/>;
+        this.setState({image_to_display: primaryImageHTML});
+    }
 
      //This add to bag fuction is used to movea  product from the saved list or the recommended list to the cart.
      addToBag({product}){
@@ -118,15 +141,41 @@ class PDP extends Component {
      //the user goes to the cart page.
  }
     componentDidMount(){
-        //Todo - replace with the PDP url
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then(res => res.json())
-        .then (json => {
-            this.setState({
-                products: json,
-                isLoaded: true,               
-            })
-        });
+        this.altImageGallery();
+        this.displayPrimaryImage();
+    }
+
+    altImageGallery(){
+        var altImagesToDisplay = [];
+        altImagesToDisplay.push (
+            <div >
+                <img src={placeholder_image}
+                alt=""
+                className="alt-image-property" onClick={this.toggleImage(placeholder_image)}/>
+                
+                <img src={placeholder_image}
+                alt=""
+                className="alt-image-property" onClick={() => this.toggleImage(placeholder_image)}/>
+                
+                <img src={placeholder_image}
+                alt=""
+                className="alt-image-property" onClick={() => this.toggleImage(placeholder_image)}/>
+
+                <img src={placeholder_image}
+                alt=""
+                className="alt-image-property" onClick={() => this.toggleImage(placeholder_image)}/>        
+
+                <img src={placeholder_image}
+                alt=""
+                className="alt-image-property" onClick={() => this.toggleImage(placeholder_image)}/>      
+
+                <img src={placeholder_image}
+                alt=""
+                className="alt-image-property" onClick={() => this.toggleImage(placeholder_image)}/>  
+            
+            </div>
+        );
+        this.setState({altImagesToDisplay:altImagesToDisplay});
     }
 
     handleChange = i => {
@@ -137,7 +186,7 @@ class PDP extends Component {
 
     render() {
         const { handleChange } = this;
-        const { currentIndex, isActive} = this.state;
+        const {altImagesToDisplay, image_to_display} = this.state;
         var {productToDisplay} = this.props.location.state
 
         return(
@@ -147,9 +196,12 @@ class PDP extends Component {
                         <div className="pdp-image-prod-details">
                             <Col sm={6}>
                                 <div class="Sirv" data-effect="zoom" >
-                                    <img data-src={productToDisplay.imageURL}
-                                    alt=""
-                                    className="pdp-image"/>
+                                    {image_to_display}
+                                </div>
+                                <div className="one-em-spacing"/>
+                                <div className="one-em-spacing"/>
+                                <div className="alt-image-gallery">
+                                    {altImagesToDisplay}
                                 </div>
                             </Col>
                             <Col sm={6}>
