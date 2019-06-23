@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
 import landingbanner from '../../src/assets/banners/landingbanner3.jpg';
 import CLPData from './../data/clp.json';
 import BuildProductCard from './complibrary/buildproductcard';
 import Pagination from './complibrary/pagination';
 import {Breadcrumb} from 'react-bootstrap';
+import {Container, Row} from 'reactstrap';
 
 class CLP extends Component {
     constructor(props){
@@ -58,32 +58,30 @@ class CLP extends Component {
         const cardUnit = this.state.pageOfItems.map(product =>  <BuildProductCard productFromParent={product}/>)
         const {categoryName} = this.state;
         return(
-            <div style={{width: '100%', margin: 'auto'}}>
-                <Grid className = "clp-landing-grid">
-                    <Cell col={12}>
+            <div className="page-background">
+                <Container fluid>
+                    <Row>
                         <div> 
-                                <img
-                                    src={landingbanner}
-                                    alt="landingbanner1"
-                                    className="clp-landing-banner"
-                                />
-                        </div>
+                            <img
+                                src={landingbanner}
+                                alt="landingbanner1"
+                                className="clp-landing-banner"
+                            />
+                        </div>  
                         <div>
                             <Breadcrumb >
                                 <Breadcrumb.Item href="http://localhost:3000" >Home</Breadcrumb.Item>
                                 <Breadcrumb.Item active>men</Breadcrumb.Item>                       
                             </Breadcrumb>
-                        </div>
+                        </div>    
                         <div className="text-right">
                             <Pagination items={this.state.exampleItems} onChangePage={this.onChangePage} />
-                        </div>
-                    </Cell>
-                    <Cell col={12}>
+                        </div>   
                         <div className="clp-grid"> 
                             {cardUnit}
-                        </div>
-                    </Cell>
-                </Grid>
+                        </div>              
+                    </Row>
+                </Container>
             </div>
         )
     }
