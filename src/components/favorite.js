@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import BuildProductCardFavorites from './complibrary/buildproductcardfavorites';
-import {Grid, Cell, CardText,Card,CardTitle, CardActions, CardMenu, Button, IconButton} from 'react-mdl';
+import { Container, Col, Row } from 'reactstrap';
 
 class Favorite extends Component {
 
@@ -61,13 +61,15 @@ class Favorite extends Component {
     render() { 
         const {favCardUnit} = this.state;
         return(
-            <div style={{width: '100%', height: "100%", margin: 'auto'}}>
-                <Grid className = "fav-landing-grid">
-                    <Cell col={12}>
-                        {favCardUnit}
-                       </Cell>
-                </Grid>
-            </div>
+                <div className = "fav-page-background">
+                    <Container fluid>
+                        <Row>
+                            <Col sm={12}>
+                                {favCardUnit}
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
         )
     }
 }
