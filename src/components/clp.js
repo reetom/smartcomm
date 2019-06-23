@@ -4,7 +4,7 @@ import CLPData from './../data/clp.json';
 import BuildProductCard from './complibrary/buildproductcard';
 import Pagination from './complibrary/pagination';
 import {Breadcrumb} from 'react-bootstrap';
-import {Container, Row} from 'reactstrap';
+import {Container, Row, Col} from 'reactstrap';
 
 class CLP extends Component {
     constructor(props){
@@ -61,25 +61,27 @@ class CLP extends Component {
             <div className="page-background">
                 <Container fluid>
                     <Row>
-                        <div> 
-                            <img
-                                src={landingbanner}
-                                alt="landingbanner1"
-                                className="clp-landing-banner"
-                            />
-                        </div>  
-                        <div>
-                            <Breadcrumb >
-                                <Breadcrumb.Item href="http://localhost:3000" >Home</Breadcrumb.Item>
-                                <Breadcrumb.Item active>men</Breadcrumb.Item>                       
-                            </Breadcrumb>
-                        </div>    
-                        <div className="text-right">
-                            <Pagination items={this.state.exampleItems} onChangePage={this.onChangePage} />
-                        </div>   
-                        <div className="clp-grid"> 
-                            {cardUnit}
-                        </div>              
+                        <Col sm={12}>
+                            <div> 
+                                <img
+                                    src={landingbanner}
+                                    alt="landingbanner1"
+                                    className="clp-landing-banner"
+                                />
+                            </div>  
+                            <div>
+                                <Breadcrumb >
+                                    <Breadcrumb.Item href="http://localhost:3000" >Home</Breadcrumb.Item>
+                                    <Breadcrumb.Item active>men</Breadcrumb.Item>                       
+                                </Breadcrumb>
+                            </div>    
+                            <div className="text-right">
+                                <Pagination items={this.state.exampleItems} onChangePage={this.onChangePage} />
+                            </div>   
+                            <div className="clp-grid"> 
+                                {cardUnit}
+                            </div> 
+                        </Col>
                     </Row>
                 </Container>
             </div>
