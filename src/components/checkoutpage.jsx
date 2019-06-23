@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Col, Button, Form, FormGroup, Label, Input, Row, Container, ButtonGroup, FormFeedback} from 'reactstrap';
+import { Col, Button, Form, FormGroup, Label, Input, Row, Container, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 import UpdateCart from './complibrary/updatecart';
 
@@ -69,7 +69,21 @@ class CheckoutPage extends Component {
             <Container fluid >
                 <Form onSubmit = {this.onSubmit}>
                     <Row>
-                        <SectionHeadingAndWhiteLine heading="Proceed to Checkout" color="white"/>
+                        <Col sm={12}>
+                            <SectionHeadingAndWhiteLine heading="Proceed to Checkout" color="white"/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm={12}>
+                            <div className="one-em-spacing" />
+                            <div>
+                            <Breadcrumb tag="nav" listTag="div">
+                                <BreadcrumbItem tag="a" href="/">Home / </BreadcrumbItem>
+                                <BreadcrumbItem tag="a" href="/shoppingcart">Cart /</BreadcrumbItem>
+                                <BreadcrumbItem active tag="span"> Checkout</BreadcrumbItem>
+                            </Breadcrumb>
+                            </div> 
+                        </Col>
                     </Row>
                     <Row>
                         <Col sm={6}>
@@ -184,9 +198,10 @@ class CheckoutPage extends Component {
                     </Row>
 
                     <Row>
-                        <SectionHeadingAndWhiteLine heading="Select Shipping Method" color="white"/>
+                        <Col sm={12}>
+                            <SectionHeadingAndWhiteLine heading="Select Shipping Method" color="white"/>
+                        </Col>
                     </Row>
-                    
                     <Row>
                         <Col sm={3}>
                             <div className="align-right">
@@ -226,6 +241,7 @@ class CheckoutPage extends Component {
 
      
                     <div className="order-review-button">
+
                         <Button color="primary" type="submit">Review Your Order</Button>
                     </div>
                 </Form>

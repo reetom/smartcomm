@@ -24,10 +24,12 @@ class CheckoutOptions extends Component {
         
         return(
           <div className="login-page-background">
-          <Container>
+          <Container fluid>
             <Row>
-              <SectionHeadingAndWhiteLine heading="Select checkout Option" color="white"/>
-            </Row>
+              <Col sm={12}>
+                <SectionHeadingAndWhiteLine heading="Select checkout Option" color="white"/>
+              </Col>
+              </Row>
             <Row>
               <div className="one-em-spacing"/>
               <div className="one-em-spacing"/>

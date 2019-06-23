@@ -4,8 +4,7 @@ import CLPData from './../data/clp.json';
 import landingbanner from '../../src/assets/banners/landingbanner5.jpg';
 import BuildProductCard from './complibrary/buildproductcard';
 import Pagination from './complibrary/pagination';
-import {Button,Container, Row, Col} from 'reactstrap';
-import {Breadcrumb} from 'react-bootstrap';
+import {Button,Container, Row, Col, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 
 
 class PLP extends Component {
@@ -82,11 +81,12 @@ class PLP extends Component {
                     </Row>
                     <Row>
                         <Col sm={12}>
+                            <div className="one-em-spacing" />
                             <div>
-                                <Breadcrumb >
-                                    <Breadcrumb.Item href="http://localhost:3000" >Home</Breadcrumb.Item>
-                                    <Breadcrumb.Item active>men</Breadcrumb.Item>                       
-                                </Breadcrumb>
+                            <Breadcrumb tag="nav" listTag="div">
+                                <BreadcrumbItem tag="a" href="/">Home / </BreadcrumbItem>
+                                <BreadcrumbItem active tag="span"> All</BreadcrumbItem>
+                            </Breadcrumb>
                             </div> 
                         </Col>
                     </Row>

@@ -3,8 +3,7 @@ import landingbanner from '../../src/assets/banners/landingbanner3.jpg';
 import CLPData from './../data/clp.json';
 import BuildProductCard from './complibrary/buildproductcard';
 import Pagination from './complibrary/pagination';
-import {Breadcrumb} from 'react-bootstrap';
-import {Container, Row, Col} from 'reactstrap';
+import {Container, Row, Col, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 
 class CLP extends Component {
     constructor(props){
@@ -70,11 +69,11 @@ class CLP extends Component {
                                 />
                             </div>  
                             <div>
-                                <Breadcrumb >
-                                    <Breadcrumb.Item href="http://localhost:3000" >Home</Breadcrumb.Item>
-                                    <Breadcrumb.Item active>men</Breadcrumb.Item>                       
-                                </Breadcrumb>
-                            </div>    
+                            <Breadcrumb tag="nav" listTag="div">
+                                <BreadcrumbItem tag="a" href="/">Home / </BreadcrumbItem>
+                                <BreadcrumbItem active tag="span"> All</BreadcrumbItem>
+                            </Breadcrumb>
+                            </div>     
                             <div className="text-right">
                                 <Pagination items={this.state.exampleItems} onChangePage={this.onChangePage} />
                             </div>   

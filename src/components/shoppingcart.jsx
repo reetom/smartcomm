@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
-import {Container,Row, Col} from 'react-bootstrap';
+import {Button, Form, FormGroup, Label, Input, Container,Row, Col, Breadcrumb,BreadcrumbItem} from 'reactstrap';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 import PayPalCheckoutPage from './paypalcheckoutpage';
 import UpdateCart from './complibrary/updatecart';
@@ -8,7 +7,6 @@ import CreateEmptyCart from './complibrary/createemptycart';
 import RecommendedProducts from './../data/recommendedproducts';
 import { CardText,Card,CardTitle, CardMenu,IconButton, Snackbar} from 'react-mdl';
 import {Link} from 'react-router-dom';
-import { cpus } from 'os';
 
 
 class ShoppingCart extends Component{
@@ -467,6 +465,17 @@ class ShoppingCart extends Component{
         return(
             <div className="page-background">
                 <Container fluid>
+                    <Row>
+                        <Col sm={12}>
+                            <div className="one-em-spacing" />
+                            <div>
+                            <Breadcrumb tag="nav" listTag="div">
+                                <BreadcrumbItem tag="a" href="/">Home / </BreadcrumbItem>
+                                <BreadcrumbItem active tag="span"> Cart</BreadcrumbItem>
+                            </Breadcrumb>
+                            </div> 
+                        </Col>
+                    </Row>
                     <Row>
                         <Col sm={9}>
                             {singleProductRow}

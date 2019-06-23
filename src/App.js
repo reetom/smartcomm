@@ -13,9 +13,24 @@ class App extends Component {
         super(props);
         this.state = {
             displayFavBadge: "",
+            isHovering: false
        }
-       this.buildFavoriteBadge = this.buildFavoriteBadge.bind(this)
+       this.buildFavoriteBadge = this.buildFavoriteBadge.bind(this);
+       this.handleMouseHover = this.handleMouseHover.bind(this);
     }
+
+    handleMouseHover() {
+        this.setState(this.toggleHoverState);
+    }
+    
+      toggleHoverState(state) {
+
+        
+        return {
+          isHovering: !state.isHovering,
+        };
+      }
+
     //Build the fav badge and count alone. No setting state.
     buildFavoriteBadge(){
         const displayFavBadge = <BuildFavBadge />;
@@ -40,9 +55,11 @@ class App extends Component {
                                 {displayFavBadge}
                             </Link>
                             <Link to ="/shoppingcart">
-                                <Badge text="5" overlap>
-                                    <Icon name="shoppingcart" />
-                                </Badge>
+                                <div onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}>
+                                    <Badge text="5" overlap>
+                                        <Icon name="shoppingcart" />
+                                    </Badge>
+                                </div>
                             </Link>
                         </Navigation>
                     </Header>

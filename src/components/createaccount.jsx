@@ -23,10 +23,12 @@ class CreateAccount extends Component {
     render() {
         return(
             <div className="login-page-background">
-            <Container>
-              <Row>
-                <SectionHeadingAndWhiteLine heading="Create an Account" color="white"/>
-              </Row>
+            <Container fluid>
+                <Row>
+                  <Col sm={12}>
+                  <SectionHeadingAndWhiteLine heading="Create an Account" color="white"/>
+                  </Col>
+                </Row>
               <Row>
                   <Col sm={4}>
                   </Col>
