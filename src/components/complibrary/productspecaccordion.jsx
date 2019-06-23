@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import { UncontrolledCollapse, Button, CardBody, Card, Table } from 'reactstrap';
 
 const Col1 = {
-  width: '20%'
+  width: '50%',
+  textAlign: 'center'
 };
 const Col2 = {
-  width: '80%'
+  width: '50%',
+  textAlign: 'center'
 };
 
 class ProductSpecAccordion extends Component{
@@ -21,7 +23,7 @@ render(){
   for (let k of Object.keys(productSpecs)){
     console.log(k + " - " + productSpecs[k]);
     console.log(specsToDisplay);
-    specsToDisplay.push(<tr><td>{k}</td><td>{productSpecs[k]}</td></tr>);
+    specsToDisplay.push(<tr><td style={Col1}>{k.toUpperCase()}</td ><td style={Col2}>{productSpecs[k].toUpperCase()}</td></tr>);
   }
 
 
@@ -39,8 +41,8 @@ render(){
                 <tbody>
                 <thead>
                     <tr>
-                      <th style={Col1}></th>
-                      <th style={Col2}></th>
+                      <th ></th>
+                      <th ></th>
                     </tr>
                   </thead>
                   {specsToDisplay}
