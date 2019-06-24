@@ -47,7 +47,7 @@ class CLP extends Component {
                 if(product.category === categoryName){
                     filteredproducts.push(product);
                 }
-        })
+        });
         // set the filtered category products in state for pagination
         this.setState({exampleItems:filteredproducts});
     }

@@ -3,7 +3,9 @@ import {CardText,Card,CardTitle, CardMenu,IconButton} from 'react-mdl';
 import {Link} from 'react-router-dom';
 import {Container, Row, Col, Form, FormGroup, Button, Input} from 'reactstrap';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
-
+import BuildProductCard from './complibrary/buildproductcard';
+import NewArrivals from './../data/newarrivals';
+import TrendingNow from './../data/trendingnow';
 import landingbanner from '../../src/assets/banners/landingbanner6.jpg';
 import bag9 from '../../src/assets/products/bag9.jpg';
 import bag10 from '../../src/assets/products/bag10.jpg';
@@ -17,7 +19,13 @@ import bag7 from '../../src/assets/products/bag7.jpeg';
 class Landing extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            trendingNowCardUnit:"",
+            newArrivalsCardUnit:""
+        }
         this.onSingUpButtonClick = this.onSingUpButtonClick.bind(this);
+        this.buildNewArrivals = this.buildNewArrivals.bind(this);
+        this.buildTrendingNow = this.buildTrendingNow.bind(this);
       }
   
     onSingUpButtonClick(event){
@@ -25,8 +33,26 @@ class Landing extends Component {
         const data = new FormData(event.target);
         console.log(data.get('email'));
     } 
-    render() {
 
+    buildNewArrivals(){
+        //loop through every product in the array and build the card.
+        const newArrivalsCardUnit = NewArrivals.map(product =>  <BuildProductCard productFromParent={product}/>);
+        this.setState({newArrivalsCardUnit:newArrivalsCardUnit});
+    }
+    
+    buildTrendingNow(){
+        //loop through every product in the array and build the card.
+        const trendingNowCardUnit = NewArrivals.map(product =>  <BuildProductCard productFromParent={product}/>);
+        this.setState({trendingNowCardUnit: trendingNowCardUnit});
+    }
+
+    componentDidMount(){
+        this.buildNewArrivals();
+        this.buildTrendingNow();
+    }
+
+    render() {
+        const {newArrivalsCardUnit, trendingNowCardUnit} = this.state;
         return(
             <div className="page-background">
             <Container fluid>
@@ -50,164 +76,22 @@ class Landing extends Component {
                 </Row>
                 <Row>
                     <Col sm={12}>
-                    <div className="new-arrivals-section"> 
-                        <div className="one-em-spacing"/>
-                        <SectionHeadingAndWhiteLine heading="Trending Now" color="white"/>
-                        <div className="clp-background"> 
-                            <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <Link to="/pdp">
-                                    <img
-                                    src={bag9}
-                                    alt="bag1"
-                                    className="card-image"
-                                    />
-                                </Link>
-
-                                </CardTitle>
-                                <CardText>
-                                    Gucci 2016 Brown Leather Marmont Shoulder Bag w/ Green & Red Stripe
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}>
-
-                                    </IconButton>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag10}
-                                alt="bag10"
-                                className="card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci Multicolor Striped Horsebit Bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag11}
-                                alt="bag11"
-                                className="card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci's Mini Round Ophidia and GG Marmont Bags 
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag12}
-                                alt="bag12"
-                                className="card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci's Mini Ophidia GG Backpack 
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                        </div>
+                        <div className="new-arrivals-section"> 
+                            <div className="one-em-spacing"/>
+                            <SectionHeadingAndWhiteLine heading="Trending Now" color="white"/>
+                            <div className="clp-grid"> 
+                                {newArrivalsCardUnit}
+                            </div>
                         </div>
                     </Col>
                 </Row>
                 <Row>
                     <Col sm={12}>
                     <div className="currently-trending-section">
-                            <div className="one-em-spacing"/>
+                        <div className="one-em-spacing"/>
                             <SectionHeadingAndWhiteLine heading="New Arrivals" color="white"/>
-                            <div className="clp-background"> 
-                            <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <Link to="/pdp">
-                                    <img
-                                    src={bag5}
-                                    alt="bag5"
-                                    className="card-image"
-                                    />
-                                </Link>
-
-                                </CardTitle>
-                                <CardText>
-                                    Gucci 2016 Brown Leather Marmont Shoulder Bag w/ Green & Red Stripe
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag6}
-                                alt="bag6"
-                                className="card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci Multicolor Striped Horsebit Bag
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag11}
-                                alt="bag11"
-                                className="card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci's Mini Round Ophidia and GG Marmont Bags 
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
-                              <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
-                                <CardTitle style={{color: '#fff', height: '250px'}}>
-                                <img
-                                src={bag7}
-                                alt="bag7"
-                                className="card-image"
-                            />
-                                </CardTitle>
-                                <CardText>
-                                    Gucci's Mini Ophidia GG Backpack 
-                                </CardText>
-                                <CardMenu style={{color: 'RED'}}>
-                                    <IconButton name="share" style={{color: 'Blue'}}/>
-                                    <IconButton name="favorite" />
-                                    <IconButton name="shoppingcart" style={{color: 'Orange'}}/>
-                                </CardMenu>
-                              </Card>
+                            <div className="clp-grid"> 
+                                {trendingNowCardUnit}
                             </div>
                         </div>
                     </Col>
