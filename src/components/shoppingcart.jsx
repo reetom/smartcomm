@@ -237,29 +237,27 @@ class ShoppingCart extends Component{
     }
 
     //This function is used to remove a product from the saved list.
-    removeFromSavedProducts(product){
-        var favList =[];
-        var favCount = 0;
+    removeFromSavedProducts({product}){
+        var savedList =[];
         console.log("product to remove from saved list:" + product);
         //First check if the favList in local storate is empty, if not empty add to the list
         let savedListFromLocalStoreage = JSON.parse(localStorage.getItem("savedList"));
 
         if (savedListFromLocalStoreage != null) {
             savedListFromLocalStoreage.map(forEachProduct => {
-                if(forEachProduct.productName != product.productName){ 
-                    favList.push(forEachProduct);
-                    favCount= favCount+1;
+                if(forEachProduct.productID != product.productID){ 
+                    savedList.push(forEachProduct);
                 }
             
             });
         }   
-        localStorage.setItem("savedList",JSON.stringify(favList));
+        localStorage.setItem("savedList",JSON.stringify(savedList));
         //Remove the product from the saved list.
         this.buildSavedCards();
 
     }
 
-    buildSavedCards(){
+    buildSavedCards(){console.log("build saved cards is called");
         // Get the list of favorites from localstorage for the guest user.
         let savedList = JSON.parse(localStorage.getItem("savedList"));
         var savedCardUnit ="";
@@ -303,6 +301,7 @@ class ShoppingCart extends Component{
                 );
             savedCardUnitToDisplay = <div className="saved-prod-grid">{savedCardUnit}</div>
         } else {
+            console.log("No Items to display in saved list");
             savedCardUnitToDisplay = <div className="no-saved-prod-grid"> <h5>There are no saved products</h5></div>
         }
         //Set the saved cards in the state.
@@ -391,7 +390,7 @@ class ShoppingCart extends Component{
     
     }
     //This add to bag fuction is used to movea  product from the saved list or the recommended list to the cart.
-    addToBag({product}){console.log("adding product to bag :"+ {product});
+    addToBag({product}){
         var cartProducts =[];
         var cartCount = 0;
         var prodAlreadyInCart = "false";
