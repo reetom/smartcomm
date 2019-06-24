@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {CardText,Card,CardTitle, CardMenu,IconButton} from 'react-mdl';
 import {Link} from 'react-router-dom';
 import {Container, Row, Col, Form, FormGroup, Button, Input} from 'reactstrap';
+import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
+
 import landingbanner from '../../src/assets/banners/landingbanner6.jpg';
 import bag9 from '../../src/assets/products/bag9.jpg';
 import bag10 from '../../src/assets/products/bag10.jpg';
@@ -15,9 +17,14 @@ import bag7 from '../../src/assets/products/bag7.jpeg';
 class Landing extends Component {
     constructor(props) {
         super(props);
+        this.onSingUpButtonClick = this.onSingUpButtonClick.bind(this);
       }
   
-
+    onSingUpButtonClick(event){
+        event.preventDefault();
+        const data = new FormData(event.target);
+        console.log(data.get('email'));
+    } 
     render() {
 
         return(
@@ -44,9 +51,8 @@ class Landing extends Component {
                 <Row>
                     <Col sm={12}>
                     <div className="new-arrivals-section"> 
-                        <div className="new-arrivals-text">
-                            <h2>New Arrivals</h2>
-                        </div>
+                        <div className="one-em-spacing"/>
+                        <SectionHeadingAndWhiteLine heading="Trending Now" color="white"/>
                         <div className="clp-background"> 
                             <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
                                 <CardTitle style={{color: '#fff', height: '250px'}}>
@@ -128,9 +134,8 @@ class Landing extends Component {
                 <Row>
                     <Col sm={12}>
                     <div className="currently-trending-section">
-                            <div className="currently-trending-text">
-                                <h2>Currently Trending</h2>
-                            </div>
+                            <div className="one-em-spacing"/>
+                            <SectionHeadingAndWhiteLine heading="New Arrivals" color="white"/>
                             <div className="clp-background"> 
                             <Card shadow={5} style={{minwidth: '200', margin: '1em'}}>
                                 <CardTitle style={{color: '#fff', height: '250px'}}>
@@ -210,20 +215,18 @@ class Landing extends Component {
                 <Row>
                     <Col sm={12}>
                         <div className="email-section">
-                            <div className="email-sign-up-text">
-                                    <h2>EMAIL SIGN UP</h2>
-                            </div>
+                            <div className="one-em-spacing"/>
+                            <SectionHeadingAndWhiteLine heading="Sign Up For Our Newsletter" color="white"/>
                             <div className="email-sign-up">
                                 <Form inline>
                                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                                     <Input type="email" name="email" id="Email" placeholder="email@something.com" />
                                     </FormGroup>
-                                    <Button color="primary" >Sign Up</Button>
+                                    <Button color="primary" onClick={this.onSingUpButtonClick} >Sign Up</Button>
                                 </Form>
                             </div>
                             <div className="one-em-spacing"/>
                         </div>
-
                     </Col>
                 </Row>
                 <Row>

@@ -3,6 +3,7 @@ import {Button, Container, Row, Col, Breadcrumb, BreadcrumbItem} from 'reactstra
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 import { PayPalButton } from "react-paypal-button-v2";
 import ReactDOM from 'react-dom';
+import {Link} from 'react-router-dom';
 
 class OrderReviewPage extends Component {
 
@@ -35,11 +36,18 @@ class OrderReviewPage extends Component {
                                 <Row>
                                     <Col sm={4}>
                                         <div className="image-center">
-                                            <img
-                                                src={cartItem.product.imageURL}
-                                                alt={cartItem.product.imageName}
-                                                className="review-image"
-                                                />                                   
+                                            <Link to={{
+                                                    pathname: '/pdp',
+                                                    state: {
+                                                    productToDisplay: cartItem.product
+                                                    }
+                                            }}>
+                                                <img
+                                                    src={cartItem.product.imageURL}
+                                                    alt={cartItem.product.imageName}
+                                                    className="review-image"
+                                                    /> 
+                                            </Link>                                  
                                         </div>
                                     </Col>
                                     <Col sm={8}>
