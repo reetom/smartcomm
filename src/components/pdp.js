@@ -187,14 +187,15 @@ class PDP extends Component {
 
         return(
             <div className="page-background">
-                <Container>
+                <Container fluid>
                     <Row>
                         <div className="pdp-image-prod-details">
                             <Col sm={6}>
-                                <div class="Sirv" data-effect="zoom" >
-                                    {image_to_display}
+                                <div className="fixed-image-area">
+                                    <div class="Sirv" data-effect="zoom" >
+                                        {image_to_display}
+                                    </div>   
                                 </div>
-                                <div className="one-em-spacing"/>
                                 <div className="one-em-spacing"/>
                                 <div className="alt-image-gallery">
                                     {altImagesToDisplay}
@@ -259,17 +260,23 @@ class PDP extends Component {
 
                     </Row>
                     <Row>
-                        <div className="one-em-spacing"></div>
-                        <div className="one-em-spacing"></div>
-                        <div className="one-em-spacing"></div>
-                        <div className="accordion-div">
-                            <ProductSpecAccordion productSpecs={productToDisplay.productSpecs}/>
-                        </div>
+                        <Col sm={12}>
+                            <div className="one-em-spacing"></div>
+                            <div className="one-em-spacing"></div>
+                            <div className="one-em-spacing"></div>
+                            <div className="accordion-div">
+                                <ProductSpecAccordion productSpecs={productToDisplay.productSpecs}/>
+                            </div>
+                        </Col>
+
                     </Row>
                     <Row>
-                        <div className="accordion-div">
-                            <CustomerReviewsAccordion product={productToDisplay}/>
-                        </div>
+                        <Col sm={12}>
+                            <div className="accordion-div">
+                                <CustomerReviewsAccordion product={productToDisplay}/>
+                            </div>
+                        </Col>
+
                     </Row>
 
                 </Container>
