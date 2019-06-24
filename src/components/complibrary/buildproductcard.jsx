@@ -114,12 +114,12 @@ function addToBag({product}){
         
         });
     } 
-    //If the product doesn't exist in the fav list, add it to the fav list.
+    //If the product doesn't exist in the bag, add it to the bag.
     if (prodAlreadyInCart == "false"){
         cartProducts.push(product);
         cartCount = cartCount +1;
     }
-    //Update the favs list and count in the localstorage.
+    //Update the cart and its count in the localstorage.
     localStorage.setItem("cartProducts",JSON.stringify(cartProducts));
     localStorage.setItem("cartCount",JSON.stringify(cartCount));
 }
