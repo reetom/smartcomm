@@ -15,6 +15,7 @@ const CreateEmptyCart = () => {
                             };
             var shippingAddress = { "firstName":"",
                                     "lastName":"",
+                                    "emailShiping":"",
                                     "streetAddress":"",
                                     "city":"",
                                     "state":"",
@@ -23,6 +24,7 @@ const CreateEmptyCart = () => {
                                 };
             var billingAddress = { "firstName":"",
                                   "lastName":"",
+                                  "emailBilling":"",
                                   "streetAddress":"",
                                   "city":"",
                                   "state":"",

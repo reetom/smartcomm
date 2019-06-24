@@ -115,6 +115,7 @@ class OrderReviewPage extends Component {
                                 <div className="shipping-address-review">
                                     <h3>Review Shipping Address</h3>
                                     <h5>{shippingAddress.firstName} {shippingAddress.lastName}</h5>
+                                    <h5>{shippingAddress.emailShipping}</h5>
                                     <h5>{shippingAddress.streetAddress}</h5>
                                     <h5>{shippingAddress.city}, {shippingAddress.state} - {shippingAddress.zipcode}</h5>  
                                 </div>
@@ -123,6 +124,7 @@ class OrderReviewPage extends Component {
                                 <div className="billing-address-review">
                                     <h3>Review Billing Address</h3>
                                     <h5>{billingAddress.firstName} {billingAddress.lastName}</h5>
+                                    <h5>{billingAddress.emailBilling}</h5>
                                     <h5>{billingAddress.streetAddress}</h5>
                                     <h5>{billingAddress.city}, {billingAddress.state} - {billingAddress.zipcode}</h5> 
                                 </div>

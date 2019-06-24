@@ -39,6 +39,7 @@ class CheckoutPage extends Component {
         const data = new FormData(event.target);
         var shippingAddress = { "firstName":data.get('firstName'),
                                 "lastName":data.get('lastName'),
+                                "emailShipping": data.get('emailShipping'),
                                 "streetAddress":data.get('streetAddress'),
                                 "city":data.get('city'),
                                 "state":data.get('state'),
@@ -47,6 +48,7 @@ class CheckoutPage extends Component {
                             };
         var billingAddress = { "firstName":data.get('billingFirstName'),
                                 "lastName":data.get('billingLastName'),
+                                "emailBilling": data.get("emailBilling"),
                                 "streetAddress":data.get('billingStreetAddress'),
                                 "city":data.get('billingCity'),
                                 "state":data.get('billingState'),
@@ -102,6 +104,14 @@ class CheckoutPage extends Component {
                                     </FormGroup>
                                 </Col>
                             </Row>
+                            <Row >
+                                <Col sm={6}>
+                                    <FormGroup>
+                                        <Label>Email Address</Label>
+                                        <Input type="text" name="emailShipping" id="emailShipping" placeholder="Enter Email Address" />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
                             <Row>
                                 <Col sm={12}>
                                     <FormGroup>
@@ -154,6 +164,14 @@ class CheckoutPage extends Component {
                                     <FormGroup>
                                         <Label>Last Name</Label>
                                         <Input type="text" name="billingLastName" id="billingLastName" placeholder="Enter Last Name" />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                            <Row >
+                                <Col sm={6}>
+                                    <FormGroup>
+                                        <Label>Email Address</Label>
+                                        <Input type="text" name="emailBilling" id="emailBilling" placeholder="Enter Email Address" />
                                     </FormGroup>
                                 </Col>
                             </Row>
