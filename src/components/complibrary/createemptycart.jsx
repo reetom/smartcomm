@@ -64,7 +64,6 @@ const CreateEmptyCart = () => {
         //Set this empty cart in localstorage.
         localStorage.setItem("cart",JSON.stringify(cart));
         console.log("Empty cart created...");
-        console.log({cart});
     }
     return (
       null

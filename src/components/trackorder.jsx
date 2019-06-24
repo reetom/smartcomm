@@ -9,12 +9,8 @@ class TrackOrder extends Component {
     constructor(props){
         super(props);
         this.state = {
-            email:"",
-            passwrod:"",
-            saveEmail:"",
+            email:""
         }
-        this.onSubmit = this.onSubmit.bind(this);
-        this.toCreateAccountPage = this.toCreateAccountPage.bind(this);
     }
 
     onSubmit(event){
@@ -30,6 +26,10 @@ class TrackOrder extends Component {
       this.props.history.push(path);
     }
 
+    buildOrderHistory(){
+
+    }
+
     render() {
         const { formErrors } = this.state;
         
@@ -37,43 +37,33 @@ class TrackOrder extends Component {
             <div className="login-page-background">
               <Container fluid>
                 <Row>
-                  <SectionHeadingAndWhiteLine heading="Sign-In or Create an Account" color="white"/>
+                  <Col sm={12}>
+                    <SectionHeadingAndWhiteLine heading="Track You Order Status" color="white"/>
+                  </Col>
                 </Row>
                 <Row>
-                    <Col sm={4}>
-                    </Col>
-                    <Col sm={4}>
-                      <Form onSubmit = {this.onSubmit}> 
-                        <FormGroup>
-                            <Label>E-mail Address</Label>
-                            <Input type="text" name="email" id="email" placeholder="Enter E-mail Address" />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label>Passowrd</Label>
-                            <Input type="password" name="password" id="password" placeholder="Enter Password" />
-                        </FormGroup>
-                                                      
-                          <div className="align-left">
-                            <Button color="primary" type="submit">Sign In</Button>
-                            </div>
+                  <Col sm={12}>
+                    <div className="align-center">
+                      <Form inline>
+                          <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                            <Label for="exampleEmail" className="mr-sm-2">Email Address</Label>
+                            <Input type="email" name="email" id="exampleEmail" placeholder="something@idk.cool" />
+                          </FormGroup>
+                          <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                            <Label for="examplePassword" className="mr-sm-2">Order #</Label>
+                            <Input type="text" name="orderNumber" id="orderNumber" placeholder="XXXX-XXXXXX-XXXX" /> <Button color="primary">Track</Button>
+                          </FormGroup>
+                          
                         </Form>
+                    </div>
                     </Col>
-                    <Col sm={4}>
-                    </Col>
-                </Row>
-                <Row>
-                  <div className="align-center">
-                    <Link to="/restpassword">Forgot your password? click here to reset your password</Link>
-                  </div>
-                </Row>
-                <Row>
-                  <div className="one-em-spacing"/>
-                  <div className="align-center">Or, Create an Account</div>
-                  <div className="one-em-spacing"/>
-                  <div className="align-center">
-                            <Button color="primary" onClick={this.toCreateAccountPage}>Create Account</Button>
-                  </div>
-                </Row>
+                  </Row>
+                  <Row>
+                      <Col sm={12}>
+
+                      </Col>
+                  </Row>
+
 
               </Container>
             
