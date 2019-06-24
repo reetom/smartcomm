@@ -51,6 +51,7 @@ class App extends Component {
                         <Navigation>
                             <Link to ="/">Home</Link>
                             <Link to ="/signin">Sign In</Link>
+                            <Link to ="/trackorder">Track Order</Link>
                             <Link to ="/favorite">
                                 {displayFavBadge}
                             </Link>

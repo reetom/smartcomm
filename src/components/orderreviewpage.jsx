@@ -174,8 +174,8 @@ class OrderReviewPage extends Component {
                     <Row>
                         <SectionHeadingAndWhiteLine heading="Enter Payment Details" color="white"/>
                         <div className="display-block-white-text">
-                
-                        </div>
+                            <img src="https://ehroplar.sirv.com/Images/smartcomm/payment%20image.png" width="400" height="200" alt="" />
+                         </div>
                     </Row>
                     <Row>
                         <div className="order-submit-button">

@@ -17,6 +17,7 @@ import CheckoutPage from './../components/checkoutpage';
 import PayPalCheckoutPage from './../components/paypalcheckoutpage';
 import OrderReviewPage from './../components/orderreviewpage';
 import OrderConfirmationPage from './../components/orderconfirmationpage';
+import TrackOrder from './../components/trackorder';
 
 const MainRoute = () => (
     <Switch>
@@ -37,6 +38,7 @@ const MainRoute = () => (
         <Route exact path="/paypalcheckoutpage" component= {PayPalCheckoutPage} />
         <Route exact path="/orderreviewpage" component= {OrderReviewPage} />
         <Route exact path="/orderconfirmationpage" component= {OrderConfirmationPage} />
+        <Route exact path="/trackorder" component= {TrackOrder} />
     </Switch>
 )
 
