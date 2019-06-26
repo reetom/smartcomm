@@ -137,6 +137,7 @@ class PLP extends Component {
                             <div  className="plp-grid">
                                 {cardUnit}
                             </div>
+                            <div className="one-em-spacing"/>
                         </Col>
                     </Row>
                 </Container>

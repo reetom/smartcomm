@@ -65,6 +65,7 @@ class Favorite extends Component {
                     <Container fluid>
                         <Row>
                             <Col sm={12}>
+                                <div className="one-em-spacing"/>
                                 {favCardUnit}
                             </Col>
                         </Row>

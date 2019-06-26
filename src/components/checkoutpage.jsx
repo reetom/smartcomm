@@ -48,7 +48,6 @@ class CheckoutPage extends Component {
                             };
         var billingAddress = { "firstName":data.get('billingFirstName'),
                                 "lastName":data.get('billingLastName'),
-                                "emailBilling": data.get("emailBilling"),
                                 "streetAddress":data.get('billingStreetAddress'),
                                 "city":data.get('billingCity'),
                                 "state":data.get('billingState'),
@@ -149,6 +148,16 @@ class CheckoutPage extends Component {
                                     </FormGroup>
                                 </Col>
                             </Row>
+                            <Row>
+                                <Col sm={6}>
+                                <FormGroup check>
+                                    <Label check>
+                                        <Input type="checkbox" />{' '}
+                                            Same as Billing Address
+                                    </Label>
+                                    </FormGroup>
+                                </Col>
+                            </Row>
                         </Col>
 
                         <Col sm="6">
@@ -164,14 +173,6 @@ class CheckoutPage extends Component {
                                     <FormGroup>
                                         <Label>Last Name</Label>
                                         <Input type="text" name="billingLastName" id="billingLastName" placeholder="Enter Last Name" />
-                                    </FormGroup>
-                                </Col>
-                            </Row>
-                            <Row >
-                                <Col sm={6}>
-                                    <FormGroup>
-                                        <Label>Email Address</Label>
-                                        <Input type="text" name="emailBilling" id="emailBilling" placeholder="Enter Email Address" />
                                     </FormGroup>
                                 </Col>
                             </Row>

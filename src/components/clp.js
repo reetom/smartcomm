@@ -81,6 +81,7 @@ class CLP extends Component {
                             <div className="clp-grid"> 
                                 {cardUnit}
                             </div> 
+                            <div className="one-em-spacing"/>
                         </Col>
                     </Row>
                 </Container>
