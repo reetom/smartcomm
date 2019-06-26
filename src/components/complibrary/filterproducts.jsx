@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 
-function BreadCrumbs (){
+function FilterProducts (filterCriteria, productsToFilter){
 
     return(
         <div>
@@ -11,4 +11,4 @@ function BreadCrumbs (){
         </div>
     )
 }
-export default BreadCrumbs;
+export default FilterProducts;

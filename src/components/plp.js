@@ -4,7 +4,7 @@ import CLPData from './../data/clp.json';
 import landingbanner from '../../src/assets/banners/landingbanner5.jpg';
 import BuildProductCard from './complibrary/buildproductcard';
 import Pagination from './complibrary/pagination';
-import {Button,Container, Row, Col, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import {Button,Container, Row, Col, Breadcrumb, BreadcrumbItem, Form, Label,Input, FormGroup} from 'reactstrap';
 
 
 class PLP extends Component {
@@ -101,36 +101,80 @@ class PLP extends Component {
                     <Row>
                         <Col sm={3}>
                             <div className="plp-refine">
-                                    <div className="plp-refine-brands">
-                                        <h4>Brands</h4>
-                                        <Checkbox label="Gucci" ripple defaultChecked />
-                                        <Checkbox label="Aldo" ripple defaultChecked />
-                                    </div>
-                                    <div className="plp-refine-color">
-                                        <h4>Colors</h4>
-                                        <Checkbox label="Blue" ripple defaultChecked />
-                                        <Checkbox label="White" ripple defaultChecked />
-                                        <Checkbox label="Maroon" ripple defaultChecked />
-                                        <Checkbox label="Black" ripple defaultChecked />
-                                        <Checkbox label="Yellow" ripple defaultChecked />
-                                        <Checkbox label="Baige" ripple defaultChecked />
-                                        <Checkbox label="Green" ripple defaultChecked />
-                                        <Checkbox label="Brown" ripple defaultChecked />
-                                        <Checkbox label="Orange" ripple defaultChecked />
-                                    </div>
-                                    <div className="plp-refine-color">
-                                        <h4>Material</h4>
-                                        <Checkbox label="Leather" ripple defaultChecked />
-                                        <Checkbox label="Fabric" ripple defaultChecked />
-                                        <Checkbox label="Mixed" ripple defaultChecked />
-                                    </div>
-                                    <div  className="plp-refine-price">
-                                        <h4>Price</h4>
-                                        <Slider min={0} max={5000} defaultValue={2500} />
-                                    </div>
-                                    <div className="plp-refine-button">
-                                        <Button color="primary" raised colored >Apply</Button> <Button color="primary" raised colored >Reset</Button>
-                                    </div>
+                                    <Form>
+                                        <div className="plp-refine-brands">
+                                            <h4>Brands</h4>
+                                            <FormGroup check>
+                                                <Label check>
+                                                <Input type="checkbox" />{' '} Gucci</Label>
+                                            </FormGroup>
+                                                <FormGroup check>
+                                                <Label check>
+                                            <Input type="checkbox" />{' '} Aldo</Label>
+                                            </FormGroup>
+                                        </div>
+                                        <div className="plp-refine-color">
+                                            <h4>Colors</h4>
+                                            <FormGroup check>
+                                                <Label check>
+                                                <Input type="checkbox" />{' '} Blue</Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                <Input type="checkbox" />{' '} White</Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                <Input type="checkbox" />{' '} Maroon</Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                <Input type="checkbox" />{' '} Black</Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                <Input type="checkbox" />{' '} Yellow</Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                <Input type="checkbox" />{' '} Beige</Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                            <Label check>
+                                                <Input type="checkbox" />{' '} Green</Label>
+                                                </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                <Input type="checkbox" />{' '} Brown</Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                <Input type="checkbox" />{' '} Orange</Label>
+                                            </FormGroup>
+                                        </div>
+                                        <div className="plp-refine-color">
+                                            <h4>Material</h4>
+                                            <FormGroup check>
+                                                <Label check>
+                                                <Input type="checkbox" />{' '} Leather</Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                <Input type="checkbox" />{' '} Fabric</Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                <Input type="checkbox" />{' '} Mixed</Label>
+                                            </FormGroup>
+                                        </div>
+                                        <div  className="plp-refine-price">
+                                            <h4>Price</h4>
+                                            <Slider min={0} max={5000} defaultValue={2500} />
+                                        </div>
+                                        <div className="plp-refine-button">
+                                            <Button color="primary" raised colored >Apply</Button> <Button color="primary" raised colored >Reset</Button>
+                                        </div>
+                                    </Form>
                                 </div>
                         </Col>
                         <Col sm={9}>
