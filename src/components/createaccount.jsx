@@ -17,6 +17,57 @@ class CreateAccount extends Component {
     }
 
     onSubmit(event){
+
+        event.preventDefault();
+        const data = new FormData(event.target);
+        var fistName = data.get("firstName");
+        var lastName = data.get("lastName");
+        var streetAddress = data.get("streetAddress");
+        var city = data.get("city");
+        var state = data.get("state");
+        var country = data.get("country");
+        var email = data.get("email");
+        var password = data.get("password");
+        var confirmPassword = data.get("confirmPassword");
+        var customersArray=[];
+        var userAlreadyExists ="";
+        //save all the user info into localstorage.
+        var customersFromSession = JSON.parse(localStorage.getItem("Customers"));
+        //Build the current user object.
+        var userProfile = {"firstName":data.get('firstName'),
+                            "lastName":data.get('lastName'),
+                            "email": data.get('email'),
+                            "streetAddress":data.get('streetAddress'),
+                            "city":data.get('city'),
+                            "state":data.get('state'),
+                            "zipcode":data.get('zipcode'),
+                            "country":data.get('country'),
+                            "password": data.get('password'),
+                            "confirmPassword": data.get('confirmPassword')
+
+        };
+        if (customersFromSession !== null){
+            customersArray = customersFromSession.customersArray;
+            if (customersArray !== null && customersArray.length>0){
+                customersArray.map(userProfile =>{
+                        console.log(userProfile.email);
+                     if (userProfile.email === email){
+                         userAlreadyExists = "true";
+                         console.log("User Already Exist, please sign in or reset password");
+                    }
+                });  
+            }
+        }
+
+        if (userAlreadyExists !== "true"){
+            customersArray.push(userProfile);
+            console.log("New User Created Successfully");
+        }
+        
+        localStorage.setItem("Customers",JSON.stringify({customersArray}));
+        console.log(JSON.parse(localStorage.getItem("Customers")));
+
+        //Redirect user to the login page to sign in.
         let path = '/signin';
         this.props.history.push(path);
     }
