@@ -23,7 +23,7 @@ const FilterProducts = (filterCriteria, filteredProducts) =>{
     makeArray.map( materialName =>{
 
         //Loop through the producrts to compate brand name
-        filterdProductsToReturn.map(product =>{
+        filteredProducts.map(product =>{
             if (materialName === product.filterableFacets.Material)
                 filterdProductsToReturn.push(product);
         });
@@ -31,9 +31,9 @@ const FilterProducts = (filterCriteria, filteredProducts) =>{
 
     //Filter Color last
     colorArray.map( colorName =>{
-
+        
         //Loop through the producrts to compate brand name
-        filterdProductsToReturn.map(product =>{
+        filteredProducts.map(product =>{
             if (colorName === product.filterableFacets.Color)
                 filterdProductsToReturn.push(product);
         });

@@ -20,11 +20,19 @@ class PLP extends Component {
        // bind function in constructor instead of render
        this.onChangePage = this.onChangePage.bind(this);
        this.onSubmit = this.onSubmit.bind(this);
+       this.reset = this.reset.bind(this);
     }
     //Pagination Stuff
     onChangePage(pageOfItems) {
         // update state with new page of items
         this.setState({ pageOfItems: pageOfItems });
+    }
+
+    reset(event){
+        console.log("reset filters");
+        event.preventDefault();
+        const data = new FormData(event.target);
+
     }
 
     //Filter products based on user selection
@@ -109,10 +117,15 @@ class PLP extends Component {
         }
 
         console.log("selected filters :" + JSON.stringify(filterCriteria));
-        //Summon the filter
-        finalProductList = FilterProducts(filterCriteria, filteredProducts);
-        //set the filtered category products in state for pagination, set this finalProductList.
-        this.setState({exampleItems:finalProductList});
+        //Summon the filter only if filter options are selected.
+        if (brandArray.length >0 || colorArray.length > 0 || makeArray.length >0 ){
+            finalProductList = FilterProducts(filterCriteria, filteredProducts);
+            //set the filtered category products in state for pagination, set this finalProductList.
+            this.setState({exampleItems:finalProductList});
+        } else {
+            console.log("No filter options selectd");
+        }
+
     }
 
 
@@ -263,7 +276,7 @@ class PLP extends Component {
                                             <Slider min={0} max={5000} defaultValue={2500} />
                                         </div>
                                         <div className="plp-refine-button">
-                                            <Button color="primary" raised colored>Apply</Button> <Button color="primary" raised colored >Reset</Button>
+                                            <Button color="primary" raised colored>Apply</Button> <Button color="primary" raised colored onClick={(event) => this.reset(event)}>Reset</Button>
                                         </div>
                                     </Form>
                                 </div>

@@ -9,7 +9,7 @@
         "imageName": "bag1",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"Weight":"1.5 lbs", "Length":"10 inches", "Depth":"5 inches","Height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"brand":"Gucci", "material":"Leather", "color": "Baige"}
+        "filterableFacets":{"brand":"Gucci", "material":"Leather", "color": "Beige"}
     },
     {
         "productID": "2",
@@ -32,7 +32,7 @@
         "imageName": "bag3",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "4",
@@ -44,7 +44,7 @@
         "imageName": "bag4",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "5",
@@ -56,7 +56,7 @@
         "imageName": "bag5",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "6",
@@ -68,7 +68,7 @@
         "imageName": "bag6",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "7",
@@ -80,7 +80,7 @@
         "imageName": "bag7",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "8",
@@ -92,7 +92,7 @@
         "imageName": "bag8",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "9",
@@ -104,7 +104,7 @@
         "imageName": "bag9",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "10",
@@ -116,7 +116,7 @@
         "imageName": "bag10",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "11",
@@ -128,7 +128,7 @@
         "imageName": "bag11",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "12",
@@ -140,7 +140,7 @@
         "imageName": "bag12",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     { 
         "productID": "13",
@@ -152,7 +152,7 @@
         "imageName": "bag13",
         "productDescLong":"Conveniently carry everything you need to and from work thanks to the Norman crossbody messenger bag from Aldo!",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Aldo", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Aldo", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "14",
@@ -164,7 +164,7 @@
         "imageName": "bag14",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "15",
@@ -176,7 +176,7 @@
         "imageName": "bag15",
         "productDescLong":"Faux leather,Foldover snap closure,Top handle with 3 inch drop,Shoulder strap, adjust up to 21 inch drop,Front and back zip pockets,Snap pocket under flap,Fabric lining: tech friendly padded slot with hook and loop closure, interior zip pocket, 4 slip pockets,Dimensions:14 inch x 4½ inch x 11½ inch,Imported.",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Aldo", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Aldo", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "16",
@@ -188,7 +188,7 @@
         "imageName": "bag16",
         "productDescLong":"Bring a tailored accent to your professional attire with the Ankenbauer messenger bag from Aldo. A spacious interior and plenty of pockets will make this bag ideal for your daily commute.",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "17",
@@ -200,7 +200,7 @@
         "imageName": "bag17",
         "productDescLong":"Carry your laptop or tablet with room to spare in the Aldo Unelan Buckle Messenger bag! This durable, sleek bag features a  padded tablet compartment with closure security and is the perfect bag for work or commuting!",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Aldo", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Aldo", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "18",
@@ -212,7 +212,7 @@
         "imageName": "bag18",
         "productDescLong":"Carry your work or class essentials in the Canvas satchel from Kenneth Cole Reaction. This messenger-style bag features a padded compartment for your tablet or laptop!",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Aldo", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Aldo", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "19",
@@ -224,7 +224,7 @@
         "imageName": "bag19",
         "productDescLong":"The Port-On Me messenger bag from Kenneth Cole Reaction will be your new favorite travel companion. This bag features a padded laptop sleeve, external USB port to charge devices, and TECHNI-COLE™ technology to prevent RFID identity scan theft! ",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Aldo", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Aldo", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "20",
@@ -236,7 +236,7 @@
         "imageName": "bag20",
         "productDescLong":"Carry everything you need for work or travel with the Double Buckle messenger bag from Cole Haan. With a padded sleeve, this leather laptop bag will keep your tech safe.",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "21",
@@ -248,7 +248,7 @@
         "imageName": "bag21",
         "productDescLong":"Carry everything you need and more for school, work, or travel with the Rock Paper Scissors messenger bag from Kenneth Cole Reaction. A padded laptop and tablet sleeve will keep your tech extra protected.",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "22",
@@ -260,7 +260,7 @@
         "imageName": "bag22",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "23",
@@ -272,7 +272,7 @@
         "imageName": "bag23",
         "productDescLong":"Make your daily commute a breeze with the Agrorien messenger bag from Aldo. This compact bag features interior space and a laptop sleeve to keep must-have essentials secure.",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "24",
@@ -284,7 +284,7 @@
         "imageName": "bag24",
         "productDescLong":"Carry your tech essentials in the Acqui satchel from Aldo. This messenger-style bag features a removable padded compartment for your tablet.",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     { 
         "productID": "25",
@@ -296,7 +296,7 @@
         "imageName": "bag25",
         "productDescLong":"This adorable luggage set including a lovely girl shaped suitcase and a matching backpack is perfect for traveling. Help your child learn how to prepare themselves for travel. This set includes a 16'' Trolley Suitcase with multi-directional wheels and ergonomically designed telescoping handles which will add much convenience to the trip and a 12'' backpack which comes with straps for easy to carry. It is perfect to take this luggage set while your kid is enjoying a holiday.",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "2",
@@ -308,7 +308,7 @@
         "imageName": "bag2",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "3",
@@ -320,7 +320,7 @@
         "imageName": "bag3",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "4",
@@ -332,7 +332,7 @@
         "imageName": "bag4",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "5",
@@ -344,7 +344,7 @@
         "imageName": "bag5",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "6",
@@ -356,7 +356,7 @@
         "imageName": "bag6",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "7",
@@ -368,7 +368,7 @@
         "imageName": "bag7",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "8",
@@ -380,7 +380,7 @@
         "imageName": "bag8",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "9",
@@ -392,7 +392,7 @@
         "imageName": "bag9",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "10",
@@ -404,7 +404,7 @@
         "imageName": "bag10",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "11",
@@ -416,7 +416,7 @@
         "imageName": "bag11",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
     },
     {
         "productID": "12",
@@ -428,7 +428,7 @@
         "imageName": "bag12",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "White"}
     },
     { 
         "productID": "1",
@@ -464,7 +464,7 @@
         "imageName": "bag3",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Mixed", "Color": "Baige"}
     },
     {
         "productID": "4",
@@ -548,7 +548,7 @@
         "imageName": "bag10",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Baige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Fabric", "Color": "Baige"}
     },
     {
         "productID": "11",
