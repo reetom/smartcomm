@@ -1,9 +1,81 @@
 import React, {Component} from 'react';
+import {Container, Row, Col, Button} from 'reactstrap';
+import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 
 class MyAccountLanding extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            //empty for now
+        }
+        this.logOut = this.logOut.bind(this);
+        this.viewProfile = this.viewProfile.bind(this);
+        this.veiwAddresses = this.veiwAddresses.bind(this);
+        this.viewPayments = this.viewPayments.bind(this);
+        this.viewPromotions = this.viewPromotions.bind(this);
+    }
+
+    viewPromotions(){
+
+    }
+
+    viewPayments(){
+
+    }
+    
+    viewProfile(){
+
+    }
+
+    veiwAddresses(){
+
+    }
+
+    logOut(){
+
+    }
+
     render() {
         return(
-            <div><h1>Please come back later</h1></div>
+            <div className="page-background">
+                <Container fluid>
+                    <Row>
+                        <Col sm={12}>
+                            <div>
+                                <SectionHeadingAndWhiteLine heading="Welcome, Reetom Hazarika" color="white"/>
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm={3}>
+                            <div className="button-section">
+                                <div className="one-em-spacing"/>
+                                <div className="one-em-margin">
+                                    <Button color="primary" block type="submit" onClick={this.viewProfileDetails}>My Profile</Button>
+                                </div>
+                                <div className="one-em-margin">
+                                    <Button color="primary" block type="submit" onClick={this.viewProfileDetails}>Addresses</Button>
+                                </div>
+                                <div className="one-em-margin">
+                                    <Button color="primary" block type="submit" onClick={this.viewProfileDetails}>Payments</Button>
+                                </div>
+                                <div className="one-em-margin">
+                                    <Button color="primary" block type="submit" onClick={this.viewProfileDetails}>My Promotions</Button>
+                                </div>
+                                <div className="one-em-margin">
+                                    <Button color="primary" block type="submit" onClick={this.viewProfile}>Preferences</Button>
+                                </div>
+                                <div className="one-em-margin">
+                                    <Button color="primary" block type="submit" onClick={this.logOut}>Log Out</Button>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col sm={9}>
+                            Option Data
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
         )
     }
 }

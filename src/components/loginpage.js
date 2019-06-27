@@ -68,7 +68,7 @@ class Login extends Component {
         //Store the User in Application Context for the signed in user flow
         applicationContext.userProfile.email = email;
         localStorage.setItem("ApplicationContext",JSON.stringify(applicationContext));
-        let path = '/';
+        let path = '/myaccountlanding';
         this.props.history.push(path);
       }
       console.log(JSON.parse(localStorage.getItem("ApplicationContext")));

@@ -5,6 +5,7 @@ import MainRoute from './routes/mainroute';
 import {Link} from 'react-router-dom';
 import {Badge, Icon} from 'react-mdl';
 import BuildFavBadge from './components/complibrary/buildfavbadge';
+import {Tooltip} from 'reactstrap';
 
 var fs = require('fs');
 class App extends Component {
@@ -13,23 +14,9 @@ class App extends Component {
         super(props);
         this.state = {
             displayFavBadge: "",
-            isHovering: false
+
        }
-       this.buildFavoriteBadge = this.buildFavoriteBadge.bind(this);
-       this.handleMouseHover = this.handleMouseHover.bind(this);
     }
-
-    handleMouseHover() {
-        this.setState(this.toggleHoverState);
-    }
-    
-      toggleHoverState(state) {
-
-        
-        return {
-          isHovering: !state.isHovering,
-        };
-      }
 
     //Build the fav badge and count alone. No setting state.
     buildFavoriteBadge(){
@@ -56,13 +43,12 @@ class App extends Component {
                                 {displayFavBadge}
                             </Link>
                             <Link to ="/shoppingcart">
-                                <div onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}>
                                     <Badge text="5" overlap>
                                         <Icon name="shoppingcart" />
                                     </Badge>
-                                    
-                                </div>
+ 
                             </Link>
+                            
                         </Navigation>
                     </Header>
                     <Drawer title="Departments" c>
