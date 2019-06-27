@@ -13,6 +13,11 @@ class MyAccountLanding extends Component {
         this.veiwAddresses = this.veiwAddresses.bind(this);
         this.viewPayments = this.viewPayments.bind(this);
         this.viewPromotions = this.viewPromotions.bind(this);
+        this.myorders = this.myorders.bind(this);
+    }
+
+    myorders(){
+
     }
 
     viewPromotions(){
@@ -54,13 +59,16 @@ class MyAccountLanding extends Component {
                                     <Button color="primary" block type="submit" onClick={this.viewProfileDetails}>My Profile</Button>
                                 </div>
                                 <div className="one-em-margin">
+                                    <Button color="primary" block type="submit" onClick={this.myorders}>My Orders</Button>
+                                </div>
+                                <div className="one-em-margin">
                                     <Button color="primary" block type="submit" onClick={this.viewProfileDetails}>Addresses</Button>
                                 </div>
                                 <div className="one-em-margin">
                                     <Button color="primary" block type="submit" onClick={this.viewProfileDetails}>Payments</Button>
                                 </div>
                                 <div className="one-em-margin">
-                                    <Button color="primary" block type="submit" onClick={this.viewProfileDetails}>My Promotions</Button>
+                                    <Button color="primary" block type="submit" onClick={this.viewProfileDetails}>Promotions</Button>
                                 </div>
                                 <div className="one-em-margin">
                                     <Button color="primary" block type="submit" onClick={this.viewProfile}>Preferences</Button>

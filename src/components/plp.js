@@ -5,7 +5,7 @@ import landingbanner from '../../src/assets/banners/landingbanner5.jpg';
 import BuildProductCard from './complibrary/buildproductcard';
 import Pagination from './complibrary/pagination';
 import {Button,Container, Row, Col, Breadcrumb, BreadcrumbItem, Form, Label,Input, FormGroup} from 'reactstrap';
-
+import FilterProducts from './complibrary/filterproducts';
 
 class PLP extends Component {
     constructor(props){
@@ -19,12 +19,103 @@ class PLP extends Component {
        }
        // bind function in constructor instead of render
        this.onChangePage = this.onChangePage.bind(this);
+       this.onSubmit = this.onSubmit.bind(this);
     }
     //Pagination Stuff
     onChangePage(pageOfItems) {
         // update state with new page of items
         this.setState({ pageOfItems: pageOfItems });
     }
+
+    //Filter products based on user selection
+    onSubmit(event){
+        event.preventDefault();
+        const data = new FormData(event.target);
+
+        //get the category name that was selected on the landing page and set it in state.
+        var {categoryName} = this.props.location.state;
+        //filter the products based on category selected in the landing page.
+        //Load the stubbed CLPData
+        var allProducts = CLPData;
+        var filteredProducts= [];
+        var finalProductList =[];
+        if (categoryName ==="all"){
+            // set all category products in state
+            allProducts.map(product =>{
+            filteredProducts.push(product);
+            })
+        } else {
+            allProducts.map(product =>{
+                if(product.category === categoryName){
+                    filteredProducts.push(product);
+                }
+            })
+        }
+        // Get the selected checkbox values
+        var brandArray =[];
+        var colorArray =[];
+        var makeArray =[];
+
+        //Get selected Brands
+        if ( data.get("Gucci") === "on")
+            brandArray.push("Gucci");
+
+        if ( data.get("Aldo") === "on")
+            brandArray.push("Aldo");
+
+        //Get selecgted make
+        if ( data.get("Fabric") === "on")
+            makeArray.push("Fabric");
+
+        if ( data.get("Leather") === "on")
+            makeArray.push("Leather");
+
+        if ( data.get("Mixed") === "on")
+            makeArray.push("Mixed");
+
+        //Get selected colors
+
+        if ( data.get("Blue") === "on")
+            colorArray.push("Blue");
+
+        if ( data.get("White") === "on")
+            colorArray.push("White");
+
+        if ( data.get("Maroon") === "on")
+            colorArray.push("Maroon");
+
+        if ( data.get("Black") === "on")
+            colorArray.push("Black");
+
+            if ( data.get("Yellow") === "on")
+            colorArray.push("Yellow");
+
+        if ( data.get("Beige") === "on")
+            colorArray.push("Beige");
+
+        if ( data.get("Green") === "on")
+            colorArray.push("Green");
+
+        if ( data.get("Brown") === "on")
+            colorArray.push("Brown");
+
+        if ( data.get("Orange") === "on")
+            colorArray.push("Orange");
+
+        //Build the filter criteria obect
+        var filterCriteria = { "brandArray" : brandArray,
+                                "colorArray" : colorArray,
+                                "makeArray" : makeArray
+        }
+
+        console.log("selected filters :" + JSON.stringify(filterCriteria));
+        //Summon the filter
+        finalProductList = FilterProducts(filterCriteria, filteredProducts);
+        //set the filtered category products in state for pagination, set this finalProductList.
+        this.setState({exampleItems:finalProductList});
+    }
+
+
     componentDidMount(){
         //get the category name that was selected on the landing page and set it in state.
         var {categoryName} = this.props.location.state;
@@ -101,70 +192,70 @@ class PLP extends Component {
                     <Row>
                         <Col sm={3}>
                             <div className="plp-refine">
-                                    <Form>
+                                    <Form onSubmit = {this.onSubmit}>
                                         <div className="plp-refine-brands">
                                             <h4>Brands</h4>
                                             <FormGroup check>
                                                 <Label check>
-                                                <Input type="checkbox" />{' '} Gucci</Label>
+                                                <Input type="checkbox" name="Gucci" id="Gucci"/>{' '} Gucci</Label>
                                             </FormGroup>
                                                 <FormGroup check>
                                                 <Label check>
-                                            <Input type="checkbox" />{' '} Aldo</Label>
+                                            <Input type="checkbox" name="Aldo" id="Aldo"/>{' '} Aldo</Label>
                                             </FormGroup>
                                         </div>
                                         <div className="plp-refine-color">
                                             <h4>Colors</h4>
                                             <FormGroup check>
                                                 <Label check>
-                                                <Input type="checkbox" />{' '} Blue</Label>
+                                                <Input type="checkbox" name="Blue" id="Blue"/>{' '} Blue</Label>
                                             </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
-                                                <Input type="checkbox" />{' '} White</Label>
+                                                <Input type="checkbox" name="White" id="White"/>{' '} White</Label>
                                             </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
-                                                <Input type="checkbox" />{' '} Maroon</Label>
+                                                <Input type="checkbox" name="Maroon" id="Maroon"/>{' '} Maroon</Label>
                                             </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
-                                                <Input type="checkbox" />{' '} Black</Label>
+                                                <Input type="checkbox" name="Black" id="Black"/>{' '} Black</Label>
                                             </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
-                                                <Input type="checkbox" />{' '} Yellow</Label>
+                                                <Input type="checkbox" name="Yellow" id="Yellow"/>{' '} Yellow</Label>
                                             </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
-                                                <Input type="checkbox" />{' '} Beige</Label>
+                                                <Input type="checkbox" name="Beige" id="Beige"/>{' '} Beige</Label>
                                             </FormGroup>
                                             <FormGroup check>
                                             <Label check>
-                                                <Input type="checkbox" />{' '} Green</Label>
+                                                <Input type="checkbox" name="Green" id="Green"/>{' '} Green</Label>
                                                 </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
-                                                <Input type="checkbox" />{' '} Brown</Label>
+                                                <Input type="checkbox" name="Brown" id="Brown"/>{' '} Brown</Label>
                                             </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
-                                                <Input type="checkbox" />{' '} Orange</Label>
+                                                <Input type="checkbox" name="Orange" id="Orange"/>{' '} Orange</Label>
                                             </FormGroup>
                                         </div>
                                         <div className="plp-refine-color">
                                             <h4>Material</h4>
                                             <FormGroup check>
                                                 <Label check>
-                                                <Input type="checkbox" />{' '} Leather</Label>
+                                                <Input type="checkbox" name="Leather" id="Leather"/>{' '} Leather</Label>
                                             </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
-                                                <Input type="checkbox" />{' '} Fabric</Label>
+                                                <Input type="checkbox" name="Fabric" id="Fabric"/>{' '} Fabric</Label>
                                             </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
-                                                <Input type="checkbox" />{' '} Mixed</Label>
+                                                <Input type="checkbox" name="Mixed" id="Mixed"/>{' '} Mixed</Label>
                                             </FormGroup>
                                         </div>
                                         <div  className="plp-refine-price">
@@ -172,7 +263,7 @@ class PLP extends Component {
                                             <Slider min={0} max={5000} defaultValue={2500} />
                                         </div>
                                         <div className="plp-refine-button">
-                                            <Button color="primary" raised colored >Apply</Button> <Button color="primary" raised colored >Reset</Button>
+                                            <Button color="primary" raised colored>Apply</Button> <Button color="primary" raised colored >Reset</Button>
                                         </div>
                                     </Form>
                                 </div>
