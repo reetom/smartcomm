@@ -11,8 +11,14 @@ class CheckoutOptions extends Component {
         this.state = {
         }
         this.checkout = this.checkout.bind(this);
+        this.toCreateAccountPage = this.toCreateAccountPage.bind(this);
     }
 
+    //send the user to create account page
+    toCreateAccountPage(){
+        let path = '/createaccount';
+        this.props.history.push(path);
+    }
 
     checkout(){
         let path = '/checkoutpage';
@@ -76,7 +82,7 @@ class CheckoutOptions extends Component {
               <div className="align-center">Or, Create an Account</div>
               <div className="one-em-spacing"/>
               <div className="align-center">
-                        <Button color="primary" disabled onClick={this.toCreateAccountPage}>Create Account</Button>
+                        <Button color="primary" onClick={this.toCreateAccountPage}>Create Account</Button>
               </div>
             </Row>
         </Container>

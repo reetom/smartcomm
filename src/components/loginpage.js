@@ -39,10 +39,39 @@ class Login extends Component {
     }
 
     onSubmit(event){
+      event.preventDefault();
+      const data = new FormData(event.target);  
+      const email = data.get("email");
+      const password = data.get("password");
+      var applicationContext = { userProfile: {"email": "", firstName: "", lastName:""}
+                                
+                                };
+      var isUserValid = "false";
+      var customersArray=[];
+      var customersFromSession = JSON.parse(localStorage.getItem("Customers"));
+      // User User Profiles to validate the user.
+      if (customersFromSession !== null){
+        customersArray = customersFromSession.customersArray;
+        if (customersArray !== null && customersArray.length>0){
+            customersArray.map(userProfile =>{
+                    console.log(userProfile.email);
+                 if (userProfile.email === email && userProfile.password === password){
+                    isUserValid = "true";
+                     console.log("Login Successful");
+                }
+            });  
+        }
+    }
 
       //send the user back to home on successful login
-      let path = '/';
-      this.props.history.push(path);
+      if (isUserValid === "true"){
+        //Store the User in Application Context for the signed in user flow
+        applicationContext.userProfile.email = email;
+        localStorage.setItem("ApplicationContext",JSON.stringify(applicationContext));
+        let path = '/';
+        this.props.history.push(path);
+      }
+      console.log(JSON.parse(localStorage.getItem("ApplicationContext")));
     }
 
     //send the user to create account page
