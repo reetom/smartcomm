@@ -7,7 +7,9 @@ import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline
 class MyAccountLanding extends Component {
     constructor(props){
         super(props);
-        
+        this.state={
+            displayString:""
+        }
 
         this.logOut = this.logOut.bind(this);
         this.viewProfile = this.viewProfile.bind(this);
@@ -15,27 +17,37 @@ class MyAccountLanding extends Component {
         this.viewPayments = this.viewPayments.bind(this);
         this.viewPromotions = this.viewPromotions.bind(this);
         this.myorders = this.myorders.bind(this);
-
+        this.viewPreferences = this.viewPreferences.bind(this);
     }
 
     myorders(){
 
+        this.setState({displayString: "Display Order History"});
     }
 
     viewPromotions(){
 
+        this.setState({displayString: "Display Promotions"});
     }
 
     viewPayments(){
 
+        this.setState({displayString: "Display Payments"});
     }
     
     viewProfile(){
 
+        this.setState({displayString: "Display Profile Info"});
     }
 
     veiwAddresses(){
 
+        this.setState({displayString: "Display Addresses"});
+    }
+
+    viewPreferences(){
+
+        this.setState({displayString: "Display Preferences"});
     }
 
     logOut(){
@@ -47,7 +59,7 @@ class MyAccountLanding extends Component {
     }
     
     render() {
-
+        const {displayString} = this.state;
         return(
             <div className="page-background">
                 <Container fluid>
@@ -63,22 +75,22 @@ class MyAccountLanding extends Component {
                             <div className="button-section">
                                 <div className="one-em-spacing"/>
                                 <div className="one-em-margin">
-                                    <Button color="primary" block type="submit" onClick={this.viewProfileDetails}>My Profile</Button>
+                                    <Button color="primary" block type="submit" onClick={this.viewProfile}>My Profile</Button>
                                 </div>
                                 <div className="one-em-margin">
                                     <Button color="primary" block type="submit" onClick={this.myorders}>My Orders</Button>
                                 </div>
                                 <div className="one-em-margin">
-                                    <Button color="primary" block type="submit" onClick={this.viewProfileDetails}>Addresses</Button>
+                                    <Button color="primary" block type="submit" onClick={this.veiwAddresses}>Addresses</Button>
                                 </div>
                                 <div className="one-em-margin">
-                                    <Button color="primary" block type="submit" onClick={this.viewProfileDetails}>Payments</Button>
+                                    <Button color="primary" block type="submit" onClick={this.viewPayments}>Payments</Button>
                                 </div>
                                 <div className="one-em-margin">
-                                    <Button color="primary" block type="submit" onClick={this.viewProfileDetails}>Promotions</Button>
+                                    <Button color="primary" block type="submit" onClick={this.viewPromotions}>Promotions</Button>
                                 </div>
                                 <div className="one-em-margin">
-                                    <Button color="primary" block type="submit" onClick={this.viewProfile}>Preferences</Button>
+                                    <Button color="primary" block type="submit" onClick={this.viewPreferences}>Preferences</Button>
                                 </div>
                                 <div className="one-em-margin">
                                     <Button color="primary" block  onClick={this.logOut}>Log Out</Button>
@@ -86,7 +98,7 @@ class MyAccountLanding extends Component {
                             </div>
                         </Col>
                         <Col sm={9}>
-                            
+                            {displayString}
                         </Col>
                     </Row>
                 </Container>
