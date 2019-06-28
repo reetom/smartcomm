@@ -115,7 +115,6 @@ class OrderReviewPage extends Component {
                                 <div className="shipping-address-review">
                                     <h3>Review Shipping Address</h3>
                                     <h5>{shippingAddress.firstName} {shippingAddress.lastName}</h5>
-                                    <h5>{shippingAddress.emailShipping}</h5>
                                     <h5>{shippingAddress.streetAddress}</h5>
                                     <h5>{shippingAddress.city}, {shippingAddress.state} - {shippingAddress.zipcode}</h5>  
                                 </div>

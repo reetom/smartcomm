@@ -65,7 +65,7 @@ class CheckoutOptions extends Component {
                     </FormGroup>
                                                   
                       <div className="align-left">
-                        <Button color="primary" disabled type="submit" onClick={this.checkout}>Sign In</Button>
+                        <Button color="primary" type="submit" onClick={this.checkout}>Sign In</Button>
                         </div>
                     </Form>
                 </Col>

@@ -37,6 +37,8 @@ const UpdateCart = (parameterToUpdate, parameterValue) => {
         case 'updatePaymentDetails': cartObject.paymentDetails = parameterValue;
         break;
 
+        case 'updateContact' : cartObject.contactDetails = parameterValue;
+
         default:
         break;
 

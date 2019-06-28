@@ -39,7 +39,6 @@ class CheckoutPage extends Component {
         const data = new FormData(event.target);
         var shippingAddress = { "firstName":data.get('firstName'),
                                 "lastName":data.get('lastName'),
-                                "emailShipping": data.get('emailShipping'),
                                 "streetAddress":data.get('streetAddress'),
                                 "city":data.get('city'),
                                 "state":data.get('state'),
@@ -54,9 +53,14 @@ class CheckoutPage extends Component {
                                 "zipcode":data.get('billingZipcode'),
                                 "country":data.get('billingCountry')
                         };
+        var contact = { "email": data.get('email'),
+                        "contact": data.get('phoneNumber')
+
+                         };
         //Update the billing and shipping address in the cart object.
         UpdateCart("updateShippingAddress",shippingAddress);
         UpdateCart("updateBillingAddresss",billingAddress);
+        UpdateCart("updateContact",contact);
         console.log("Redirecting to order review page");
         let path = '/orderreviewpage';
         this.props.history.push(path);
@@ -103,14 +107,6 @@ class CheckoutPage extends Component {
                                     </FormGroup>
                                 </Col>
                             </Row>
-                            <Row >
-                                <Col sm={6}>
-                                    <FormGroup>
-                                        <Label>Email Address</Label>
-                                        <Input type="text" name="emailShipping" id="emailShipping" placeholder="Enter Email Address" />
-                                    </FormGroup>
-                                </Col>
-                            </Row>
                             <Row>
                                 <Col sm={12}>
                                     <FormGroup>
@@ -119,7 +115,6 @@ class CheckoutPage extends Component {
                                     </FormGroup>
                                 </Col>
                             </Row>
-
                             <Row>
                                 <Col sm={6}>
                                     <FormGroup>
@@ -215,12 +210,37 @@ class CheckoutPage extends Component {
                             </Row>
                         </Col>
                     </Row>
+                    <Row>
+                        <Col sm={12}>
+                            <SectionHeadingAndWhiteLine heading="Contact Information" color="white"/>
+                        </Col>
+                    </Row>  
+                    <Row>
+                        <Col sm={6}>
+                                <div className="field-width"> 
+                                <FormGroup>
+                                    <Label>Email Address</Label>
+                                    <Input type="text" name="email" id="email" placeholder="Enter Email Address" />
+                                </FormGroup>
+                                </div>
 
+                        </Col>
+                        <Col sm={6}>
+                             <div className="field-width"> 
+                                <FormGroup>
+                                    <Label>Phone Number</Label>
+                                    <Input type="text" name="phoneNumber" id="phoneNumber" placeholder="xxx-xxx-xxxx" />
+                                </FormGroup>
+                            </div>
+                        </Col>
+                        <div className="one-em-spacing"></div>
+                        <div className="one-em-spacing"></div>
+                    </Row>
                     <Row>
                         <Col sm={12}>
                             <SectionHeadingAndWhiteLine heading="Select Shipping Method" color="white"/>
                         </Col>
-                    </Row>
+                    </Row>  
                     <Row>
                         <Col sm={3}>
                             <div className="align-right">
