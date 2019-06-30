@@ -216,7 +216,9 @@ class CheckoutPage extends Component {
                         </Col>
                     </Row>  
                     <Row>
-                        <Col sm={6}>
+                        <Col sm={3}>
+                        </Col>
+                        <Col sm={3}>
                                 <div className="field-width"> 
                                 <FormGroup>
                                     <Label>Email Address</Label>
@@ -225,13 +227,15 @@ class CheckoutPage extends Component {
                                 </div>
 
                         </Col>
-                        <Col sm={6}>
+                        <Col sm={3}>
                              <div className="field-width"> 
                                 <FormGroup>
                                     <Label>Phone Number</Label>
                                     <Input type="text" name="phoneNumber" id="phoneNumber" placeholder="xxx-xxx-xxxx" />
                                 </FormGroup>
                             </div>
+                        </Col>
+                        <Col sm={3}>
                         </Col>
                         <div className="one-em-spacing"></div>
                         <div className="one-em-spacing"></div>

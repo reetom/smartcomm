@@ -681,3 +681,18 @@ height: 10px;
 .field-width{
   width: 300px;
 }
+
+.promo1-banner{
+  width:1000px;
+  height: 300px;
+}
+
+.promo2-banner{
+  width:1000px;
+  height: 300px;
+}
+
+.promo-small-banner{
+  width:400px;
+  height: 400px;
+}

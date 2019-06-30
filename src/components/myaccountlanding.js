@@ -2,13 +2,20 @@ import React, {Component} from 'react';
 import {Container, Row, Col, Button} from 'reactstrap';
 import {Snackbar} from 'react-mdl';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
+import MyOrders from './myaccount/myorders';
+import Promotions from './myaccount/promotions';
+import MyProfile from './myaccount/myprofile';
+import Payments from './myaccount/payments';
+import Preferences from './myaccount/preferences';
+import Addresses from './myaccount/addresses';
 
 
 class MyAccountLanding extends Component {
     constructor(props){
         super(props);
         this.state={
-            displayString:""
+            displayString:"",
+            contentHeading:""
         }
 
         this.logOut = this.logOut.bind(this);
@@ -16,38 +23,44 @@ class MyAccountLanding extends Component {
         this.veiwAddresses = this.veiwAddresses.bind(this);
         this.viewPayments = this.viewPayments.bind(this);
         this.viewPromotions = this.viewPromotions.bind(this);
-        this.myorders = this.myorders.bind(this);
+        this.myOrders = this.myOrders.bind(this);
         this.viewPreferences = this.viewPreferences.bind(this);
     }
 
-    myorders(){
-
-        this.setState({displayString: "Display Order History"});
+    myOrders(){
+        var displayString = <MyOrders/>
+        this.setState({displayString: displayString});
+        this.setState({contentHeading:"My Orders"});
     }
 
     viewPromotions(){
-
-        this.setState({displayString: "Display Promotions"});
+        var displayString = <Promotions/>
+        this.setState({displayString: displayString});
+        this.setState({contentHeading:"Promotions"});
     }
 
     viewPayments(){
-
-        this.setState({displayString: "Display Payments"});
+        var displayString = <Payments/>
+        this.setState({displayString: displayString});
+        this.setState({contentHeading:"Payments"});
     }
     
     viewProfile(){
-
-        this.setState({displayString: "Display Profile Info"});
+        var displayString = <MyProfile/>
+        this.setState({displayString: displayString});
+        this.setState({contentHeading:"My Profile"});
     }
 
     veiwAddresses(){
-
-        this.setState({displayString: "Display Addresses"});
+        var displayString = <Addresses/>
+        this.setState({displayString: displayString});
+        this.setState({contentHeading:"Addresses"});
     }
 
     viewPreferences(){
-
-        this.setState({displayString: "Display Preferences"});
+        var displayString = <Preferences/>
+        this.setState({displayString: displayString});
+        this.setState({contentHeading:"Preferences"});
     }
 
     logOut(){
@@ -57,16 +70,20 @@ class MyAccountLanding extends Component {
         let path = '/';
         this.props.history.push(path);
     }
+
+    componentDidMount(){
+        this.viewPromotions();
+    }
     
     render() {
-        const {displayString} = this.state;
+        const {displayString, contentHeading} = this.state;
         return(
             <div className="page-background">
                 <Container fluid>
                     <Row>
                         <Col sm={12}>
                             <div>
-                                <SectionHeadingAndWhiteLine heading="Welcome, Reetom Hazarika" color="white"/>
+                                <SectionHeadingAndWhiteLine heading={contentHeading} color="white"/>
                             </div>
                         </Col>
                     </Row>
@@ -78,7 +95,7 @@ class MyAccountLanding extends Component {
                                     <Button color="primary" block type="submit" onClick={this.viewProfile}>My Profile</Button>
                                 </div>
                                 <div className="one-em-margin">
-                                    <Button color="primary" block type="submit" onClick={this.myorders}>My Orders</Button>
+                                    <Button color="primary" block type="submit" onClick={this.myOrders}>My Orders</Button>
                                 </div>
                                 <div className="one-em-margin">
                                     <Button color="primary" block type="submit" onClick={this.veiwAddresses}>Addresses</Button>
