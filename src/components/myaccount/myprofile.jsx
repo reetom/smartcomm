@@ -5,7 +5,7 @@ class MyProfile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            profileStringTODisplay:"My Profile from state"
+            profileStringTODisplay:""
         }
         this.buildProfile = this.buildProfile.bind(this);
     }
@@ -52,16 +52,13 @@ class MyProfile extends Component {
             </Row>
 
         );
-
-
-
         this.setState({profileStringTODisplay:profileStringTODisplay})
     }
+
     componentDidMount(){
         this.buildProfile();
 
     }
-
 
     render() {
         var {profileStringTODisplay} = this.state;

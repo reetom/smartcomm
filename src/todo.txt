@@ -29,3 +29,17 @@ npm i -g now
 npm i -g --unsafe-perm now
 
 
+{cart: {…}, confirmationNumber: "1561-738430-7861", orderDateAndTime: "2019-6-28 9:13:50", orderStatus: "Pending"}
+cart:
+billingAddress: {firstName: "Reetom", lastName: "Hazarika", streetAddress: "990 S Dutton Dr", city: "Tracy", state: "California", …}
+cartItems: [{…}]
+cartTotal: {subtotal: "3450", tax: "345", grandTotal: null}
+contactDetails: {email: "reetom@gmail.com", contact: ""}
+giftCard: {cardNumber: "", isGiftCardValid: "", cvv: "", expiryDate: ""}
+paymentDetails: {cardType: "", cardNumber: "", expiryDate: "", cvvNumber: ""}
+promotions: {promotions: {…}}
+shippingAddress: {firstName: "Reetom", lastName: "Hazarika", streetAddress: "990 S Dutton Dr", city: "Tracy", state: "California", …}
+shippingMethodAndPrice: {shippingMethod: "Standard Shipping", shippingPrice: "7.99", expectedDelivery: " 1 weeks"}
+__proto__: Object
+confirmationNumber: "1561-738430-7861"
+orderDateAndTime: "2019-6-28 9:13:50"   
