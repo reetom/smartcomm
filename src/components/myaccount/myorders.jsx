@@ -1,15 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Table, Card, CardBody, UncontrolledCollapse, Row, Col} from 'reactstrap';
 
-const Col1 = {
-    width: '20%',
-    textAlign: 'center'
-  };
-  const Col2 = {
-    width: '80%',
-    textAlign: 'left'
-  };
-
 class MyOrders extends Component {
 
     constructor(props){
@@ -21,6 +12,7 @@ class MyOrders extends Component {
         this.buildOrderHistory = this.buildOrderHistory.bind(this);
         this.cancelOrder = this.cancelOrder.bind(this);
         this.buildProductRows = this.buildProductRows.bind(this);
+        this.trackPackage = this.trackPackage.bind(this);
     }
 
     //This function builds the inner product rows inside an order.
@@ -33,6 +25,7 @@ class MyOrders extends Component {
                     <Col sm={3}>
                         <div className="align-center">
                             <img src={cartItem.product.imageURL} width="100" height="100" alt="" />
+                            <div className="one-em-spacing"/>
                         </div>
                     </Col>
                     <Col sm={9}>
@@ -91,11 +84,10 @@ class MyOrders extends Component {
                                     <Row>
                                         <Col sm={9}>
                                             {this.buildProductRows(cartItems)}
-                                            <div className="one-em-spacing"/>
                                         </Col>
                                         <Col sm={3}>
                                             <div className="align-right">
-                                                <Button block color="primary"> Track Package</Button>
+                                                <Button block color="primary" onClick={this.trackPackage}> Track Package</Button>
                                             </div>
                                             <div className="one-em-spacing"/>
                                             <div className="align-right">
@@ -117,6 +109,10 @@ class MyOrders extends Component {
 
     cancelOrder(){
         console.log("Order Canceled");
+    }
+
+    trackPackage(){
+        console.log("Redirecting to USPS for tracking package");
     }
 
     componentDidMount(){

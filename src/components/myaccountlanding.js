@@ -17,7 +17,6 @@ class MyAccountLanding extends Component {
             displayString:"",
             contentHeading:""
         }
-
         this.logOut = this.logOut.bind(this);
         this.viewProfile = this.viewProfile.bind(this);
         this.veiwAddresses = this.veiwAddresses.bind(this);
