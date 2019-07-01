@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Button, Container, Row, Col, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 import { PayPalButton } from "react-paypal-button-v2";
-import ReactDOM from 'react-dom';
 import {Link} from 'react-router-dom';
+import {Label, Input, FormGroup, DropdownItem, ButtonDropdown, DropdownToggle, DropdownMenu, Form} from 'reactstrap';
 
 class OrderReviewPage extends Component {
 
@@ -11,18 +11,45 @@ class OrderReviewPage extends Component {
         super(props);
         this.state = {
             productRowsToDisplay: "",
-            cartTotalToDisplay: ""
+            cartTotalToDisplay: "",
+            cardTypeDropdownOpen: false,
+            cardTypeDropDownValue:"Select Card Type"
 
         }
         //window.React = React;
         //window.ReactDOM = ReactDOM;
         this.toOrderConfirmationPage = this.toOrderConfirmationPage.bind(this);
         this.buildProductRows = this.buildProductRows.bind(this);
+        this.toggleCardType = this.toggleCardType.bind(this);
+        this.changeCardTypeValue = this.changeCardTypeValue.bind(this);
 
     }
 
+       //Toggle for the card Type dorpdown
+       toggleCardType() {
+        this.setState({
+            cardTypeDropdownOpen: !this.state.cardTypeDropdownOpen
+        });
+      }
+      //Dropdown value change
+      changeCardTypeValue(e) {
+        this.setState({cardTypeDropDownValue: e.currentTarget.textContent});
+      }
 
-    toOrderConfirmationPage(){
+
+    toOrderConfirmationPage(event){
+        event.preventDefault();
+        const data = new FormData(event.target);
+        var fistName = data.get("nameOnCard");
+        var cardNumber = data.get("cardNumber");
+        var expiryDate = data.get("expiryDate");
+        var cvvNumber = data.get("cvvNumber");
+        var cardType = this.state.cardTypeDropDownValue;
+
+        //Integrate the Payment Gateway here
+
+
+        //Redirect user to the confirmation page
         let path = '/orderconfirmationpage';
         this.props.history.push(path);
     }
@@ -81,6 +108,7 @@ class OrderReviewPage extends Component {
         return(
             <div className="page-background">
                 <Container>
+                <Form onClick={(event) => this.toOrderConfirmationPage(event)}>
                     <Row>
                         <Col sm={12}>
                             <div className="one-em-spacing" />
@@ -96,7 +124,7 @@ class OrderReviewPage extends Component {
                     </Row>
                     <Row>
                         <div className="order-submit-button">
-                                <Button color="primary" type="submit" onClick={this.toOrderConfirmationPage}>Place Order</Button>
+                                <Button color="primary" type="submit">Place Order</Button>
                         </div>
                     </Row>
                     <Row>
@@ -173,15 +201,56 @@ class OrderReviewPage extends Component {
                     </Row>
                     <Row>
                         <SectionHeadingAndWhiteLine heading="Enter Payment Details" color="white"/>
-                        <div className="display-block-white-text">
-                            <img src="https://ehroplar.sirv.com/Images/smartcomm/payment%20image.png" width="400" height="200" alt="" />
-                         </div>
+                            
+                            <Col sm={4}></Col>
+                            <Col sm={4}>
+                                <div className="payment-form">
+                                    <ButtonDropdown direction="right" isOpen={this.state.cardTypeDropdownOpen} toggle={this.toggleCardType}>
+                                                <DropdownToggle type="something" caret color="primary">{this.state.cardTypeDropDownValue}</DropdownToggle>
+                                                <DropdownMenu>
+                                                    <DropdownItem onClick={this.changeCardTypeValue}><div className="quantity-dropdown-text">Visa</div></DropdownItem>
+                                                    <DropdownItem divider/>
+                                                    <DropdownItem onClick={this.changeCardTypeValue}><div className="quantity-dropdown-text">Master Card</div></DropdownItem>
+                                                    <DropdownItem divider/>
+                                                    <DropdownItem onClick={this.changeCardTypeValue}><div className="quantity-dropdown-text">American Express</div></DropdownItem>
+                                                    <DropdownItem divider/>
+                                                    <DropdownItem onClick={this.changeCardTypeValue}><div className="quantity-dropdown-text">Discover</div></DropdownItem>
+                                                    </DropdownMenu>
+                                        </ButtonDropdown>
+
+                                        <FormGroup>
+                                            <Label>Name on Card</Label>
+                                            <Input type="text" name="nameOnCard" id="nameOnCard" placeholder="Name on Card" />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <Label>Card Number</Label>
+                                            <Input type="text" name="cardNumber" id="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx" />
+                                        </FormGroup>
+                                        <Row>
+                                            <Col sm={6}>
+                                                <FormGroup>
+                                                    <Label>Expiry Date</Label>
+                                                    <Input type="text" name="expiryDate" id="" placeholder="MM/YY" />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col sm={6}>
+                                                <FormGroup>
+                                                    <Label>CVV</Label>
+                                                    <Input type="password" name="cvvNumber" id="" placeholder="" />
+                                                </FormGroup>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                            </Col>
+                            <Col sm={4}></Col>
+                            <Row>
+                                <div className="order-submit-button">
+                                    <Button color="primary" type="submit" >Place Order</Button>
+                                </div>
+                            </Row>
+
                     </Row>
-                    <Row>
-                        <div className="order-submit-button">
-                            <Button color="primary" type="submit" onClick={this.toOrderConfirmationPage}>Place Order</Button>
-                        </div>
-                    </Row>
+                    </Form>
                 </Container>
             </div>
         )
