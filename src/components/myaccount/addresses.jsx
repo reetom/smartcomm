@@ -32,6 +32,7 @@ class Addresses extends Component {
                         }); 
         localStorage.setItem("Addresses", JSON.stringify(addressArray));
         this.showAddresses();
+        // Clear the form here...
     }
 
     enterAddress(){
@@ -119,8 +120,9 @@ class Addresses extends Component {
                         <div>
                             <Row>
                                 <Col sm={9}>
-                                    <Row>
-                                        <div className="display-block-no-margin">
+                                    <div className="display-block-no-margin">
+                                        <Row>
+                                        
                                             <Col sm={3}>
                                                 <div className="align-right">
                                                     <div className="one-em-spacing"/>
@@ -139,8 +141,9 @@ class Addresses extends Component {
                                                     <h5>{address.country}</h5>
                                                     <div className="one-em-spacing"/>
                                             </Col>
-                                        </div>
-                                    </Row>
+                                        
+                                        </Row>
+                                    </div>
                                 </Col>
                                 <Col sm={3}>
                                     <div>
