@@ -3,10 +3,10 @@ import {Button, Form, FormGroup, Label, Input, Container,Row, Col, Breadcrumb,Br
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 import PayPalCheckoutPage from './paypalcheckoutpage';
 import UpdateCart from './complibrary/updatecart';
-import CreateEmptyCart from './complibrary/createemptycart';
 import RecommendedProducts from './../data/recommendedproducts';
 import { CardText,Card,CardTitle, CardMenu,IconButton, Snackbar} from 'react-mdl';
 import {Link} from 'react-router-dom';
+import CreateEmptyCart from './complibrary/createemptycart';
 
 
 class ShoppingCart extends Component{
@@ -425,7 +425,6 @@ class ShoppingCart extends Component{
     }
 
     componentDidMount(){
-        CreateEmptyCart();
         this.buildProductRows();
         //Need to have this call for first time render of the cart page.
         this.buildSavedCards();

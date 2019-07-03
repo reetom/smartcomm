@@ -113,6 +113,11 @@ class PDP extends Component {
      var cartProducts =[];
      var cartCount = 0;
      var prodAlreadyInCart = "false";
+    
+     //Get the facet values selected
+        var selectedQuantity = this.state.quantityDropDownValue;
+        var selectedColor = this.state.colorDropDownValue;
+
      //First check if the favList in local storate is empty, if not empty add to the list
      let cartProductsFromLocalStoreage = JSON.parse(localStorage.getItem("cartProducts"));
      if (cartProductsFromLocalStoreage != null) {
@@ -250,7 +255,7 @@ class PDP extends Component {
                                 <div className="one-em-spacing"></div>
                                 <div className="one-em-spacing"></div>
                                 <div className="align-left">
-                                    <Button color="primary" raised>Add to Cart</Button> <Button color="primary" raised onClick={() => this.saveProduct(productToDisplay)}>Save for Later</Button>
+                                    <Button color="primary" raised onClick={() => this.addToBag(productToDisplay)}>Add to Cart</Button> <Button color="primary" raised onClick={() => this.saveProduct(productToDisplay)}>Save for Later</Button>
                                 </div>
                                 <div className="one-em-spacing"></div>
                                 </div>

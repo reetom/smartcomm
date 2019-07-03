@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import {Badge, Icon} from 'react-mdl';
 import BuildFavBadge from './components/complibrary/buildfavbadge';
 import {Tooltip} from 'reactstrap';
+import CreateEmptyCart from './components/complibrary/createemptycart';
 
 var fs = require('fs');
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
 
     componentDidMount(){
         this.buildFavoriteBadge();
+        CreateEmptyCart();
     }
 
     render() {
