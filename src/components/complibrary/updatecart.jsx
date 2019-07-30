@@ -117,12 +117,13 @@ const UpdateCart = (parameterToUpdate, parameterValue) => {
       shippingCost = shippingMethodAndPrice.shippingPrice;
       console.log("Shipping cost :" + shippingCost);
     //Get the promotional value and deduct it from the grand total
-    promotionDiscount = productSubtotal * (promotions.discountPercentage/100);
+    if (promotions.discountPercentage> 0)
+        promotionDiscount = productSubtotal * (promotions.discountPercentage/100);
     //Calculate the taxes
     tax = 0.1* productSubtotal;
     console.log("Tax :" + tax);
     //Calculate the grand total
-    grandTotal = productSubtotal + tax + shippingCost - promotionDiscount ;
+    grandTotal = (+shippingCost) + (+productSubtotal) + (+tax) - (+promotionDiscount);
     console.log("Grand Total :" + grandTotal);
 
     //Update the cart with the new total

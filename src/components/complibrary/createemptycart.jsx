@@ -36,7 +36,7 @@ const CreateEmptyCart = () => {
                                "isPromoCodeValid":"",
                                "discountPrice":"0.00",
                                "expiryDate":"",
-                               "discountPercentage":""
+                               "discountPercentage":"0"
                             };
             var giftCard = { "cardNumber":"",
                              "isGiftCardValid":"",

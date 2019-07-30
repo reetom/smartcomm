@@ -124,12 +124,6 @@ class ShoppingCart extends Component{
             cartTotalDetails = cartFromSession.cartTotal;
             this.setState({cartTotalDetails: cartTotalDetails})
         }
-
-
-        //Update the shopping cart with the products in localstorage.
-       // UpdateCart("updateProducts", cartProductsArray);
-        //UpdatedCart price in local storage
-       // UpdateCart("updateCartTotals", cartTotalDetails);
     }
 
     //This function is called when the clear cart button is hit. This will empty the cart and zero the totals.
@@ -404,6 +398,7 @@ class ShoppingCart extends Component{
     }
 
     componentDidMount(){
+        CreateEmptyCart();
         this.buildProductRows();
         //Need to have this call for first time render of the cart page.
         this.buildSavedCards();
