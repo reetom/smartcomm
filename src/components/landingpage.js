@@ -1,19 +1,26 @@
 import React, {Component} from 'react';
-import {CardText,Card,CardTitle, CardMenu,IconButton} from 'react-mdl';
-import {Link} from 'react-router-dom';
 import {Container, Row, Col, Form, FormGroup, Button, Input} from 'reactstrap';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 import BuildProductCard from './complibrary/buildproductcard';
 import NewArrivals from './../data/newarrivals';
-import TrendingNow from './../data/trendingnow';
 import landingbanner from '../../src/assets/banners/landingbanner6.jpg';
-import bag9 from '../../src/assets/products/bag9.jpg';
-import bag10 from '../../src/assets/products/bag10.jpg';
-import bag11 from '../../src/assets/products/bag11.jpeg';
-import bag12 from '../../src/assets/products/bag12.jpg';
-import bag5 from '../../src/assets/products/bag5.jpeg';
-import bag6 from '../../src/assets/products/bag6.jpeg';
-import bag7 from '../../src/assets/products/bag7.jpeg';
+
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    auth: {
+      user: 'youremail@gmail.com',
+      pass: 'yourpassword'
+    }
+  });
+
+  var mailOptions = {
+    from: 'reetom@gmail.com',
+    to: 'reetom@skava.com',
+    subject: 'SmartComm Subscription',
+    text: 'Thank you for subscribing to SmartComm'
+  };
 
 
 class Landing extends Component {
@@ -23,15 +30,22 @@ class Landing extends Component {
             trendingNowCardUnit:"",
             newArrivalsCardUnit:""
         }
-        this.onSingUpButtonClick = this.onSingUpButtonClick.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
         this.buildNewArrivals = this.buildNewArrivals.bind(this);
         this.buildTrendingNow = this.buildTrendingNow.bind(this);
       }
-  
-    onSingUpButtonClick(event){
+
+    onSubmit(event){
         event.preventDefault();
         const data = new FormData(event.target);
         console.log(data.get('email'));
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
     } 
 
     buildNewArrivals(){
@@ -102,11 +116,11 @@ class Landing extends Component {
                             <div className="one-em-spacing"/>
                             <SectionHeadingAndWhiteLine heading="Sign Up For Our Newsletter" color="white"/>
                             <div className="email-sign-up">
-                                <Form inline>
+                                <Form inline onSubmit = {this.onSubmit}>
                                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                                     <Input type="email" name="email" id="Email" placeholder="email@something.com" />
                                     </FormGroup>
-                                    <Button color="primary" onClick={this.onSingUpButtonClick} >Sign Up</Button>
+                                    <Button color="primary" type="submit" >Sign Up</Button>
                                 </Form>
                             </div>
                             <div className="one-em-spacing"/>

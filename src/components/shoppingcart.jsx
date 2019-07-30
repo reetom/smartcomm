@@ -226,7 +226,7 @@ class ShoppingCart extends Component{
 
     }
 
-    buildSavedCards(){console.log("build saved cards is called");
+    buildSavedCards(){
         // Get the list of favorites from localstorage for the guest user.
         let savedList = JSON.parse(localStorage.getItem("savedList"));
         var savedCardUnit ="";
@@ -367,7 +367,7 @@ class ShoppingCart extends Component{
         let cartItems ="";
         if (cartObject != null) {
            cartItems = cartObject.cartItems;
-           console.log("products: "+ product);
+           console.log("products: "+ {product});
            cartItems.map(cartItem => {
                 cartCount = cartCount+1;
                 //Check if the product already exist in the cart

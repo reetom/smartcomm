@@ -109,7 +109,7 @@ class PDP extends Component {
     }
 
      //This add to bag fuction is used to movea  product from the saved list or the recommended list to the cart.
-     addToBag({product}){
+     addToBag(product){
      var cartProducts =[];
      var cartCount = 0;
      var prodAlreadyInCart = "false";
@@ -258,7 +258,7 @@ class PDP extends Component {
                                 <div className="one-em-spacing"></div>
                                 <div className="one-em-spacing"></div>
                                 <div className="align-left">
-                                    <Button color="primary" raised onClick={() => this.addToBag({productToDisplay})}>Add to Cart</Button> <Button color="primary" raised onClick={() => this.saveProduct({productToDisplay})}>Save for Later</Button>
+                                    <Button color="primary" raised onClick={() => this.addToBag(productToDisplay)}>Add to Cart</Button> <Button color="primary" raised onClick={() => this.saveProduct(productToDisplay)}>Save for Later</Button>
                                 </div>
                                 <div className="one-em-spacing"></div>
                                 </div>
