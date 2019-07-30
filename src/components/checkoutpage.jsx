@@ -55,8 +55,7 @@ class CheckoutPage extends Component {
                         };
         var contact = { "email": data.get('email'),
                         "contact": data.get('phoneNumber')
-
-                         };
+                        };
         //Update the billing and shipping address in the cart object.
         UpdateCart("updateShippingAddress",shippingAddress);
         UpdateCart("updateBillingAddresss",billingAddress);

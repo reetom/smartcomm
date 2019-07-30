@@ -489,7 +489,7 @@ class ShoppingCart extends Component{
                                 </Row>
                                 <Row>
                                     <Col sm={6}>
-                                        <div className="cart-totals-label">DISCOIUNT: </div> 
+                                        <div className="cart-totals-label">DISCOUNT: </div> 
                                     </Col>
                                     <Col sm={6}>
                                         <div className="cart-totals-value">${discount}</div>  

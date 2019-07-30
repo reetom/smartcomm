@@ -50,7 +50,8 @@ const CreateEmptyCart = () => {
             var paymentDetails = {  "cardType": "",
                                     "cardNumber": "",
                                     "expiryDate":  "",
-                                    "cvvNumber": ""
+                                    "cvvNumber": "",
+                                    "nameOnCard":""
 
                                 }
             var cart = {   "cartItems": cartItems,

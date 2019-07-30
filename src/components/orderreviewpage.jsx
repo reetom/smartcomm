@@ -4,6 +4,7 @@ import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline
 import { PayPalButton } from "react-paypal-button-v2";
 import {Link} from 'react-router-dom';
 import {Label, Input, FormGroup, DropdownItem, ButtonDropdown, DropdownToggle, DropdownMenu, Form} from 'reactstrap';
+import UpdateCart from './complibrary/updatecart';
 
 class OrderReviewPage extends Component {
 
@@ -18,7 +19,7 @@ class OrderReviewPage extends Component {
         }
         //window.React = React;
         //window.ReactDOM = ReactDOM;
-        this.toOrderConfirmationPage = this.toOrderConfirmationPage.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
         this.buildProductRows = this.buildProductRows.bind(this);
         this.toggleCardType = this.toggleCardType.bind(this);
         this.changeCardTypeValue = this.changeCardTypeValue.bind(this);
@@ -33,21 +34,31 @@ class OrderReviewPage extends Component {
       }
       //Dropdown value change
       changeCardTypeValue(e) {
+        e.preventDefault();
         this.setState({cardTypeDropDownValue: e.currentTarget.textContent});
+        console.log(e.currentTarget.textContent);
       }
 
 
-    toOrderConfirmationPage(event){
+        onSubmit(event){
         event.preventDefault();
         const data = new FormData(event.target);
-        var fistName = data.get("nameOnCard");
-        var cardNumber = data.get("cardNumber");
-        var expiryDate = data.get("expiryDate");
-        var cvvNumber = data.get("cvvNumber");
+        var nameOnCard = data.get('nameOnCard');
+        var cardNumber = data.get('cardNumber');
+        var expiryDate = data.get('expiryDate');
+        var cvvNumber = data.get('cvvNumber');
         var cardType = this.state.cardTypeDropDownValue;
 
-        //Integrate the Payment Gateway here
+        //Update the cart with payment details
+        UpdateCart("updatePaymentDetails",{ "cardType": cardType,
+                                            "cardNumber": cardNumber,
+                                            "expiryDate":  expiryDate,
+                                            "cvvNumber": cvvNumber,
+                                            "nameOnCard": nameOnCard
+                                        });
 
+        //Integrate the Payment Gateway here
+        //@Todo
 
         //Redirect user to the confirmation page
         let path = '/orderconfirmationpage';
@@ -108,7 +119,7 @@ class OrderReviewPage extends Component {
         return(
             <div className="page-background">
                 <Container>
-                <Form onClick={(event) => this.toOrderConfirmationPage(event)}>
+                <Form onSubmit = {this.onSubmit}>
                     <Row>
                         <Col sm={12}>
                             <div className="one-em-spacing" />
@@ -124,7 +135,7 @@ class OrderReviewPage extends Component {
                     </Row>
                     <Row>
                         <div className="order-submit-button">
-                                <Button color="primary" type="submit">Place Order</Button>
+                                <Button color="primary" type="submit" onClick={(event) => this.toOrderConfirmationPage(event)}>Place Order</Button>
                         </div>
                     </Row>
                     <Row>
@@ -205,16 +216,16 @@ class OrderReviewPage extends Component {
                             <Col sm={4}></Col>
                             <Col sm={4}>
                                 <div className="payment-form">
-                                    <ButtonDropdown direction="right" isOpen={this.state.cardTypeDropdownOpen} toggle={this.toggleCardType}>
-                                                <DropdownToggle type="something" caret color="primary">{this.state.cardTypeDropDownValue}</DropdownToggle>
+                                    <ButtonDropdown direction="right" type="button" isOpen={this.state.cardTypeDropdownOpen} toggle={this.toggleCardType}>
+                                                <DropdownToggle type="button" caret color="primary">{this.state.cardTypeDropDownValue}</DropdownToggle>
                                                 <DropdownMenu>
-                                                    <DropdownItem onClick={this.changeCardTypeValue}><div className="quantity-dropdown-text">Visa</div></DropdownItem>
+                                                    <DropdownItem onClick={e => this.changeCardTypeValue(e)}><div className="quantity-dropdown-text">Visa</div></DropdownItem>
                                                     <DropdownItem divider/>
-                                                    <DropdownItem onClick={this.changeCardTypeValue}><div className="quantity-dropdown-text">Master Card</div></DropdownItem>
+                                                    <DropdownItem onClick={e => this.changeCardTypeValue(e)}><div className="quantity-dropdown-text">Master Card</div></DropdownItem>
                                                     <DropdownItem divider/>
-                                                    <DropdownItem onClick={this.changeCardTypeValue}><div className="quantity-dropdown-text">American Express</div></DropdownItem>
+                                                    <DropdownItem onClick={e => this.changeCardTypeValue(e)}><div className="quantity-dropdown-text">American Express</div></DropdownItem>
                                                     <DropdownItem divider/>
-                                                    <DropdownItem onClick={this.changeCardTypeValue}><div className="quantity-dropdown-text">Discover</div></DropdownItem>
+                                                    <DropdownItem onClick={e => this.changeCardTypeValue(e)}><div className="quantity-dropdown-text">Discover</div></DropdownItem>
                                                     </DropdownMenu>
                                         </ButtonDropdown>
 
@@ -243,13 +254,12 @@ class OrderReviewPage extends Component {
                                     </div>
                             </Col>
                             <Col sm={4}></Col>
-                            <Row>
-                                <div className="order-submit-button">
-                                    <Button color="primary" type="submit" >Place Order</Button>
-                                </div>
-                            </Row>
-
-                    </Row>
+                        </Row>
+                        <Row>
+                            <div className="order-submit-button">
+                                <Button color="primary" type="submit">Place Order</Button>
+                            </div>
+                        </Row>
                     </Form>
                 </Container>
             </div>
