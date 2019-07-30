@@ -3,7 +3,8 @@ import { CardText,Card,CardTitle, CardMenu,IconButton, Snackbar} from 'react-mdl
 import {Link} from 'react-router-dom';
 import App from '../../App';
 import SocialShareModal from './socialsharemodal';
-
+import CreateEmptyCart from './createemptycart';
+import UpdateCart from './updatecart';
 
 class BuildProductCard extends Component {
 
@@ -13,7 +14,6 @@ class BuildProductCard extends Component {
             modalShow: false,
         };
     }
-
 
     render() {
 
@@ -66,6 +66,8 @@ function addToFav({product}){
     var favList =[];
     var favCount = 0;
     var favAlreadyExist = "false";
+    //If the cart doesn't exist, create one.
+    CreateEmptyCart();
     //First check if the favList in local storate is empty, if not empty add to the list
     let favListFromLocalStoreage = JSON.parse(localStorage.getItem("favList"));
     if (favListFromLocalStoreage != null) {
@@ -98,29 +100,33 @@ function addToBag({product}){
     var cartProducts =[];
     var cartCount = 0;
     var prodAlreadyInCart = "false";
-    //First check if the favList in local storate is empty, if not empty add to the list
-    let favListFromLocalStoreage = JSON.parse(localStorage.getItem("cartProducts"));
-    if (favListFromLocalStoreage != null) {
-        favListFromLocalStoreage.map(forEachProduct => {
-            cartProducts.push(forEachProduct); 
+    let cartObject = JSON.parse(localStorage.getItem("cart"));
+    let cartItems ="";
+    if (cartObject != null) {
+       cartItems = cartObject.cartItems;
+       console.log("products: "+ product);
+       cartItems.map(cartItem => {
             cartCount = cartCount+1;
-            //Check if the product already exist in the fav list
+            //Check if the product already exist in the cart
             if (prodAlreadyInCart === "false"){
-                if(forEachProduct.productID === product.productID){
+                if(cartItem.product.productID !== null && cartItem.product.productID === product.productID){
+                    //Product found in cart
                     prodAlreadyInCart = "true"; 
                     console.log("Product is already in your cart...");
                 }
             }
-        
-        });
+       });
     } 
-    //If the product doesn't exist in the bag, add it to the bag.
-    if (prodAlreadyInCart == "false"){
-        cartProducts.push(product);
+    //If the product doesn't exist in the cart, add it to the cart.
+    if (prodAlreadyInCart === "false"){
+        //When the product is added to cart from outside PDP, quantity will be 1 and color will be the SKU color.
+        //Since color and SKU selection is provided in PDP alone.
+        cartItems.push({"product": product, "quantity": "1", "color":product.filterableFacets.Color});
         cartCount = cartCount +1;
+        //Update the shopping cart with the products in localstorage.
+        UpdateCart("updateProducts", cartItems);
+        //Keep the cart product count in localstorage to display on the badge.
+        localStorage.setItem("cartCount",JSON.stringify(cartCount));
     }
-    //Update the cart and its count in the localstorage.
-    localStorage.setItem("cartProducts",JSON.stringify(cartProducts));
-    localStorage.setItem("cartCount",JSON.stringify(cartCount));
 }
 export default BuildProductCard;

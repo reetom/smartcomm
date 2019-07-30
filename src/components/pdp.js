@@ -3,7 +3,7 @@ import ProductReviews from './../data/productreview.json';
 import ProductSpecAccordion from './complibrary/productspecaccordion';
 import CustomerReviewsAccordion from './complibrary/customerreviewsaccordion';
 import {Button, Container, Row, Col, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
-
+import UpdateCart from './complibrary/updatecart';
 const Brown = {
     background: 'brown'
   };
@@ -118,33 +118,36 @@ class PDP extends Component {
         var selectedQuantity = this.state.quantityDropDownValue;
         var selectedColor = this.state.colorDropDownValue;
 
-     //First check if the favList in local storate is empty, if not empty add to the list
-     let cartProductsFromLocalStoreage = JSON.parse(localStorage.getItem("cartProducts"));
-     if (cartProductsFromLocalStoreage != null) {
-         cartProductsFromLocalStoreage.map(forEachProduct => {
-             cartProducts.push(forEachProduct); 
+
+     //First check if the cart in local storate is empty, if not empty add to the list
+     let cartObject = JSON.parse(localStorage.getItem("cart"));
+     let cartItems ="";
+     if (cartObject != null) {
+        cartItems = cartObject.cartItems;
+        console.log("products: "+ product);
+        cartItems.map(cartItem => {
              cartCount = cartCount+1;
-             //Check if the product already exist in the fav list
+             //Check if the product already exist in the cart
              if (prodAlreadyInCart === "false"){
-                 if(forEachProduct.productID !== null && forEachProduct.productID === product.productID){
+                 if(cartItem.product.productID !== null && cartItem.product.productID === product.productID){
+                     //Product found in cart
                      prodAlreadyInCart = "true"; 
                      console.log("Product is already in your cart...");
                  }
              }
-         
-         });
+        });
      } 
-     //If the product doesn't exist in the fav list, add it to the fav list.
-     if (prodAlreadyInCart == "false"){
-         cartProducts.push(product);
+     //If the product doesn't exist in the cart, add it to the cart.
+     if (prodAlreadyInCart === "false"){
+         cartItems.push({"product": product, "quantity": selectedQuantity, "color":selectedColor});
          cartCount = cartCount +1;
+         //Update the shopping cart with the products in localstorage.
+         UpdateCart("updateProducts", cartItems);
+         //Keep the cart product count in localstorage to display on the badge.
+         localStorage.setItem("cartCount",JSON.stringify(cartCount));
      }
-     //Update the favs list and count in the localstorage.
-     localStorage.setItem("cartProducts",JSON.stringify(cartProducts));
-     localStorage.setItem("cartCount",JSON.stringify(cartCount));
-     //There is no need to updated the big ass cart object in session, that will be done when 
-     //the user goes to the cart page.
- }
+
+    }
     componentDidMount(){
         this.altImageGallery();
         this.displayPrimaryImage();
@@ -174,7 +177,7 @@ class PDP extends Component {
                 alt=""
                 className="alt-image-property" onClick={() => this.toggleImage(placeholder_image)}/>
             
-</div>
+            </div>
         );
         this.setState({altImagesToDisplay:altImagesToDisplay});
     }
@@ -255,7 +258,7 @@ class PDP extends Component {
                                 <div className="one-em-spacing"></div>
                                 <div className="one-em-spacing"></div>
                                 <div className="align-left">
-                                    <Button color="primary" raised onClick={() => this.addToBag(productToDisplay)}>Add to Cart</Button> <Button color="primary" raised onClick={() => this.saveProduct(productToDisplay)}>Save for Later</Button>
+                                    <Button color="primary" raised onClick={() => this.addToBag({productToDisplay})}>Add to Cart</Button> <Button color="primary" raised onClick={() => this.saveProduct({productToDisplay})}>Save for Later</Button>
                                 </div>
                                 <div className="one-em-spacing"></div>
                                 </div>

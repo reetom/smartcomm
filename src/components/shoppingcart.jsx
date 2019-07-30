@@ -25,7 +25,7 @@ class ShoppingCart extends Component{
        }
        this.saveProduct = this.saveProduct.bind(this);
        this.beginCheckout = this.beginCheckout.bind(this);
-       this.updateCartInSession = this.updateCartInSession.bind(this);
+       this.getCartTotalsToDisplay = this.getCartTotalsToDisplay.bind(this);
        this.clearCart = this.clearCart.bind(this);
        this.removeFromBag = this.removeFromBag.bind(this);
        this.showRecommendedProducts = this.showRecommendedProducts.bind(this);
@@ -35,28 +35,26 @@ class ShoppingCart extends Component{
        this.onSubmit = this.onSubmit.bind(this);
     }
 
-    //This function buils the products rows in the carts main body.
+    //This function builds the products rows in the carts main body.
     buildProductRows(){
-        console.log("building product rows in the cart");
         // Get the list of products in the cart from localstorage for the guest user.
-        var cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
+        let cartObject = JSON.parse(localStorage.getItem("cart"));
+        var cartItems = cartObject.cartItems;
         var singleProductRow ="";
-        var productRowToDisplay ="";
-        var selectedQuantity = "1";
         var sku="123456789";
         var isCartEmpty = "true";
         //Get the cart from backend for the signed in user. @ToDo
-        if (cartProducts != null && cartProducts.length >0){
+        if (cartItems != null && cartItems.length >0){
             isCartEmpty = "false";
         //Loop through the products in the  cart and build the product rows to display.
-        singleProductRow = cartProducts.map(product =>  
+        singleProductRow = cartItems.map(cartItem =>  
             <div className="cart-pord-row">
                 <Row>
                     <Col sm={4} className="cart-prod-image">
                     <div className="text-center">
                         <img
-                            src={product.imageURL}
-                            alt={product.imageName}
+                            src={cartItem.product.imageURL}
+                            alt={cartItem.product.imageName}
                             className="cart-image"
                             />
                     </div>
@@ -64,19 +62,19 @@ class ShoppingCart extends Component{
                     </Col>
                     <Col sm={4}>
                         <div className="cart-product-details">
-                            <div>{product.productName}</div>
-                            <div>Price: ${product.price}    $<del>3000</del></div>
-                            <div>Quantity: {selectedQuantity}</div>
-                            <div>Color: {product.filterableFacets.color}</div>
-                            <div>SUBTOTAL: ${product.price*selectedQuantity}</div>
+                            <div>{cartItem.product.productName}</div>
+                            <div>Price: ${cartItem.product.price}    $<del>3000</del></div>
+                            <div>Quantity: {cartItem.quantity}</div>
+                            <div>Color: {cartItem.color}</div>
+                            <div>SUBTOTAL: ${cartItem.product.price*cartItem.quantity}</div>
                         </div>
                     </Col>
                     <Col sm={4}> 
                         <div className="right-aligned-buttons">
-                            <Button color="primary"  raised onClick={() => this.saveProduct(product)}>Save For Later</Button>
+                            <Button color="primary"  raised onClick={() => this.saveProduct(cartItem.product)}>Save For Later</Button>
                         </div>
                         <div className="right-aligned-buttons">
-                            <Button color="primary" raised onClick={() => this.removeFromBag(product)}>Delete</Button>
+                            <Button color="primary" raised onClick={() => this.removeFromBag(cartItem.product)}>Delete</Button>
                         </div>
                     </Col>
                 </Row>
@@ -87,6 +85,7 @@ class ShoppingCart extends Component{
         }
         this.setState({singleProductRow: singleProductRow});
         this.setState( {isCartEmpty:isCartEmpty});
+        this.getCartTotalsToDisplay();
         
     }
 
@@ -104,11 +103,10 @@ class ShoppingCart extends Component{
                             "discountPercentage":"20",
                             "discountPrice":"0.00"
             };
-
             //Update the shopping cart with the products in localstorage.
             UpdateCart("updatePromotions", promotions);
-            //Recalcualte  Cart Total and update session
-            this. updateCartInSession();
+            //Re-render the cart totals after applying promotions
+            this.getCartTotalsToDisplay();
         }
         else {
             console.log("Invalid Promo Code : " + promoCodeEntered);
@@ -117,48 +115,21 @@ class ShoppingCart extends Component{
 
 
     //This function will update the big ass cart object that has everything in it.
-    updateCartInSession(){
-        // Get the list of products in the cart from localstorage for the guest user.
-        var cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
+    getCartTotalsToDisplay(){
+
         var cartTotalDetails = {};
-        var cartProductsArray = [];
-        var selectedQuantity = "1";
-        const sku="123456789";
-        var subTotal = 0;
+
         const cartFromSession = JSON.parse(localStorage.getItem("cart"));
-        const promotions = cartFromSession.promotions;
-        var discountPercentage ="";
-        var discountPrice ="";
-        if (typeof(promotions) != "undefined"){
-            discountPercentage = promotions.discountPercentage;
-            discountPrice = promotions.discountPrice;
+        if (cartFromSession !== null){
+            cartTotalDetails = cartFromSession.cartTotal;
+            this.setState({cartTotalDetails: cartTotalDetails})
         }
 
-        if (cartProducts != null && cartProducts.length >0){
-            //Loop through the products in the  cart and build the product rows to display.
-            cartProducts.map(product => 
-                {
-                    //Add every product and selected facet to the actual cart object.
-                    cartProductsArray.push({"product": product, "quantity": selectedQuantity, "sku":sku});
-                    subTotal = subTotal + (product.price*selectedQuantity);
-                    cartTotalDetails.subtotal = subTotal.toString();
-                    cartTotalDetails.tax = (subTotal*0.1).toString();
-                    cartTotalDetails.grandTotal = (subTotal*1.1).toString();
-                })
-            if (discountPrice !== ""){
-                cartTotalDetails.grandTotal = cartTotalDetails.grandTotal - discountPrice;
-                cartTotalDetails.discount = discountPrice;
 
-            }else if (discountPercentage != ""){
-                cartTotalDetails.grandTotal = cartTotalDetails.grandTotal *(100-discountPercentage)/100;
-                cartTotalDetails.discount = cartTotalDetails.grandTotal * (discountPercentage/100);
-            }
-        }
-        this.setState({cartTotalDetails: cartTotalDetails})
         //Update the shopping cart with the products in localstorage.
-        UpdateCart("updateProducts", cartProductsArray);
+       // UpdateCart("updateProducts", cartProductsArray);
         //UpdatedCart price in local storage
-        UpdateCart("updateCartTotals", cartTotalDetails);
+       // UpdateCart("updateCartTotals", cartTotalDetails);
     }
 
     //This function is called when the clear cart button is hit. This will empty the cart and zero the totals.
@@ -185,24 +156,28 @@ class ShoppingCart extends Component{
 
     //This function removes a product from the cart.
     removeFromBag(productToRemove){
-        console.log("removing product from bag" + productToRemove);
-        var cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
-        var newProductArray = [];
-        if (cartProducts != null && cartProducts.length >0){
-            //Loop through the products in the  cart and build the product rows to display.
-            cartProducts.map(product => {
-                    if(productToRemove.productID !== product.productID){
-                        newProductArray.push(product);
+
+        let cartObject = JSON.parse(localStorage.getItem("cart"));
+        let cartItems ="";
+        if (cartObject != null) {
+            cartItems = cartObject.cartItems;
+            var newProductArray = [];
+            if (cartItems != null && cartItems.length >0){
+                //Loop through the products in the  cart and build the product rows to display.
+                cartItems.map(cartItem => {
+                        if(productToRemove.productID !== cartItem.product.productID){
+                            newProductArray.push(cartItem.product);
+                        }
                     }
-                }
-            )
+                )
+            }
+            //Update the shopping cart with the products in localstorage.
+            UpdateCart("updateProducts", newProductArray);
+            //Rebuild the product rows in the cart for display.
+            this.buildProductRows();
+            //Update the cart in session so that the cart totals are reflected correctly.
+           // this.updateCartInSession();
         }
-        //Set this new list of products in cart in session.
-        localStorage.setItem("cartProducts",JSON.stringify(newProductArray));
-        //Rebuild the product rows in the cart for display.
-        this.buildProductRows();
-        //Update the cart in session so that the cart totals are reflected correctly.
-        this.updateCartInSession();
     }
 
     // This method moves the selected products from the cart to the "Save For Later List".
@@ -389,46 +364,50 @@ class ShoppingCart extends Component{
         localStorage.setItem("favCount",JSON.stringify(favCount));
     
     }
-    //This add to bag fuction is used to movea  product from the saved list or the recommended list to the cart.
+    //This add to bag fuction is used to move a  product from the saved list or the recommended list to the cart.
     addToBag({product}){
         var cartProducts =[];
         var cartCount = 0;
         var prodAlreadyInCart = "false";
-        //First check if the favList in local storate is empty, if not empty add to the list
-        let cartProductsFromLocalStoreage = JSON.parse(localStorage.getItem("cartProducts"));
-        if (cartProductsFromLocalStoreage != null) {
-            cartProductsFromLocalStoreage.map(forEachProduct => {
-                cartProducts.push(forEachProduct); 
+        let cartObject = JSON.parse(localStorage.getItem("cart"));
+        let cartItems ="";
+        if (cartObject != null) {
+           cartItems = cartObject.cartItems;
+           console.log("products: "+ product);
+           cartItems.map(cartItem => {
                 cartCount = cartCount+1;
-                //Check if the product already exist in the fav list
+                //Check if the product already exist in the cart
                 if (prodAlreadyInCart === "false"){
-                    if(forEachProduct.productID === product.productID){
+                    if(cartItem.product.productID !== null && cartItem.product.productID === product.productID){
+                        //Product found in cart
                         prodAlreadyInCart = "true"; 
                         console.log("Product is already in your cart...");
                     }
                 }
-            
-            });
+           });
         } 
-        //If the product doesn't exist in the fav list, add it to the fav list.
-        if (prodAlreadyInCart == "false"){
-            cartProducts.push(product);
+        //If the product doesn't exist in the cart, add it to the cart.
+        if (prodAlreadyInCart === "false"){
+            //When the product is added to cart from outside PDP, quantity will be 1 and color will be the SKU color.
+            //Since color and SKU selection is provided in PDP alone.
+            cartItems.push({"product": product, "quantity": "1", "color":product.filterableFacets.Color});
             cartCount = cartCount +1;
+            //Update the shopping cart with the products in localstorage.
+            UpdateCart("updateProducts", cartItems);
+            //Keep the cart product count in localstorage to display on the badge.
+            localStorage.setItem("cartCount",JSON.stringify(cartCount));
         }
-        //Update the favs list and count in the localstorage.
-        localStorage.setItem("cartProducts",JSON.stringify(cartProducts));
-        localStorage.setItem("cartCount",JSON.stringify(cartCount));
         //Rebuild the product rows in the cart for display.
         this.buildProductRows();
         //Update the cart in session so that the cart totals are reflected correctly.
-        this.updateCartInSession();
+        //this.updateCartInSession();
     }
 
     componentDidMount(){
         this.buildProductRows();
         //Need to have this call for first time render of the cart page.
         this.buildSavedCards();
-        this.updateCartInSession();
+        this.getCartTotalsToDisplay();
         this.showRecommendedProducts();
     }
 

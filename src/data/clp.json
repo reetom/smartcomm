@@ -56,7 +56,7 @@
         "imageName": "bag5",
         "productDescLong":"dfsdfsdfsdsdf",
         "productSpecs":{"weight":"1.5 lbs", "length":"10 inches", "depth":"5 inches","height":"16 inches", "Strap Included": "Yes", "Washable":"No"},
-        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Beige"}
+        "filterableFacets":{"Brand":"Gucci", "Material":"Leather", "Color": "Red"}
     },
     {
         "productID": "6",

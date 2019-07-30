@@ -100,7 +100,7 @@ class OrderReviewPage extends Component {
         const billingAddress = cartObject.billingAddress;
         const shippingMethodAndPrice = cartObject.shippingMethodAndPrice;
         const cartTotal = cartObject.cartTotal;
-        var grandTotal = (parseFloat(cartTotal.grandTotal) + parseFloat(shippingMethodAndPrice.shippingPrice)).toString();
+
         //Printing the entire cart to console
         console.log("-------------------Printing the entire cart to console-----------------------");
         console.log(JSON.parse(localStorage.getItem("cart")));
@@ -194,7 +194,7 @@ class OrderReviewPage extends Component {
                                         <h5>${cartTotal.tax}</h5>
                                         <h5>${shippingMethodAndPrice.shippingPrice}</h5>
                                         <h5>${cartTotal.discount}</h5>
-                                        <h5>${grandTotal}</h5>
+                                        <h5>${cartTotal.grandTotal}</h5>
                                 </div>
                             </Col>
                         </div>

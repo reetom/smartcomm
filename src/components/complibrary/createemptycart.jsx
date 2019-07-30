@@ -11,7 +11,8 @@ const CreateEmptyCart = () => {
             var cartTotal ={  "subtotal": "0.00",
                               "tax":"0.00",
                               "discount":"0.00",
-                              "grandTotal":"0.00"
+                              "grandTotal":"0.00",
+                              "shippingCost":"0.00"
                             };
             var shippingAddress = { "firstName":"",
                                     "lastName":"",
