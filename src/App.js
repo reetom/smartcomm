@@ -85,7 +85,8 @@ class App extends Component {
                                     categoryName: "girls"
                                 }
                                 }}>Girls</Link>
-                            <Link to ="/clearCache">Clear Cache</Link>
+                            <Link to ="/clearcache">Clear Cache</Link>
+                            <Link to ="/releasenotes">Release Notes</Link>
                         </Navigation>
                     </Drawer>
                 <Content>

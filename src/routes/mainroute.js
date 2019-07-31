@@ -12,6 +12,7 @@ import PDP from './../components/pdp';
 import PLP from './../components/plp';
 import Data from './../components/data';
 import ClearCache from './../components/complibrary/clearcache';
+import ReleaseNotes from './../components/complibrary/releasenotes';
 import CheckoutOptions from './../components/checkoutoptions';
 import CheckoutPage from './../components/checkoutpage';
 import PayPalCheckoutPage from './../components/paypalcheckoutpage';
@@ -41,6 +42,7 @@ const MainRoute = () => (
         <Route exact path="/orderconfirmationpage" component= {OrderConfirmationPage} />
         <Route exact path="/trackorder" component= {TrackOrder} />
         <Route exact path="/myaccountlanding" component= {MyAccountLanding} />
+        <Route exact path="/releasenotes" component= {ReleaseNotes} />
     </Switch>
 )
 

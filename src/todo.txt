@@ -1,7 +1,4 @@
-1. Install nodemailer module and fix the email subscription on landing page. HALF DONE, FIX IT
-2. Preare the content for social share and attach it to the requrest. NOT DONE
-3. Implement an event listner for the badge, can be done with nodejs itself. New dependency  not needed. NOT DONE
-4. Fix pdp Add to Cart. Repalce cartProducts with Cart in localstorage
+
 
 
 Visualize the cart objec-
