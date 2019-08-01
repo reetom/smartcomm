@@ -113,8 +113,6 @@ class TrackOrder extends Component {
                                 </div>
                                </div>
                           </Col>
-
-                        <div className="one-em-spacing"/>
                       </Row>
                       </div>
                       
@@ -179,15 +177,21 @@ class TrackOrder extends Component {
                           <Button color="primary" type="submit">Track Order</Button>
                         </Form>
                     </div>
-                    <div className="one-em-spacing"/>
-                    <div className="one-em-spacing"/>
-                    <div className="one-em-spacing"/>
-                    <div className="one-em-spacing"/>
                     </Col>
                   </Row>
                     {orderDetailsArray}
               </Container>
-            
+              <div className="one-em-spacing"/>
+              <div className="one-em-spacing"/>
+              <div className="one-em-spacing"/>
+              <div className="one-em-spacing"/>
+              <div className="one-em-spacing"/>
+              <div className="one-em-spacing"/>
+              <div className="one-em-spacing"/>
+              <div className="one-em-spacing"/>
+              <div className="one-em-spacing"/>
+              <div className="one-em-spacing"/>
+              <div className="one-em-spacing"/>
           </div>
                           
         );

@@ -122,11 +122,12 @@ class ReleaseNotes extends Component {
                         <li>Form Validations</li>
                         <li>Store Finder</li>
                         <li>Make the site responsive</li>
+                        <li>Error Handling</li>
                         <li>Code Cleanup and Optimization</li>
                     </ol>
                 </Row>
                 <Row>
-                    <h3>Local Storage Item Names</h3>
+                    <h3>Local Storage Item Names (Temporary API replacement)</h3>
                     <ol>
                         <li>SHOPPING CART - "cart"</li>
                         <li>FAVORITES - "favList"</li>

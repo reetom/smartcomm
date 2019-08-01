@@ -135,7 +135,7 @@ class OrderReviewPage extends Component {
                     </Row>
                     <Row>
                         <div className="order-submit-button">
-                                <Button color="primary" type="submit" onClick={(event) => this.toOrderConfirmationPage(event)}>Place Order</Button>
+                            <Button color="primary" type="submit">Place Order</Button>
                         </div>
                     </Row>
                     <Row>
@@ -169,7 +169,7 @@ class OrderReviewPage extends Component {
                         </div>
                     </Row>
                     <Row>
-                        <SectionHeadingAndWhiteLine heading="Review Shipping Method" color="white"/>
+                        <SectionHeadingAndWhiteLine heading="Review Shipping Method and Price" color="white"/>
                         <div className="display-block-white-text">
                             <Col sm={6}>
                               <div className="align-right">
@@ -216,6 +216,9 @@ class OrderReviewPage extends Component {
                             <Col sm={4}></Col>
                             <Col sm={4}>
                                 <div className="payment-form">
+                                <div className="one-em-spacing"/>
+                                <div className="one-em-spacing"/>
+                                <div className="one-em-spacing"/>
                                     <ButtonDropdown direction="right" type="button" isOpen={this.state.cardTypeDropdownOpen} toggle={this.toggleCardType}>
                                                 <DropdownToggle type="button" caret color="primary">{this.state.cardTypeDropDownValue}</DropdownToggle>
                                                 <DropdownMenu>

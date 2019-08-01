@@ -3,6 +3,7 @@ import ProductReviews from './../data/productreview.json';
 import ProductSpecAccordion from './complibrary/productspecaccordion';
 import CustomerReviewsAccordion from './complibrary/customerreviewsaccordion';
 import {Button, Container, Row, Col, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
+import {Snackbar} from 'react-mdl';
 import UpdateCart from './complibrary/updatecart';
 const Brown = {
     background: 'brown'
@@ -25,7 +26,9 @@ class PDP extends Component {
             quantityDropDownValue:"select",
             colorDropdownOpen: false,
             colorDropDownValue:"select",
-            image_to_display: ""
+            image_to_display: "",
+            isSnackbarActive:false,
+            message:""
        }
         this.addToBag = this.addToBag.bind(this);
         //this.saveForLater = this.saveForLater.bind(this);
@@ -39,7 +42,16 @@ class PDP extends Component {
         this.altImageGallery = this.altImageGallery.bind(this);
         this.toggleImage = this.toggleImage.bind(this);
         this.displayPrimaryImage = this.displayPrimaryImage.bind(this);
+        this.handleShowSnackbar = this.handleShowSnackbar.bind(this);
+        this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);
     }
+
+    handleShowSnackbar() {
+        this.setState({ isSnackbarActive: true });
+      }
+      handleTimeoutSnackbar() {
+        this.setState({ isSnackbarActive: false });
+      }
 
     //Toggle for the quantity dorpdown
     toggleQuantity() {
@@ -65,6 +77,7 @@ class PDP extends Component {
 
     // This method moves the selected products from the cart to the "Save For Later List".
     saveProduct(product){
+        let message="";
         var savedList =[];
         var productAlreadyExist = "false";
         //First check if the favList in local storate is empty, if not empty add to the list
@@ -77,6 +90,8 @@ class PDP extends Component {
                     if(forEachProduct.productID === product.productID){
                         productAlreadyExist = "true"; 
                         console.log("Product is already in the saved list");
+                        //Show toast message
+                        message = "Product already Saved";
                     }
                 }
             
@@ -87,7 +102,10 @@ class PDP extends Component {
             savedList.push(product);
             //Update the favs list and count in the localstorage.
             localStorage.setItem("savedList",JSON.stringify(savedList));
+            //Show toast message
+            message = "Product Saved Successfully";
         }
+        this.setState({message:message});
     }
 
     toggleImage( newImageToDisplay){
@@ -122,6 +140,7 @@ class PDP extends Component {
      //First check if the cart in local storate is empty, if not empty add to the list
      let cartObject = JSON.parse(localStorage.getItem("cart"));
      let cartItems ="";
+     let message="";
      if (cartObject != null) {
         cartItems = cartObject.cartItems;
         console.log("products: "+ product);
@@ -133,6 +152,8 @@ class PDP extends Component {
                      //Product found in cart
                      prodAlreadyInCart = "true"; 
                      console.log("Product is already in your cart...");
+                     //Show toast message
+                     message = "Product already exist in cart";
                  }
              }
         });
@@ -141,12 +162,15 @@ class PDP extends Component {
      if (prodAlreadyInCart === "false"){
          cartItems.push({"product": product, "quantity": selectedQuantity, "color":selectedColor});
          cartCount = cartCount +1;
+         //Show toast message with success
+         message = "Product added to cart successfully";
          //Update the shopping cart with the products in localstorage.
          UpdateCart("updateProducts", cartItems);
          //Keep the cart product count in localstorage to display on the badge.
          localStorage.setItem("cartCount",JSON.stringify(cartCount));
      }
-
+     this.setState({message:message});
+     this.handleShowSnackbar();
     }
     componentDidMount(){
         this.altImageGallery();
@@ -190,7 +214,7 @@ class PDP extends Component {
 
     render() {
         const { handleChange } = this;
-        const {altImagesToDisplay, image_to_display} = this.state;
+        const {altImagesToDisplay, image_to_display, isSnackbarActive, message} = this.state;
         var {productToDisplay} = this.props.location.state
 
         return(
@@ -259,10 +283,15 @@ class PDP extends Component {
                                 <div className="one-em-spacing"></div>
                                 <div className="align-left">
                                     <Button color="primary" raised onClick={() => this.addToBag(productToDisplay)}>Add to Cart</Button> <Button color="primary" raised onClick={() => this.saveProduct(productToDisplay)}>Save for Later</Button>
+                                    <Snackbar
+                                        active={isSnackbarActive}
+                                        onTimeout={this.handleTimeoutSnackbar}>
+                                            {message}
+                                    </Snackbar>
                                 </div>
+
                                 <div className="one-em-spacing"></div>
                                 </div>
-                                
                             </Col>
                         </div>
 

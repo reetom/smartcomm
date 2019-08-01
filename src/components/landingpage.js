@@ -4,6 +4,7 @@ import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline
 import BuildProductCard from './complibrary/buildproductcard';
 import NewArrivals from './../data/newarrivals';
 import landingbanner from '../../src/assets/banners/landingbanner6.jpg';
+import {Snackbar} from 'react-mdl';
 
 var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
@@ -28,11 +29,22 @@ class Landing extends Component {
         super(props);
         this.state = {
             trendingNowCardUnit:"",
-            newArrivalsCardUnit:""
+            newArrivalsCardUnit:"",
+            isSnackbarActive:false,
+            message:""
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.buildNewArrivals = this.buildNewArrivals.bind(this);
         this.buildTrendingNow = this.buildTrendingNow.bind(this);
+        this.handleShowSnackbar = this.handleShowSnackbar.bind(this);
+        this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);
+      }
+
+      handleShowSnackbar() {
+        this.setState({ isSnackbarActive: true });
+      }
+      handleTimeoutSnackbar() {
+        this.setState({ isSnackbarActive: false });
       }
 
     onSubmit(event){
@@ -46,6 +58,9 @@ class Landing extends Component {
               console.log('Email sent: ' + info.response);
             }
           });
+          let message = "Subscription successful, thank you for subscribing!";
+          this.setState({message:message});
+          this.handleShowSnackbar();
     } 
 
     buildNewArrivals(){
@@ -66,7 +81,7 @@ class Landing extends Component {
     }
 
     render() {
-        const {newArrivalsCardUnit, trendingNowCardUnit} = this.state;
+        const {newArrivalsCardUnit, trendingNowCardUnit, message,isSnackbarActive} = this.state;
         return(
             <div className="page-background">
             <Container fluid>
@@ -121,6 +136,11 @@ class Landing extends Component {
                                     <Input type="email" name="email" id="Email" placeholder="email@something.com" />
                                     </FormGroup>
                                     <Button color="primary" type="submit" >Sign Up</Button>
+                                    <Snackbar
+                                        active={isSnackbarActive}
+                                        onTimeout={this.handleTimeoutSnackbar}>
+                                            {message}
+                                    </Snackbar>
                                 </Form>
                             </div>
                             <div className="one-em-spacing"/>
