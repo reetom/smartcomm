@@ -33,7 +33,7 @@ class MyOrders extends Component {
                             <div>Product Name: {cartItem.product.productName}</div>
                             <div>Quantity: {cartItem.quantity}</div>
                             <div>color: {cartItem.color}</div>
-                            <div>subtotal: </div>
+                            <div>subtotal: ${cartItem.product.price* cartItem.quantity}</div>
                         </div>
                     </Col>
                 </Row>

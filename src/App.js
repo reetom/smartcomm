@@ -5,7 +5,6 @@ import MainRoute from './routes/mainroute';
 import {Link} from 'react-router-dom';
 import {Badge, Icon} from 'react-mdl';
 import BuildFavBadge from './components/complibrary/buildfavbadge';
-import {Tooltip} from 'reactstrap';
 import CreateEmptyCart from './components/complibrary/createemptycart';
 
 var fs = require('fs');
@@ -32,7 +31,6 @@ class App extends Component {
 
     render() {
         var {displayFavBadge} = this.state;
-        console.log(displayFavBadge);
         return (
             <div style={{height: '1080px', position: 'relative'}}>
                 <Layout fixedHeader>
@@ -45,7 +43,7 @@ class App extends Component {
                                 {displayFavBadge}
                             </Link>
                             <Link to ="/shoppingcart">
-                                    <Badge text="5" overlap>
+                                    <Badge text="0" overlap>
                                         <Icon name="shoppingcart" />
                                     </Badge>
  

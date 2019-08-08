@@ -66,6 +66,7 @@ function addToFav({product}){
     var favList =[];
     var favCount = 0;
     var favAlreadyExist = "false";
+
     //If the cart doesn't exist, create one.
     CreateEmptyCart();
     //First check if the favList in local storate is empty, if not empty add to the list

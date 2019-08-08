@@ -68,7 +68,7 @@ class TrackOrder extends Component {
                                                   </Col>
                                                   <Col sm={4}>
                                                       <div className="align-left">
-                                                        <h6>Order Total : {cart.cartTotal.grandTotal}</h6>
+                                                        <h6>Order Total : ${cart.cartTotal.grandTotal}</h6>
                                                       </div>
                         
                                                   </Col>

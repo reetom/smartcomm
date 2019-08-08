@@ -7,8 +7,25 @@ class BuildFavBadge extends Component{
         super(props);
         this.state = {
             displayFavBadge: "",
+            favCount:0
        }
-       this.updateFavBadge = this.updateFavBadge.bind(this)
+       this.updateFavBadge = this.updateFavBadge.bind(this);
+       this.incrementFavCount = this.incrementFavCount.bind(this);
+       this.decrementFavCount = this.decrementFavCount.bind(this);
+    }
+
+    incrementFavCount(){
+        let {favCount} = this.state;
+        favCount = favCount+1;
+        this.setState({favCount:favCount});
+    }
+
+    decrementFavCount(){
+        let {favCount} =  this.state;
+        if (favCount>0){
+            favCount = favCount-1;
+        }
+        this.setState({favCount:favCount});
     }
 
     updateFavBadge(){
@@ -16,13 +33,11 @@ class BuildFavBadge extends Component{
         var favBadgeToDisplay = "";
         console.log(favCount);
         //hardcoded for now, fix it...
-        favCount = 3;
+        favCount = 2;
         if (favCount != null && favCount != "0"){
             favBadgeToDisplay = <Badge text={favCount} overlap><Icon name="favorite" /></Badge>
-            console.log("returning Badge with some count");
         }else {
             favBadgeToDisplay = <Badge><Icon name="favorite" /></Badge>;
-            console.log("returning empty Badge with 0 count");
         }
         this.setState({displayFavBadge: favBadgeToDisplay});
     }
