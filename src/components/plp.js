@@ -31,7 +31,8 @@ class PLP extends Component {
     reset(event){
         console.log("reset filters");
         event.preventDefault();
-        const data = new FormData(event.target);
+        //Not need to call filter, just displa all products.
+        this.setState({exampleItems:CLPData});
 
     }
 

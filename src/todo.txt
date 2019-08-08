@@ -38,7 +38,7 @@ confirmationNumber: "1561-738430-7861"
 orderDateAndTime: "2019-6-28 9:13:50"   
 
 
-
+DEMO Script - 
 
 Hi, today I am going to show you an ecommerce storefront called SmartComm, that I built from scratch. It's built on node-react
  stack. It's a single page application, which means it's lightning fast. I started building the storefornt as a POC and got

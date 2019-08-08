@@ -36,7 +36,6 @@ class OrderReviewPage extends Component {
       changeCardTypeValue(e) {
         e.preventDefault();
         this.setState({cardTypeDropDownValue: e.currentTarget.textContent});
-        console.log(e.currentTarget.textContent);
       }
 
 

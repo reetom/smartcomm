@@ -24,11 +24,15 @@ class Payments extends Component {
         this.setState({
             cardTypeDropdownOpen: !this.state.cardTypeDropdownOpen
         });
+        console.log(this.state.cardTypeDropdownOpen);
       }
       //Dropdown value change
       changeCardTypeValue(e) {
+        e.preventDefault();
         this.setState({cardTypeDropDownValue: e.currentTarget.textContent});
+        console.log(e.currentTarget.textContent);
       }
+
     onSubmit(event){
         event.preventDefault();
         const data = new FormData(event.target);  
@@ -62,48 +66,56 @@ class Payments extends Component {
                         <Row>
                                 <Col sm={6}>
                                     <FormGroup>
-                                        <Label>Name on Card</Label>
-                                        <Input type="text" name="nameOnCard" id="nameOnCard" placeholder="Name on Card" />
-                                    </FormGroup>
-                                </Col>
-                                <Col sm={6}>
-                                    <FormGroup>
                                         <Label>Nick Name</Label>
                                         <Input type="text" name="nickName" id="nickName" placeholder="Enter Nick Name" />
                                     </FormGroup>
                                 </Col>
+                                <Col sm={6}>
+                                    <FormGroup>
+                                        <Label>Name on Card</Label>
+                                        <Input type="text" name="nameOnCard" id="nameOnCard" placeholder="Name on Card" />
+                                    </FormGroup>
+                                </Col>
                             </Row>
                             <Row>
-                                <Col sm={4}>
+                                <Col sm={6}>
                                     <div className="one-em-spacing">
-                                        <ButtonDropdown  direction="right" isOpen={this.state.cardTypeDropdownOpen} toggle={this.toggleCardType}>
-                                                <DropdownToggle type="something" caret color="primary">{this.state.cardTypeDropDownValue}</DropdownToggle>
+                                        <ButtonDropdown direction="right" type="button" isOpen={this.state.cardTypeDropdownOpen} toggle={this.toggleCardType}>
+                                                <DropdownToggle type="button" caret color="primary">{this.state.cardTypeDropDownValue}</DropdownToggle>
                                                 <DropdownMenu>
-                                                    <DropdownItem onClick={this.changeCardTypeValue}><div className="quantity-dropdown-text">Visa</div></DropdownItem>
+                                                    <DropdownItem onClick={e => this.changeCardTypeValue(e)}><div className="quantity-dropdown-text">Visa</div></DropdownItem>
                                                     <DropdownItem divider/>
-                                                    <DropdownItem onClick={this.changeCardTypeValue}><div className="quantity-dropdown-text">Master Card</div></DropdownItem>
+                                                    <DropdownItem onClick={e => this.changeCardTypeValue(e)}><div className="quantity-dropdown-text">Master Card</div></DropdownItem>
                                                     <DropdownItem divider/>
-                                                    <DropdownItem onClick={this.changeCardTypeValue}><div className="quantity-dropdown-text">American Express</div></DropdownItem>
+                                                    <DropdownItem onClick={e => this.changeCardTypeValue(e)}><div className="quantity-dropdown-text">American Express</div></DropdownItem>
                                                     <DropdownItem divider/>
-                                                    <DropdownItem onClick={this.changeCardTypeValue}><div className="quantity-dropdown-text">Discover</div></DropdownItem>
+                                                    <DropdownItem onClick={e => this.changeCardTypeValue(e)}><div className="quantity-dropdown-text">Discover</div></DropdownItem>
                                                     </DropdownMenu>
                                         </ButtonDropdown>
                                     </div>
 
                                 </Col>
-                                <Col sm={4}>
+                                <Col sm={6}>
                                     <FormGroup>
                                         <Label>Card Number</Label>
                                         <Input type="text" name="cardNumber" id="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX" />
                                     </FormGroup>
                                 </Col>
-                                <Col sm={4}>
+                            </Row>
+                            <Row>
+                                <Col sm={6}></Col>
+                                <Col sm={6}>
                                      <FormGroup>
                                         <Label>Card Expiry Date</Label>
                                         <Input type="text" name="expiryDate" id="expiryDate" placeholder="MM/YY" />
                                     </FormGroup>
                                 </Col>
                             </Row>
+                            <div className="one-em-spacing" />
+                            <div className="one-em-spacing" />
+                            <div className="one-em-spacing" />
+                            <div className="one-em-spacing" />
+                            <div className="one-em-spacing" />
                     </div>
                 </Col>
                 <Col sm={3}>
