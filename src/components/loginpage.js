@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Col, Button, Form, FormGroup, Label, Input, Row, Container,} from 'reactstrap';
 import SectionHeadingAndWhiteLine from './complibrary/sectionheadingandwhiteline';
 import {Link} from 'react-router-dom';
+import {Snackbar} from 'react-mdl';
 
 //Regex to validate the email address.
 const emailRegex = RegExp(
@@ -33,10 +34,23 @@ class Login extends Component {
             email:"",
             passwrod:"",
             saveEmail:"",
+            isSnackbarActive:false,
+            message:""
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.toCreateAccountPage = this.toCreateAccountPage.bind(this);
+        this.handleShowSnackbar = this.handleShowSnackbar.bind(this);
+        this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);
     }
+
+    //Snackbar
+    handleShowSnackbar() {
+      this.setState({ isSnackbarActive: true });
+    }
+    handleTimeoutSnackbar() {
+      this.setState({ isSnackbarActive: false });
+    }
+
 
     onSubmit(event){
       event.preventDefault();
@@ -58,6 +72,10 @@ class Login extends Component {
                  if (userProfile.email === email && userProfile.password === password){
                     isUserValid = "true";
                      console.log("Login Successful");
+                }
+                else {
+                  console.log("Login failed, invalid credentials.");
+                  this.setState({message:"Invlaid Credentials, Please Try Again"})
                 }
             });  
         }
@@ -81,7 +99,7 @@ class Login extends Component {
     }
 
     render() {
-        const { formErrors } = this.state;
+        const { formErrors, message, isSnackbarActive} = this.state;
         
         return(
             <div className="login-page-background">
@@ -122,6 +140,11 @@ class Login extends Component {
                   <div className="one-em-spacing"/>
                   <div className="align-center">
                             <Button color="primary" onClick={this.toCreateAccountPage}>Create Account</Button>
+                            <Snackbar
+                                        active={isSnackbarActive}
+                                        onTimeout={this.handleTimeoutSnackbar}>
+                                            {message}
+                            </Snackbar>
                   </div>
                 </Row>
 

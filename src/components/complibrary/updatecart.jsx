@@ -109,9 +109,12 @@ const UpdateCart = (parameterToUpdate, parameterValue) => {
     console.log(cartItems);
     //Get the product price and calcualte subtotals based on quanity
     cartItems.map(cartItem => {
-      productSubtotal = productSubtotal + (cartItem.product.price*cartItem.quantity);
-      console.log(cartItem.product.price + ":" + cartItem.quantity);
-      console.log("Product totals :" + productSubtotal);
+      if (cartItem.product != null){
+        productSubtotal = productSubtotal + (cartItem.product.price*cartItem.quantity);
+        console.log(cartItem.product.price + ":" + cartItem.quantity);
+        console.log("Product totals :" + productSubtotal);
+      }
+
     });
     //Get the shipping cost and add it to the grand total
       shippingCost = shippingMethodAndPrice.shippingPrice;

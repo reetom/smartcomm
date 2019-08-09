@@ -6,6 +6,7 @@ import BuildProductCard from './complibrary/buildproductcard';
 import Pagination from './complibrary/pagination';
 import {Button,Container, Row, Col, Breadcrumb, BreadcrumbItem, Form, Label,Input, FormGroup} from 'reactstrap';
 import FilterProducts from './complibrary/filterproducts';
+import {Snackbar} from 'react-mdl';
 
 class PLP extends Component {
     constructor(props){
@@ -16,12 +17,24 @@ class PLP extends Component {
             categoryName:"",
             exampleItems: [],
             pageOfItems: [],
+            isSnackbarActive:false,
+            message:""
        }
        // bind function in constructor instead of render
        this.onChangePage = this.onChangePage.bind(this);
        this.onSubmit = this.onSubmit.bind(this);
        this.reset = this.reset.bind(this);
+       this.handleShowSnackbar = this.handleShowSnackbar.bind(this);
+       this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);       
     }
+    //Snackbar 
+    handleShowSnackbar() {
+        this.setState({ isSnackbarActive: true });
+    }
+    handleTimeoutSnackbar() {
+        this.setState({ isSnackbarActive: false });
+    }
+
     //Pagination Stuff
     onChangePage(pageOfItems) {
         // update state with new page of items
@@ -117,7 +130,6 @@ class PLP extends Component {
                                 "makeArray" : makeArray
         }
 
-        console.log("selected filters :" + JSON.stringify(filterCriteria));
         //Summon the filter only if filter options are selected.
         if (brandArray.length >0 || colorArray.length > 0 || makeArray.length >0 ){
             finalProductList = FilterProducts(filterCriteria, filteredProducts);
@@ -125,6 +137,7 @@ class PLP extends Component {
             this.setState({exampleItems:finalProductList});
         } else {
             console.log("No filter options selectd");
+            this.setState({message:"No Filter Criteria Selected"});
         }
 
     }
@@ -166,7 +179,7 @@ class PLP extends Component {
         this.setState({exampleItems:filteredproducts});
     }
     render() {
-        var {products} = this.state;
+        var {products, isSnackbarActive, message} = this.state;
         //loop through every product in the array and build the card.
         const cardUnit = this.state.pageOfItems.map(product =>  <BuildProductCard productFromParent={product}/>)
 
@@ -278,6 +291,11 @@ class PLP extends Component {
                                         </div>
                                         <div className="plp-refine-button">
                                             <Button color="primary" raised colored>Apply</Button> <Button color="primary" raised colored onClick={(event) => this.reset(event)}>Reset</Button>
+                                            <Snackbar
+                                                active={isSnackbarActive}
+                                                onTimeout={this.handleTimeoutSnackbar}>
+                                                {message}
+                                             </Snackbar>
                                         </div>
                                     </Form>
                                 </div>

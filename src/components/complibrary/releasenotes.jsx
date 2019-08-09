@@ -136,6 +136,7 @@ class ReleaseNotes extends Component {
                         <li>CUSTOMERS - "Customers"</li>
                         <li>SAVE FOR LATER - "savedList"</li>
                         <li>ALL ORDERS - "AllOrders"</li>
+                        <li>APPLICATION CONTEXT - "ApplicationContext"</li>
                     </ol>
                 </Row>
                 <div className="one-em-spacing"/>
