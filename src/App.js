@@ -1,28 +1,141 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component} from 'react';
 import './App.css';
+import {Layout, Header, Navigation, Drawer, Content, Footer,FooterSection, FooterDropDownSection, FooterLinkList} from 'react-mdl';
+import MainRoute from './routes/mainroute';
+import {Link} from 'react-router-dom';
+import {Badge, Icon} from 'react-mdl';
+import BuildFavBadge from './components/complibrary/buildfavbadge';
+import CreateEmptyCart from './components/complibrary/createemptycart';
 
+var fs = require('fs');
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    constructor(props){
+        super(props);
+        this.state = {
+            displayFavBadge: "",
+
+       }
+    }
+
+    //Build the fav badge and count alone. No setting state.
+    buildFavoriteBadge(){
+        const displayFavBadge = <BuildFavBadge />;
+        this.setState({displayFavBadge: displayFavBadge});
+    }
+
+    componentDidMount(){
+        this.buildFavoriteBadge();
+        CreateEmptyCart();
+    }
+
+    render() {
+        var {displayFavBadge} = this.state;
+        return (
+            <div style={{height: '1080px', position: 'relative'}}>
+                <Layout fixedHeader>
+                    <Header className="header-color" title={<span><strong>SmartComm</strong></span>}>
+                        <Navigation>
+                            <Link to ="/">Home</Link>
+                            <Link to ="/signin">Sign In</Link>
+                            <Link to ="/trackorder">Track Order</Link>
+                            <Link to ="/favorite">
+                                {displayFavBadge}
+                            </Link>
+                            <Link to ="/shoppingcart">
+                                    <Badge text="0" overlap>
+                                        <Icon name="shoppingcart" />
+                                    </Badge>
+ 
+                            </Link>
+                            
+                        </Navigation>
+                    </Header>
+                    <Drawer title="Departments" c>
+                        <Navigation>
+                        <Link to={{
+                                pathname: "/plp",
+                                state: {
+                                    categoryName: "all"
+                                }
+                                }}>All</Link>
+                            <Link to={{
+                                pathname: "/clp",
+                                state: {
+                                    categoryName: "men"
+                                }
+                                }}>Men</Link>
+                            <Link to={{
+                                pathname: "/clp",
+                                state: {
+                                    categoryName: "women"
+                                }
+                                }}>Women</Link>
+                            <Link to={{
+                                pathname: "/clp",
+                                state: {
+                                    categoryName: "boys"
+                                }
+                                }}>Boys</Link>
+                            <Link to={{
+                                pathname: "/clp",
+                                state: {
+                                    categoryName: "girls"
+                                }
+                                }}>Girls</Link>
+                            <Link to ="/clearcache">Clear Cache</Link>
+                            <Link to ="/releasenotes">Release Notes</Link>
+                        </Navigation>
+                    </Drawer>
+                <Content>
+                    <div className="page-content" />
+                    <MainRoute/>
+                </Content>
+                <Footer size="mega">
+                <FooterSection type="middle">
+                    <FooterDropDownSection title="Features">
+                        <FooterLinkList>
+                            <a href="#">About</a>
+                            <a href="#">Terms</a>
+                            <a href="#">Partners</a>
+                            <a href="#">Updates</a>
+                        </FooterLinkList>
+                    </FooterDropDownSection>
+                    <FooterDropDownSection title="Details">
+                        <FooterLinkList>
+                            <a href="#">Specs</a>
+                            <a href="#">Tools</a>
+                            <a href="#">Resources</a>
+                        </FooterLinkList>
+                    </FooterDropDownSection>
+                    <FooterDropDownSection title="Technology">
+                        <FooterLinkList>
+                            <a href="#">How it works</a>
+                            <a href="#">Patterns</a>
+                            <a href="#">Usage</a>
+                            <a href="#">Products</a>
+                            <a href="#">Contracts</a>
+                        </FooterLinkList>
+                    </FooterDropDownSection>
+                    <FooterDropDownSection title="FAQ">
+                        <FooterLinkList>
+                            <a href="#">Questions</a>
+                            <a href="#">Answers</a>
+                            <a href="#">Contact Us</a>
+                        </FooterLinkList>
+                    </FooterDropDownSection>
+                </FooterSection>
+                <FooterSection type="bottom" logo="Title">
+                    <FooterLinkList>
+                        <a href="#">Help</a>
+                        <a href="#">Privacy & Terms</a>
+                    </FooterLinkList>
+                </FooterSection>
+            </Footer>
+                </Layout>
+            </div>
+        );
+    }
 }
 
 export default App;

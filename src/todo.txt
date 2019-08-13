@@ -1,0 +1,55 @@
+
+
+TODO - 
+1. Remove Cart item and not product.
+
+
+Visualize the cart objec-
+
+cart = {
+    "productList":{product1, product2....},
+    "shippingMethodAndPrice": shippingObj,
+    "payment": {payment1, payment2, payment3},
+    "shippingAddress": "shippingAddressObj",
+    "billingAddress": "billingAddressObj",
+    "customer": "customerObj",
+    "Promotions": "promotionsobj",
+    "tax": "taxObj",
+    "cartTotal": "cartTotalPrice"
+
+}
+
+
+npm config set ignore-scripts false
+npm i -g now
+npm i -g --unsafe-perm now
+
+
+{cart: {…}, confirmationNumber: "1561-738430-7861", orderDateAndTime: "2019-6-28 9:13:50", orderStatus: "Pending"}
+cart:
+billingAddress: {firstName: "Reetom", lastName: "Hazarika", streetAddress: "990 S Dutton Dr", city: "Tracy", state: "California", …}
+cartItems: [{…}]
+cartTotal: {subtotal: "3450", tax: "345", grandTotal: null}
+contactDetails: {email: "reetom@gmail.com", contact: ""}
+giftCard: {cardNumber: "", isGiftCardValid: "", cvv: "", expiryDate: ""}
+paymentDetails: {cardType: "", cardNumber: "", expiryDate: "", cvvNumber: ""}
+promotions: {promotions: {…}}
+shippingAddress: {firstName: "Reetom", lastName: "Hazarika", streetAddress: "990 S Dutton Dr", city: "Tracy", state: "California", …}
+shippingMethodAndPrice: {shippingMethod: "Standard Shipping", shippingPrice: "7.99", expectedDelivery: " 1 weeks"}
+__proto__: Object
+confirmationNumber: "1561-738430-7861"
+orderDateAndTime: "2019-6-28 9:13:50"   
+
+
+DEMO Script - 
+
+Hi, today I am going to show you an ecommerce storefront called SmartComm, that I built from scratch. It's built on node-react
+ stack. It's a single page application, which means it's lightning fast. I started building the storefornt as a POC and got
+so involved and interested that I decided to build all the features. Right now, the version 1 of SmartComm is available 
+with a rich featureset, which I will show you in a min. And there is a progressive roadmap to take it to the next level.
+Even in it's current form, it's capable of hosting an ecommerce business in the most elegant and competitive way.
+
+
+And that's it. Its amazing how a small side project done in spare time can become a fully fleshed product in no time.
+In the next version of the app, my focus will be primarily on error handling and making the site responsive, besides adding 
+some more features to it. Thank you for watching.
